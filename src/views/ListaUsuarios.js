@@ -2,7 +2,6 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt, faUserTie} from '@fortawesome/free-solid-svg-icons';
-import { RegistroUsuario } from "./RegistroUsuario";
 import { Link } from "react-router-dom";
 
 export function ListaUsuarios({props}){
