@@ -8,34 +8,40 @@ import Footer from './components/footer'
 import Error404 from './views/error404'
 import { ListaUsuarios } from './views/ListaUsuarios'
 import { RegistroUsuario } from './views/RegistroUsuario'
+import { EdicionUsuario } from "./views/EdicionUsuario";
+
+
 
 const App= ()=>{
     return (
-        <BrowserRouter>
-            <Navbar />
-            <Switch>
-                <Route exact path="/">
-                    <Home/>
-                </Route>
-                <Route exact path="/listado-actividades">
-                    <ListadoActividades />
-                </Route>
-                <Route exact path="/listado-actividades/registro-edicion-actividad">
-                    <RegistroEdicionActividad />
-                </Route>
-                <Route exact path="/ListaUsuarios">
-                    <ListaUsuarios />
-                </Route>
-                <Route exact path="/RegistroUsuario">
-                    <RegistroUsuario />
-                </Route>
-                <Route>
-                    <Error404 />
-                </Route>
-            </Switch>
-            <Footer />
-        </BrowserRouter>
-    )
+      <BrowserRouter>
+        <Navbar />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/listado-actividades">
+            <ListadoActividades />
+          </Route>
+          <Route exact path="/listado-actividades/registro-edicion-actividad">
+            <RegistroEdicionActividad />
+          </Route>
+          <Route exact path="/ListaUsuarios">
+            <ListaUsuarios />
+          </Route>
+          <Route exact path="/RegistroUsuario">
+            <RegistroUsuario />
+          </Route>
+          <Route exact path="/EdicionUsuario">
+            <EdicionUsuario />
+          </Route>
+          <Route>
+            <Error404 />
+          </Route>
+        </Switch>
+        <Footer />
+      </BrowserRouter>
+    );
 }
 
 export default App;
