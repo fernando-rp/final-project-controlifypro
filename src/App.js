@@ -9,6 +9,7 @@ import Error404 from './views/error404'
 import { ListaUsuarios } from './views/ListaUsuarios'
 import { RegistroUsuario } from './views/RegistroUsuario'
 import { EdicionUsuario } from "./views/EdicionUsuario";
+import { Login } from "./views/Login";
 
 
 
@@ -34,6 +35,9 @@ const App= ()=>{
           </Route>
           <Route exact path="/EdicionUsuario">
             <EdicionUsuario />
+          </Route>
+          <Route exact path="/Login">
+            <Login />
           </Route>
           <Route>
             <Error404 />
