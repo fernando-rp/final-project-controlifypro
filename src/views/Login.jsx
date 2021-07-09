@@ -8,6 +8,7 @@ export function Login() {
         <div className="row border boder-primary">
           <div className="col-12">
             <form className="row g-3 mt-3">
+              
               <div className="col-md-8 mx-auto">
                 <label for="name" className="form-label">
                   EMAIL
@@ -21,10 +22,17 @@ export function Login() {
               </div>
 
               <div className="col-md-8 mx-auto">
-                <label for="name" className="form-label">
-                  PASSWORD
+                <label for="inputPassword2" class="col-sm-2 visually-hidden">
+                  Password
                 </label>
-                <input type="text" className="form-control" id="inputname" />
+                <div className="col-sm-12">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="inputPassword"
+                    placeholder="Password"
+                  />
+                </div>
               </div>
 
               <div className="col-md-8 mx-auto">
@@ -47,21 +55,12 @@ export function Login() {
           </div>
         </div>
 
-        <div className="col-10 d-flex justify-content-end mb-4">
+        <div className="col-12 d-flex justify-content-end mb-4">
           <form className="row g-3 mt-3">
-            <div className="col-md-2 mx-auto">
-              <button type="submit" className="btn btn-success">
-                Agregar
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">
+                LOGIN
               </button>
-            </div>
-            <div className="col-md-2 mx-auto">
-              <Link
-                type="submit"
-                className="btn btn-danger"
-                to="/listaUsuarios"
-              >
-                Cancelar
-              </Link>
             </div>
           </form>
         </div>

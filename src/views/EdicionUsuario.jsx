@@ -100,7 +100,7 @@ export function EdicionUsuario() {
         <form className="row g-3 mt-3">
           <div className="col-md-2 mx-auto">
             <button type="submit" className="btn btn-success">
-              Agregar
+              Guardar
             </button>
           </div>
           <div className="col-md-2 mx-auto">

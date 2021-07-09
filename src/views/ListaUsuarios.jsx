@@ -7,13 +7,35 @@ import {
   faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export function ListaUsuarios({ props }) {
+
+  const confirmacion = () => {
+
+    Swal.fire({
+      title: "Estas seguro de eliminar este Colaborador?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, borrarlo!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
+
+  }
+
+
+
+
   return (
     <>
-      <div className="container m-2 p-0 ">
-      <caption className="row caption-top m-0">
-        Lista de mis Colaboradores
+      <div className="container mt-4">
+        <caption className="row caption-top m-0">
+          Lista de mis Colaboradores
         </caption>
         <table className="table caption-top m-0 border">
           <thead>
@@ -43,8 +65,10 @@ export function ListaUsuarios({ props }) {
                 </Link>
               </td>
               <td>
-                <Link>
-                  <FontAwesomeIcon icon={faTrashAlt} />
+                <Link onClick={()=>confirmacion()}>
+                  <FontAwesomeIcon icon={faTrashAlt} 
+                  
+                  />
                 </Link>
               </td>
             </tr>
@@ -52,7 +76,7 @@ export function ListaUsuarios({ props }) {
         </table>
         <div className="d-md-flex justify-content-md-end">
           <Link className="btn  btn-success" to="/RegistroUsuario">
-            Agregar trabajador
+            Agregar Colaborador
           </Link>
         </div>
       </div>
