@@ -1,14 +1,24 @@
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+
 
 export function RegistroUsuario () {
+
+
+  const confirmacion2 = () => {
+    Swal.fire({
+      icon: "success",
+      title: "Se guardo correctamente",
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  };
 
 
   return (
     <>
       <div className="container mt-4">
-        <caption className="row  caption-top m-0 ">
-          Registro de Usuario
-        </caption>
+        <caption className="row  caption-top m-0 ">Registro de Usuario</caption>
         <div className="row border boder-primary">
           <div className="col-12">
             <form className="row g-3 mt-3">
@@ -101,9 +111,13 @@ export function RegistroUsuario () {
         <div className="col-10 d-flex justify-content-end mb-4">
           <form className="row g-3 mt-3">
             <div className="col-md-2 mx-auto">
-              <button type="submit" className="btn btn-success">
+              <Link
+                type="submit"
+                className="btn btn-success"
+                onClick={() => confirmacion2()}
+              >
                 Agregar
-              </button>
+              </Link>
             </div>
             <div className="col-md-2 mx-auto">
               <Link
