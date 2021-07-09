@@ -1,7 +1,11 @@
 import {BrowserRouter, Route , Switch} from 'react-router-dom'
 import Home from './views/home'
 import ListadoActividades from './views/listado-actividades'
+import ListadoProyectos from './views/listado-proyectos'
+
 import RegistroEdicionActividad from './views/registro-edicion-actividad'
+import RegistroEdicionProyecto from './views/registro-edicion-proyecto'
+
 import Navbar from './components/navbar'
 import Footer from './components/footer'
 
@@ -18,8 +22,14 @@ const App= ()=>{
                 <Route exact path="/listado-actividades">
                     <ListadoActividades />
                 </Route>
+                <Route exact path="/listado-proyectos">
+                    <ListadoProyectos />
+                </Route>
                 <Route exact path="/listado-actividades/registro-edicion-actividad">
                     <RegistroEdicionActividad />
+                </Route>
+                <Route exact path="/listado-proyectos/registro-edicion-proyecto">
+                    <RegistroEdicionProyecto />
                 </Route>
                 <Route>
                     <Error404 />
