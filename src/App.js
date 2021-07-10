@@ -15,6 +15,7 @@ import { ListaUsuarios } from './views/ListaUsuarios'
 import { RegistroUsuario } from './views/RegistroUsuario'
 import { EdicionUsuario } from "./views/EdicionUsuario";
 import { Login } from "./views/Login";
+import injectContext from './store/appContext'
 
 
 
