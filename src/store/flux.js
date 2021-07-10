@@ -8,7 +8,8 @@ const getState=({getStore, getActions, setStore})=>{
             actividades:[
                 {
                     "id":1,
-                    "proyecto": "C222",
+                    "codigo": "C1234",
+                    "proyecto": "Puerto Belize",
                     "descripcion": "Lorem impsum",
                     "fechainicio": "02/02/2020",
                     "fechafin": "31/12/2020",
@@ -18,8 +19,9 @@ const getState=({getStore, getActions, setStore})=>{
 
                 },
                 {
-                    "id":1,
-                    "proyecto": "C222",
+                    "id":2,
+                    "codigo": "C4526",
+                    "proyecto": "Mejillones",
                     "descripcion": "Lorem impsum",
                     "fechainicio": "02/02/2020",
                     "fechafin": "31/12/2020",
@@ -28,14 +30,81 @@ const getState=({getStore, getActions, setStore})=>{
                     "estado": "activo"
 
                 }
-            ]
+            ],
+            usuarios:[],
+
+            actividad:{
+                "id":2,
+                "codigo": "C4526",
+                "proyecto": "Mejillones",
+                "descripcion": "Lorem impsum",
+                "fechainicio": "02/02/2020",
+                "fechafin": "31/12/2020",
+                "uso": "20HH",
+                "presupuesto": "500HH",
+                "estado": "activo"
+
+            },
+
+            proyectos:[],
+            proyecto:null,
+            error:null
 
         },
         actions:{
-            // add_activity: e =>{
-            //     const {actividades}= getStore ();
+            getActividades: url => {
+                fetch(url, {})
+                    .then((response) => {
+                        if (!response.ok) setStore({ error: response.error });
+                        return response.json()
+                    })
+                    .then((data) => {
+                        setStore({
+                            actividades: data
+                        })
+                    })
+                    .catch(() => {
+
+                    })
+            },
+            getProyectos: url => {
                 
-            // }
+                fetch(url,{
+                    method: 'GET', 
+                    mode: 'no-cors'
+                    
+                    // headers: {
+                    //     'Content-Type': 'application/json'}
+                    })
+                    .then((response) => {
+                        if (!response.ok) setStore({ error: response.error });                      
+                        return response.json()
+                    })
+                    .then((data) => {
+                        console.log(data)
+                        setStore({
+                            proyectos: data      
+                        })
+                    })
+                    .catch((error) => {
+                        
+                    })
+            },
+            getActivityById: (url, id) => {
+                fetch(`${url}/${id}`, {})
+                    .then((response) => {
+                        if (!response.ok) setStore({ error: response.error });
+                        return response.json()
+                    })
+                    .then((data) => {
+                        setStore({
+                            activity: data
+                        })
+                    })
+                    .catch(() => {
+
+                    })
+            },
         }
     }
 }

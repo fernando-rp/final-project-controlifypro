@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "../store/appContext";
+import { useState, useEffect } from "react";
 
 const ListadoProyectos = ()=>{
+
+    const {store, actions}= useContext(Context);
+    const {proyectos}=store;
+
+    useEffect(()=>{
+        actions.getProyectos()
+    },[])
 
 
 
@@ -74,30 +84,41 @@ const ListadoProyectos = ()=>{
                 <th scope="col">Código</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripción</th>
+                <th scope="col">% Uso</th>
+                <th scope="col">Presupuesto</th>
                 <th scope="col">Fecha inicio</th>
                 <th scope="col">Fecha fin</th>
-                <th scope="col">% Uso</th>
-                <th scope="col">HH presupuesto</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">X</th>
-                <td>XXX</td>
-                <td>XXX</td>
-                <td>XXX</td>
-                <td>XXX</td>
-                <td>XXX</td>
-                <td>XXX</td>
-                <td>XXX</td>
-                <td>
-                    <button className="edit-icon border-white bg-transparent text-primary"> <i class="fas fa-database"></i> </button>
-                    <Link className="edit-icon border-white bg-transparent text-success" to="/"><i className="far fa-edit "></i> </Link>
-                    <button className="trash-icon border-white bg-transparent text-danger"><i className="far fa-trash-alt "></i> </button>
-                </td>
-                </tr>                
+
+                {!!proyectos &&
+                proyectos.length>0 &&
+                proyectos.map((proyecto,index)=>{
+                    return (
+                        <tr key={index}>
+                            <th scope="row">{proyecto.sigla}</th>
+                            <td>{proyecto.nombre}</td>
+                            <td>{proyecto.descripcion}</td>
+                            <td>{proyecto.porcentaje_avance}</td>
+                            <td>{proyecto.presupuesto}</td>
+                            <td>{proyecto.fecha_inicio}</td>
+                            <td>{proyecto.fecha_entrega}</td>
+                            <td>{proyecto.estado}</td>
+                            <td>
+                                <button className="edit-icon border-white bg-transparent text-primary"> <i class="fas fa-database"></i> </button>
+                                <Link className="edit-icon border-white bg-transparent text-success" to="/"><i className="far fa-edit "></i> </Link>
+                                <button className="trash-icon border-white bg-transparent text-danger"><i className="far fa-trash-alt "></i> </button>
+                            </td>
+                        </tr>
+
+                    )
+                })
+
+                }
+                              
             </tbody>
             </table>
 

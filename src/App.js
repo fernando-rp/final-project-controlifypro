@@ -10,6 +10,7 @@ import Navbar from './components/navbar'
 import Footer from './components/footer'
 
 import Error404 from './views/error404'
+import injectContext from './store/appContext'
 
 const App= ()=>{
     return (
@@ -25,7 +26,7 @@ const App= ()=>{
                 <Route exact path="/listado-proyectos">
                     <ListadoProyectos />
                 </Route>
-                <Route exact path="/listado-actividades/registro-edicion-actividad">
+                <Route exact path="/:id/registro-edicion-actividad">
                     <RegistroEdicionActividad />
                 </Route>
                 <Route exact path="/listado-proyectos/registro-edicion-proyecto">
@@ -40,4 +41,4 @@ const App= ()=>{
     )
 }
 
-export default App;
+export default injectContext(App);

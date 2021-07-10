@@ -1,11 +1,36 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import Swal from 'sweetalert2'
 
 const ListadoActividades = ()=>{
 
     const {store}= useContext(Context);
     const {actividades}=store;
+
+    // useEffect(()=>{
+    //     actions.getActivityById("",id)
+    // },[])
+
+    const confirmacion = () => {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "La información se eliminará",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Sí, borrar!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Eliminado',
+                'Tu actividad ha sido eliminada',
+                'success'
+              )
+            }
+          })
+    }
 
     return(
         <div className="container mt-4">
@@ -104,9 +129,10 @@ const ListadoActividades = ()=>{
                                 <td>{actividad.estado}</td>
                                 <td>
                                     <button className="edit-icon border-white bg-transparent text-primary"> <i className="fas fa-database"></i> </button>
-                                    <button className="edit-icon border-white bg-transparent text-success"><i className="far fa-edit "></i> </button>
-                                    <button className="trash-icon border-white bg-transparent text-danger"><i className="far fa-trash-alt "></i> </button>
-                                </td>
+                                    <Link className="edit-icon border-white bg-transparent text-success" to={`/${actividad.id}/registro-edicion-actividad`}><i className="far fa-edit "></i> </Link>
+                                    <button className="trash-icon border-white bg-transparent text-danger" onClick={()=>{confirmacion()}}><i className="far fa-trash-alt "></i> </button>
+                                    
+                                    </td>
                             </tr>
                             )
                     })
