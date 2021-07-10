@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUserTie,
+} from "@fortawesome/free-solid-svg-icons";
+
 
 export function Login() {
   return (
@@ -6,9 +11,11 @@ export function Login() {
       <div className="container mt-4">
         <caption className="row  caption-top m-0 ">Sign In</caption>
         <div className="row border boder-primary">
-          <div className="col-12">
+          <div className="col-3 fa-5x">
+            <FontAwesomeIcon icon={faUserTie} class="text-center m-0 p-3" />
+          </div>
+          <div className="col-9 justify-content-end">
             <form className="row g-3 mt-3">
-              
               <div className="col-md-8 mx-auto">
                 <label for="name" className="form-label">
                   EMAIL

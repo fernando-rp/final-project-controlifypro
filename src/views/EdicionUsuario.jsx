@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 
 export function EdicionUsuario() {
 
+  
   const confirmacion3 = () => {
     Swal.fire({
       icon: "success",
@@ -30,7 +31,7 @@ export function EdicionUsuario() {
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-contr ol"
                   id="inputname"
                   placeholder="Ingrese RUN Chileno"
                 />
@@ -113,13 +114,13 @@ export function EdicionUsuario() {
         <div className="col-10 d-flex justify-content-end mb-4">
           <form className="row g-3 mt-3">
             <div className="col-md-2 mx-auto">
-              <Link
-                type="submit"
+              <button
+                type="button"
                 className="btn btn-success"
                 onClick={() => confirmacion3()}
               >
                 Guardar
-              </Link>
+              </button>
             </div>
             <div className="col-md-2 mx-auto">
               <Link

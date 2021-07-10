@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,6 +10,14 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export function ListaUsuarios({ props }) {
+
+
+  const [listaUsuarios, setListaUsuarios] = useState([]);
+
+
+  const nuevoRut = (rut) => {
+    setListaUsuarios([rut, ...listaUsuarios]);
+  }
 
   const confirmacion = () => {
 
@@ -27,8 +35,6 @@ export function ListaUsuarios({ props }) {
     });
 
   }
-
-
 
 
   return (
@@ -51,7 +57,7 @@ export function ListaUsuarios({ props }) {
           </thead>
           <tbody>
             <tr>
-              <th scope="row">
+              <th scope="row" className="fa-2x">
                 <FontAwesomeIcon icon={faUserTie} />
               </th>
               <td>Mark</td>
@@ -65,10 +71,8 @@ export function ListaUsuarios({ props }) {
                 </Link>
               </td>
               <td>
-                <Link onClick={()=>confirmacion()}>
-                  <FontAwesomeIcon icon={faTrashAlt} 
-                  
-                  />
+                <Link onClick={() => confirmacion()}>
+                  <FontAwesomeIcon icon={faTrashAlt} />
                 </Link>
               </td>
             </tr>

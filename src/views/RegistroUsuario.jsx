@@ -1,8 +1,35 @@
+import { event } from "jquery";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
-export function RegistroUsuario () {
+export function RegistroUsuario (props) {
+
+const [data, setData] = useState("")
+const key = ''
+const url = ''
+
+
+// useEffect(() => {
+//   const fetchData = async () => {
+//     await fetch(`${url}?key=${key}`)
+//     .then(response => response.json())
+//     .then(json => setData(json))
+//     .catch(error => console.log(error))
+//   }
+//   fetchData()
+// }, [])
+
+
+const manejarFormulario = (event) => {
+  setData(event.target.value);
+}
+
+const submit = (event) => {
+  event.preventDefault();
+}
+
 
 
   const confirmacion2 = () => {
@@ -111,13 +138,13 @@ export function RegistroUsuario () {
         <div className="col-10 d-flex justify-content-end mb-4">
           <form className="row g-3 mt-3">
             <div className="col-md-2 mx-auto">
-              <Link
-                type="submit"
+              <button
+                type="button"
                 className="btn btn-success"
                 onClick={() => confirmacion2()}
               >
                 Agregar
-              </Link>
+              </button>
             </div>
             <div className="col-md-2 mx-auto">
               <Link
