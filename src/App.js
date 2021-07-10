@@ -10,7 +10,12 @@ import Navbar from './components/navbar'
 import Footer from './components/footer'
 
 import Error404 from './views/error404'
-import injectContext from './store/appContext'
+
+import { ListaUsuarios } from './views/ListaUsuarios'
+import { RegistroUsuario } from './views/RegistroUsuario'
+import { EdicionUsuario } from "./views/EdicionUsuario";
+import { Login } from "./views/Login";
+
 
 const App= ()=>{
     return (
@@ -32,6 +37,18 @@ const App= ()=>{
                 <Route exact path="/listado-proyectos/registro-edicion-proyecto">
                     <RegistroEdicionProyecto />
                 </Route>
+                <Route exact path="/ListaUsuarios">
+                  <ListaUsuarios />
+                </Route>
+          <Route exact path="/RegistroUsuario">
+            <RegistroUsuario />
+          </Route>
+          <Route exact path="/EdicionUsuario">
+            <EdicionUsuario />
+          </Route>
+          <Route exact path="/Login">
+            <Login />
+          </Route>
                 <Route>
                     <Error404 />
                 </Route>
