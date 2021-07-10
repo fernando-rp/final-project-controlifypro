@@ -1,41 +1,23 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 import { Context } from "../store/appContext";
-import Swal from 'sweetalert2'
+import { useState, useEffect } from "react";
 
-const ListadoActividades = ()=>{
+const ListadoProyectos = ()=>{
 
-    const {store}= useContext(Context);
-    const {actividades}=store;
+    const {store, actions}= useContext(Context);
+    const {proyectos}=store;
 
-    // useEffect(()=>{
-    //     actions.getActivityById("",id)
-    // },[])
+    useEffect(()=>{
+        actions.getProyectos()
+    },[])
 
-    const confirmacion = () => {
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: "La información se eliminará",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: '¡Sí, borrar!'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire(
-                'Eliminado',
-                'Tu actividad ha sido eliminada',
-                'success'
-              )
-            }
-          })
-    }
+
 
     return(
         <div className="container mt-4">
             <div className="row">
-            <div className="col-4 fs-5 bg-primary text-light">Buscar actividades</div>
+            <div className="col-4 fs-5 bg-primary text-light">Buscar proyectos</div>
             </div>
             <div className="row border boder-primary">
                 <div className="col-8">
@@ -88,54 +70,53 @@ const ListadoActividades = ()=>{
 
             <div className="row mt-4">
                 <div className="col-md-12 d-flex justify-content-end">
-                    <Link type="submit" className="btn btn-success" to="/listado-actividades/registro-edicion-actividad">Agregar Actividad</Link>
+                    <Link type="submit" className="btn btn-success" to="/listado-proyectos/registro-edicion-proyecto">Agregar Proyecto</Link>
                 </div>
             </div>
 
             <div className="row mt-4">
-                <div className="col-4 fs-5 bg-primary text-light">Mis Actividades</div>
+                <div className="col-4 fs-5 bg-primary text-light">Mis Proyectos</div>
             </div>
 
             <table className="table">
             <thead>
                 <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Código</th>
-                <th scope="col">Proyecto</th>
+                <th scope="col">Nombre</th>
                 <th scope="col">Descripción</th>
+                <th scope="col">% Uso</th>
+                <th scope="col">Presupuesto</th>
                 <th scope="col">Fecha inicio</th>
                 <th scope="col">Fecha fin</th>
-                <th scope="col">% Uso</th>
-                <th scope="col">HH presupuesto</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
 
-                {!!actividades &&
-                    actividades.length>0 &&
-                    actividades.map((actividad,index)=>{
-                        return(
-                            <tr key={index}>
-                                <th scope="row">{actividad.id}</th>
-                                <td>{actividad.codigo}</td>
-                                <td>{actividad.proyecto}</td>
-                                <td>{actividad.descripcion}</td>
-                                <td>{actividad.fechainicio}</td>
-                                <td>{actividad.fechafin}</td>
-                                <td>{actividad.uso}</td>
-                                <td>{actividad.presupuesto}</td>
-                                <td>{actividad.estado}</td>
-                                <td>
-                                    <button className="edit-icon border-white bg-transparent text-primary"> <i className="fas fa-database"></i> </button>
-                                    <Link className="edit-icon border-white bg-transparent text-success" to={`/${actividad.id}/registro-edicion-actividad`}><i className="far fa-edit "></i> </Link>
-                                    <button className="trash-icon border-white bg-transparent text-danger" onClick={()=>{confirmacion()}}><i className="far fa-trash-alt "></i> </button>
-                                    
-                                    </td>
-                            </tr>
-                            )
-                    })
+                {!!proyectos &&
+                proyectos.length>0 &&
+                proyectos.map((proyecto,index)=>{
+                    return (
+                        <tr key={index}>
+                            <th scope="row">{proyecto.sigla}</th>
+                            <td>{proyecto.nombre}</td>
+                            <td>{proyecto.descripcion}</td>
+                            <td>{proyecto.porcentaje_avance}</td>
+                            <td>{proyecto.presupuesto}</td>
+                            <td>{proyecto.fecha_inicio}</td>
+                            <td>{proyecto.fecha_entrega}</td>
+                            <td>{proyecto.estado}</td>
+                            <td>
+                                <button className="edit-icon border-white bg-transparent text-primary"> <i class="fas fa-database"></i> </button>
+                                <Link className="edit-icon border-white bg-transparent text-success" to="/"><i className="far fa-edit "></i> </Link>
+                                <button className="trash-icon border-white bg-transparent text-danger"><i className="far fa-trash-alt "></i> </button>
+                            </td>
+                        </tr>
+
+                    )
+                })
+
                 }
                               
             </tbody>
@@ -146,4 +127,4 @@ const ListadoActividades = ()=>{
     )
 }
 
-export default ListadoActividades ;
+export default ListadoProyectos ;
