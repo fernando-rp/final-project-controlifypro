@@ -17,13 +17,13 @@ export function Login() {
           <div className="col-9 justify-content-end">
             <form className="row g-3 mt-3">
               <div className="col-md-8 mx-auto">
-                <label for="name" className="form-label">
+                <label for="floatingInput" className="form-label">
                   EMAIL
                 </label>
                 <input
                   type="email"
                   className="form-control"
-                  id="inputname"
+                  id="floatingInput"
                   placeholder="name@example.com"
                 />
               </div>
