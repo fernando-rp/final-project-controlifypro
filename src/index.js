@@ -8,6 +8,7 @@ import 'popper.js';
 import 'bootstrap';
 import 'react-icons';
 
+
 import App from './App'
 
 ReactDOM.render(<App />,document.querySelector("#root")) 

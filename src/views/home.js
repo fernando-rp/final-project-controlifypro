@@ -1,9 +1,12 @@
 import React from "react";
 
+import Contact from '../components/contact'
+
 
 const Home = () => {
 
     return (
+        <>
         <div className="body-home">
             <div className="container-fluid">
                 <h1 className="text-center">Controlify Pro</h1>
@@ -153,17 +156,9 @@ const Home = () => {
             </div>   
         </div>
         
+        <Contact/>
+        </>
         
-
-
-
-
-
-        
-
-
-
-
     )
 }
 
