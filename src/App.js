@@ -12,6 +12,7 @@ import Footer from './components/footer'
 import Error404 from './views/error404'
 import injectContext from './store/appContext'
 
+
 const App= ()=>{
     return (
         <BrowserRouter>
