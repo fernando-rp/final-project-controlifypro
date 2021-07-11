@@ -69,13 +69,7 @@ const getState=({getStore, getActions, setStore})=>{
             },
             getProyectos: url => {
                 
-                fetch(url,{
-                    method: 'GET', 
-                    mode: 'no-cors'
-                    
-                    // headers: {
-                    //     'Content-Type': 'application/json'}
-                    })
+                fetch(url)
                     .then((response) => {
                         if (!response.ok) setStore({ error: response.error });                      
                         return response.json()
@@ -85,9 +79,25 @@ const getState=({getStore, getActions, setStore})=>{
                         setStore({
                             proyectos: data      
                         })
+                        console.log(data)
                     })
                     .catch((error) => {
-                        
+                        console.log(error)                        
+                    })
+            },
+            getProyectById: (url, id) => {
+                fetch(`${url}/${id}`, {})
+                    .then((response) => {
+                        if (!response.ok) setStore({ error: response.error });
+                        return response.json()
+                    })
+                    .then((data) => {
+                        setStore({
+                            activity: data
+                        })
+                    })
+                    .catch(() => {
+
                     })
             },
             getActivityById: (url, id) => {

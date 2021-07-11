@@ -10,11 +10,11 @@ const RegistroEdicionActividad = ()=>{
     const {store, actions}= useContext(Context);
     const {actividad} = store;
 
-     const {id}=useParams();
+    const {id}=useParams();
 
-    // useEffect(()=>{
-    //     actions.getActivityById("",id)
-    // },[])
+    useEffect(()=>{
+        
+    },[])
 
     
     const confirmacion_saved = () => {
