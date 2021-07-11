@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,18 +10,24 @@ import {
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
+
+
 export function ListaUsuarios({ props }) {
 
 
-  const [listaUsuarios, setListaUsuarios] = useState([]);
+
+  const { store } = useContext(Context);
+  const { usuarios } = store;
 
 
-  const nuevoRut = (rut) => {
-    setListaUsuarios([rut, ...listaUsuarios]);
-  }
+
+  // useEffect(()=>{
+  //     actions.getActivityById("",id)
+  // },[])
+
+
 
   const confirmacion = () => {
-
     Swal.fire({
       title: "Estas seguro de eliminar este Colaborador?",
       icon: "warning",
@@ -33,8 +40,8 @@ export function ListaUsuarios({ props }) {
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }
     });
+  };
 
-  }
 
 
   return (
@@ -56,26 +63,33 @@ export function ListaUsuarios({ props }) {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row" className="fa-2x">
-                <FontAwesomeIcon icon={faUserTie} />
-              </th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>Thornton</td>
-              <td>Thornton</td>
-              <td>Thornton@gmail.com</td>
-              <td>
-                <Link to="/EdicionUsuario">
-                  <FontAwesomeIcon icon={faEdit} />
-                </Link>
-              </td>
-              <td>
-                <Link onClick={() => confirmacion()}>
-                  <FontAwesomeIcon icon={faTrashAlt} />
-                </Link>
-              </td>
-            </tr>
+            {!!usuarios &&
+              usuarios.length > 0 &&
+              usuarios.map((usuario, index) => {
+                return (
+                  <tr key={index}>
+                    <th scope="row">
+                      <FontAwesomeIcon icon={faUserTie} />
+                    </th>
+                    <td>{usuario.primer_nombre}</td>
+                    <td>{usuario.segundo_nombre}</td>
+                    <td>{usuario.apellido_paterno}</td>
+                    <td>{usuario.apellido_materno}</td>
+                    <td>{usuario.email}</td>
+                    <td>
+                      <td>
+                        <Link to="/RegistroUsuario">
+                          <FontAwesomeIcon icon={faEdit} />{" "}
+                        </Link>
+                        <Link onClick={() => confirmacion()}>
+                          <FontAwesomeIcon icon={faTrashAlt} />
+                        </Link>
+                      </td>
+                    </td>
+                  </tr>
+                );
+              })}
+
           </tbody>
         </table>
         <div className="d-md-flex justify-content-md-end">

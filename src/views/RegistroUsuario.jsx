@@ -1,34 +1,21 @@
 import { event } from "jquery";
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext  } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
 
 
-export function RegistroUsuario (props) {
-
-const [data, setData] = useState("")
-const key = ''
-const url = ''
+export function RegistroUsuario(props) {
 
 
-// useEffect(() => {
-//   const fetchData = async () => {
-//     await fetch(`${url}?key=${key}`)
-//     .then(response => response.json())
-//     .then(json => setData(json))
-//     .catch(error => console.log(error))
-//   }
-//   fetchData()
-// }, [])
+  const { store, actions } = useContext(Context);
+  const { usuario } = store;
 
+  const { id } = useParams();
 
-const manejarFormulario = (event) => {
-  setData(event.target.value);
-}
-
-const submit = (event) => {
-  event.preventDefault();
-}
+  // useEffect(()=>{
+  //     actions.getActivityById("",id)
+  // },[])
 
 
 
@@ -41,11 +28,12 @@ const submit = (event) => {
     });
   };
 
-
   return (
     <>
       <div className="container mt-4">
-        <caption className="row  caption-top m-0 ">Registro de Usuario</caption>
+        <caption className="row  caption-top m-0 ">
+          Registro/Edicion de Usuario ({id})
+        </caption>
         <div className="row border boder-primary">
           <div className="col-12">
             <form className="row g-3 mt-3">
@@ -58,6 +46,7 @@ const submit = (event) => {
                   className="form-control"
                   id="inputname"
                   placeholder="Ingrese RUN Chileno"
+                  value={!!usuario && usuario.Rut}
                 />
               </div>
 
@@ -65,29 +54,50 @@ const submit = (event) => {
                 <label for="name" className="form-label">
                   Primer Nombre
                 </label>
-                <input type="text" className="form-control" id="inputname" />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="inputname"
+                  value={!!usuario && usuario.primer_nombre}
+                />
               </div>
 
               <div className="col-md-8 mx-auto">
                 <label for="name" className="form-label">
                   Segundo Nombre
                 </label>
-                <input type="text" className="form-control" id="inputname" />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="inputname"
+                  value={!!usuario && usuario.segundo_nombre}
+                />
               </div>
 
               <div className="col-md-8 mx-auto">
                 <label for="name" className="form-label">
                   Apellido Paterno
                 </label>
-                <input type="text" className="form-control" id="inputname" />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="inputname"
+                  value={!!usuario && usuario.apellido_paterno}
+                />
               </div>
 
               <div className="col-md-8 mx-auto">
                 <label for="name" className="form-label">
                   Apellido Materno
                 </label>
-                <input type="text" className="form-control" id="inputname" />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="inputname"
+                  value={!!usuario && usuario.apellido_materno}
+                />
               </div>
+
               <div className="col-md-8 mx-auto">
                 <label for="name" className="form-label">
                   Email
@@ -97,7 +107,23 @@ const submit = (event) => {
                   className="form-control"
                   id="inputname"
                   placeholder="name@example.com"
+                  value={!!usuario && usuario.email}
                 />
+              </div>
+
+              <div className="col-md-8 mx-auto">
+                <label for="inputPassword2" class="form-label">
+                  Password
+                </label>
+                <div className="col-sm-12">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="inputPassword"
+                    placeholder="Password"
+                    value={!!usuario && usuario.password}
+                  />
+                </div>
               </div>
 
               <div className="col-md-8 mx-auto">
@@ -124,6 +150,7 @@ const submit = (event) => {
                       name="inlineRadioOptions"
                       id="inlineRadioInactive"
                       value="Inactivo"
+                      value={!!usuario && usuario.estado}
                     />
                     <label class="form-check-label" for="inlineRadioInactive">
                       Inactivo
