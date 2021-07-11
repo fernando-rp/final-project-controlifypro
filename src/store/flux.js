@@ -5,48 +5,10 @@ const getState=({getStore, getActions, setStore})=>{
 
     return {
         store:{
-            actividades:[
-                {
-                    "id":1,
-                    "codigo": "C1234",
-                    "proyecto": "Puerto Belize",
-                    "descripcion": "Lorem impsum",
-                    "fechainicio": "02/02/2020",
-                    "fechafin": "31/12/2020",
-                    "uso": "20HH",
-                    "presupuesto": "500HH",
-                    "estado": "activo"
-
-                },
-                {
-                    "id":2,
-                    "codigo": "C4526",
-                    "proyecto": "Mejillones",
-                    "descripcion": "Lorem impsum",
-                    "fechainicio": "02/02/2020",
-                    "fechafin": "31/12/2020",
-                    "uso": "20HH",
-                    "presupuesto": "500HH",
-                    "estado": "activo"
-
-                }
-            ],
+            actividades:null,
             usuarios:[],
-
-            actividad:{
-                "id":2,
-                "codigo": "C4526",
-                "proyecto": "Mejillones",
-                "descripcion": "Lorem impsum",
-                "fechainicio": "02/02/2020",
-                "fechafin": "31/12/2020",
-                "uso": "20HH",
-                "presupuesto": "500HH",
-                "estado": "activo"
-
-            },
-
-            proyectos:[],
+            actividad:null,
+            proyectos:null,
             proyecto:null,
             error:null
 
