@@ -1,5 +1,5 @@
 import { event } from "jquery";
-import React, { useContext  } from "react";
+import React, { useContext, useEffect  } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
@@ -10,12 +10,11 @@ export function RegistroUsuario(props) {
 
   const { store, actions } = useContext(Context);
   const { usuario } = store;
-
   const { id } = useParams();
 
-  // useEffect(()=>{
-  //     actions.getActivityById("",id)
-  // },[])
+  useEffect(()=>{
+      actions.getUsuarios("/usuarios", id);
+   },[])
 
 
 
@@ -42,11 +41,11 @@ export function RegistroUsuario(props) {
                   Rut
                 </label>
                 <input
+                  value={!!usuario && usuario.Rut}
                   type="text"
                   className="form-control"
                   id="inputname"
                   placeholder="Ingrese RUN Chileno"
-                  value={!!usuario && usuario.Rut}
                 />
               </div>
 

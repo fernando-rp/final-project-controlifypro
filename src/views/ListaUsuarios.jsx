@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,18 +14,12 @@ import Swal from "sweetalert2";
 
 export function ListaUsuarios({ props }) {
 
-
-
-  const { store } = useContext(Context);
+  const { store, actions } = useContext(Context);
   const { usuarios } = store;
 
-
-
-  // useEffect(()=>{
-  //     actions.getActivityById("",id)
-  // },[])
-
-
+  useEffect(()=>{
+     actions.getUsuarios("/usuarios");
+    },[])
 
   const confirmacion = () => {
     Swal.fire({
@@ -41,8 +35,6 @@ export function ListaUsuarios({ props }) {
       }
     });
   };
-
-
 
   return (
     <>
