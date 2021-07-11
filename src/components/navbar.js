@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { ingresa } from "./ingresa";
-// import { registrate } from "./registrate";
+import { Login } from "../views/Login";
+
+
 
 const navbar = () => {
 	return (
@@ -10,10 +11,14 @@ const navbar = () => {
 				<Link to="/">
 					<span className="navbar-brand mb-0 h1">Controlify Pro</span>
 				</Link>
-				{/* <div className="ml-auto"> */}
-				{/* ingresa /> */} 
-                {/* registrate /> */} 
-				{/* </div> */}
+				<div className="ml-auto"> 
+				<Link to="/Login">
+					<span className="navbar-brand mb-0 h1">LogIn</span>
+				</Link>
+			
+				
+                
+				</div> 
 			</div>
 		</nav>
 	);
