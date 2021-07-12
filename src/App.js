@@ -33,7 +33,7 @@ const App= ()=>{
                 <Route exact path="/listado-proyectos">
                     <ListadoProyectos />
                 </Route>
-                <Route exact path="/:id/registro-edicion-actividad">
+                <Route exact path="/registro-edicion-actividad/:id">
                     <RegistroEdicionActividad />
                 </Route>
                 <Route exact path="/listado-proyectos/registro-edicion-proyecto">

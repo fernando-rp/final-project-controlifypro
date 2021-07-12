@@ -11,9 +11,15 @@ const getState=({getStore, getActions, setStore})=>{
             proyectos:null,
             proyecto:null,
             error:null
-
         },
         actions:{
+            handleChangeActividad: e => {
+                const { actividad } = getStore();
+                actividad[e.target.name] = e.target.value;
+                setStore({
+                    actividad: actividad
+                })
+            },
             getActividades: url => {
                 fetch(url, {})
                     .then((response) => {
@@ -55,14 +61,14 @@ const getState=({getStore, getActions, setStore})=>{
                     })
                     .then((data) => {
                         setStore({
-                            activity: data
+                            proyecto: data
                         })
                     })
                     .catch(() => {
 
                     })
             },
-            getActivityById: (url, id) => {
+            getActividadById: (url, id) => {
                 fetch(`${url}/${id}`, {})
                     .then((response) => {
                         if (!response.ok) setStore({ error: response.error });
@@ -70,8 +76,47 @@ const getState=({getStore, getActions, setStore})=>{
                     })
                     .then((data) => {
                         setStore({
-                            activity: data
+                            actividad: data
                         })
+                    })
+                    .catch(() => {
+
+                    })
+            },
+            deleteActividad:(id)=>{
+    
+                    fetch(`actividades/${id}`, {
+                        method: 'DELETE'
+                    })
+                        .then((response) => {
+                            if (!response.ok) setStore({ error: response.error });
+                            return response.json()
+                        })
+                        .then((data) => {
+                            getActions().getActividades("/actividades")
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+            },
+
+            updateActividad: (url, id) => {
+                const { actividad } = getStore()
+                fetch(`${url}/${id}`, {
+                    method: 'PUT',
+                    body: JSON.stringify(actividad),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then((response) => {
+                        if (!response.ok) setStore({ error: response.error });
+                        return response.json()
+                    })
+                    .then((data) => {
+                        console.log(data)
+                        getActions().getActividades("/actividades")
+
                     })
                     .catch(() => {
 

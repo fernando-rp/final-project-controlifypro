@@ -9,7 +9,7 @@ const ListadoProyectos = ()=>{
     const {proyectos}=store;
 
     useEffect(()=>{
-        actions.getProyectos("http://localhost:5000/proyectos")
+        actions.getProyectos("/proyectos")
     },[])
 
 

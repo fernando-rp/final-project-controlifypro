@@ -1,18 +1,18 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Swal from 'sweetalert2'
 
 const ListadoActividades = ()=>{
 
-    const {store}= useContext(Context);
+    const {store,actions}= useContext(Context);
     const {actividades}=store;
 
-    // useEffect(()=>{
-    //     actions.getActivityById("",id)
-    // },[])
+    useEffect(()=>{
+        actions.getActividades("/actividades")
+    },[])
 
-    const confirmacion = () => {
+    const confirmacion = (a_id) => {
         Swal.fire({
             title: '¿Estás seguro?',
             text: "La información se eliminará",
@@ -23,6 +23,8 @@ const ListadoActividades = ()=>{
             confirmButtonText: '¡Sí, borrar!'
           }).then((result) => {
             if (result.isConfirmed) {
+                actions.deleteActividad(a_id)
+
               Swal.fire(
                 'Eliminado',
                 'Tu actividad ha sido eliminada',
@@ -100,14 +102,13 @@ const ListadoActividades = ()=>{
             <thead>
                 <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Código</th>
-                <th scope="col">Proyecto</th>
                 <th scope="col">Descripción</th>
                 <th scope="col">Fecha inicio</th>
-                <th scope="col">Fecha fin</th>
-                <th scope="col">% Uso</th>
-                <th scope="col">HH presupuesto</th>
+                <th scope="col">% Avance</th>
+                <th scope="col">Observación</th>
                 <th scope="col">Estado</th>
+                <th scope="col">Id Proyecto</th>
+                <th scope="col">Usuario</th>
                 <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -119,18 +120,17 @@ const ListadoActividades = ()=>{
                         return(
                             <tr key={index}>
                                 <th scope="row">{actividad.id}</th>
-                                <td>{actividad.codigo}</td>
-                                <td>{actividad.proyecto}</td>
                                 <td>{actividad.descripcion}</td>
-                                <td>{actividad.fechainicio}</td>
-                                <td>{actividad.fechafin}</td>
-                                <td>{actividad.uso}</td>
-                                <td>{actividad.presupuesto}</td>
+                                <td>{actividad.fecha_inicio}</td>
+                                <td>{actividad.porcentaje_avance}</td>
+                                <td>{actividad.observacion}</td>
                                 <td>{actividad.estado}</td>
+                                <td>{actividad.proyecto_id}</td>
+                                <td>{actividad.usuario_id}</td>
                                 <td>
                                     <button className="edit-icon border-white bg-transparent text-primary"> <i className="fas fa-database"></i> </button>
-                                    <Link className="edit-icon border-white bg-transparent text-success" to={`/${actividad.id}/registro-edicion-actividad`}><i className="far fa-edit "></i> </Link>
-                                    <button className="trash-icon border-white bg-transparent text-danger" onClick={()=>{confirmacion()}}><i className="far fa-trash-alt "></i> </button>
+                                    <Link className="edit-icon border-white bg-transparent text-success" to={`/registro-edicion-actividad/${actividad.id}`}><i className="far fa-edit "></i> </Link>
+                                    <button className="trash-icon border-white bg-transparent text-danger" onClick={()=>{confirmacion(actividad.id)}}><i className="far fa-trash-alt "></i> </button>
                                     
                                     </td>
                             </tr>
