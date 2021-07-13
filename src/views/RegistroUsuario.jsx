@@ -9,11 +9,11 @@ export function RegistroUsuario(props) {
 
 
   const { store, actions } = useContext(Context);
-  const { usuario } = store;
+  const { usuario } = store; 
   const { id } = useParams();
 
   useEffect(()=>{
-      actions.getUsuarios("/usuarios", id);
+      actions.getUsuarios("/usuarios");
    },[])
 
 
