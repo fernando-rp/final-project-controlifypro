@@ -5,6 +5,7 @@ import ListadoProyectos from './views/listado-proyectos'
 
 import RegistroEdicionActividad from './views/registro-edicion-actividad'
 import RegistroEdicionProyecto from './views/registro-edicion-proyecto'
+import RegistroActividad from "./views/registro-actividad"
 
 import Navbar from './components/navbar'
 import Footer from './components/footer'
@@ -14,6 +15,7 @@ import Error404 from './views/error404'
 import { ListaUsuarios } from './views/ListaUsuarios'
 import { RegistroUsuario } from './views/RegistroUsuario'
 import { EdicionUsuario } from "./views/EdicionUsuario";
+
 import { Login } from "./views/Login";
 import injectContext from './store/appContext'
 
@@ -33,8 +35,11 @@ const App= ()=>{
                 <Route exact path="/listado-proyectos">
                     <ListadoProyectos />
                 </Route>
-                <Route exact path="/:id/registro-edicion-actividad">
+                <Route exact path="/registro-edicion-actividad/:id">
                     <RegistroEdicionActividad />
+                </Route>
+                <Route exact path="/listado-actividades/registro-actividad">
+                    <RegistroActividad />
                 </Route>
                 <Route exact path="/listado-proyectos/registro-edicion-proyecto">
                     <RegistroEdicionProyecto />
