@@ -1,7 +1,14 @@
-import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 
 const RegistroEdicionProyecto = ()=>{
+
+    const {store, actions}= useContext(Context);
+    const {proyecto} = store;
+
+    const {id}=useParams();
 
     return(
         <div className="container mt-4">

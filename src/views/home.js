@@ -1,7 +1,7 @@
 import React from "react";
 
 
-import Contact from '../components/contact'
+
 import imagen1 from '../img/1-500x600.jpg'
 import imagen2 from '../img/imagen2.jpg'
 import imagen3 from '../img/imagen3.jpg'
@@ -11,39 +11,36 @@ import imagen6 from '../img/imagen6.jpg'
 import imagen7 from '../img/imagen7.jpg'
 import imagen8 from '../img/imagen8.jpg'
 import imagen9 from '../img/imagen9.jpg'
-import imagen10 from '../img/imagen10.jpg'
-import imagen11 from '../img/imagen11.jpg'
-import imagen12 from '../img/imagen12.jpg'
-import imagen13 from '../img/imagen13.jpg'
+
+
+import Tecnologias from "../components/tecnologias";
+import Equipo from "../components/equipo"
+import Historia from "../components/historia.js"
 
 
 const Home = () => {
 
     return (
-        <>
+        
         <div className="body-home">
             <div className="container">
-                <h1 className="text-center">Controlify Pro</h1>
-                <div className="card mb-4-center max-width: 500px;">
-                    <div className="row g-0">
-                        <div className="col-md-9">
-                            <div className="card-body text-justify">
-                                
-                                <h3 className="card-text">Aumenta la productividad de tu empresa.</h3>
-                                <h3 className="card-text">Gestiona las horas de tus proyectos.</h3>
-                                <h3 className="card-text">Aumenta el rendimiento de tu equipo.</h3>
-                            </div>
-                        </div>
-                        <div className="col-md-3 ">
-                            <img src= {imagen1} className="img-fluid  rounded-circle" alt="..."/> 
-                        </div>                    
-                    </div>
-                </div>
-            </div>
+                
+            
+            
             
             
         
             
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 <div className="container text-center">
                     <div>
                         <h1 className>Porque Usar?</h1>
@@ -101,29 +98,12 @@ const Home = () => {
                     </div>
                 </div>
             
-            <div className="container mb-4">
-                <div class="card text-center">
-                    <h1 className>Quienes Somos?</h1>
-                        <div className="card-body text-justify">
-                            
-                            <p>Controlify es una App que agrupa recursos para  personas y empresas, quienes como actores de la Industria  
-                            y dentro del marco de una visión compartida paras el logro de su misión, contribuyen con su acción e inversión en la relacion Horas-Colaborador con la intencion de aumentar su productividad, lograr el rendimiento efectivo de todos sus equipos de trabajo y
-                             gestionar con exito las horas de trabajo  de los  colaboradores en cada proyecto .</p>
-                            <h5 className="card-history">Historia</h5>
-                            <p> Nuestra App, fue fundada por 4 emprendedores el 21 de mayo de 2021, liderado por Ernesto. Inicialmente la denominaron "la App para organizar el trabajo".   
-                            Con el transcurrir del tiempo y durante el desarrollo de la app,  pasó a denominarse ControliFypro, hasta hoy día.</p>
-                            <h5 className="card-mision">Mision</h5>
-                            <p>La Misión de ControliFypro es apoyar en el desarrollo  sustentable de proyectos, mediante el fortalecimiento de los medios tecnologicos adecuandolos
-                             a las necesidades de las empresas, a sus deberes,  y a sus canales de productividad.</p>
-                             <h5 className="card-vision">Vision</h5>
-                            <p>Para el desarrollo de nuestra misión se nos hemos propuesto profundizar nuestra acción como participantes y protagonistas activos de las transformaciones que requieren  las Industrias y empresas en el control de horas y ejecucion de proyectos. 
-                             Es por ello que sus integrantes visualizan una Asociación que profundice su acción Participando activamente en la determinación de las reglas del juego que norman la participación de los integrantes de cada proyecto, ampliando y fortaleciendo los espacios de participación de sus integrantes, 
-                             desarrollando fortalezas organizacionales crecientes proyectadas por cada empresa.</p>
+            <div className="container bg-light">
+                <Historia/>
 
 
-                        </div>
-                    </div>
-                </div>
+            </div>
+                
 
             <div className="container">
                 <div>
@@ -181,55 +161,14 @@ const Home = () => {
                     </div>               
                 </div>
             </div>
-            <div className="container">
-                <div>
-                    <h1 className="text-center">Nuestro Equipo</h1>
-                </div>
+            
+            
                 
-                <div className="row row-cols-1 row-cols-md-4 g-4">
-                    <div className="col">
-                        <div className="card h-100">
-                            <img src={imagen10} className="rounded-circle" alt="..."/>
-                            <div className="card-body">
-                                <h5 className="card-title">Neymar Jr</h5>
-                                
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card h-100">
-                            <img src={imagen11} className="rounded-circle" alt="..."/>
-                            <div className="card-body">
-                                <h5 className="card-title">Leo Messi</h5>
-                                
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card h-100">
-                            <img src={imagen12} className="rounded-circle" alt="..."/>
-                            <div className="card-body">
-                                <h5 classname="card-title">Cristiano Ronaldo</h5>
-                                
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className="card h-100">
-                            <img src={imagen13} className="rounded-circle" alt="..."/>
-                            <div className="card-body">
-                                <h5 classname="card-title">Alexis Sanchez</h5>
-                                
-                            </div>
-                            
-                        </div>
-                    </div>               
-                </div>
-            </div>   
-        
+                <Tecnologias/>
+              
+
+
+            
         
         
         
@@ -252,10 +191,12 @@ const Home = () => {
         
         
         </div>
+
+        <Equipo/>
         
         
-        <Contact/>
-        </>
+        
+        
         
     )
 }

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { useState, useEffect } from "react";
+import {  useEffect } from "react";
 
 const ListadoProyectos = ()=>{
 
@@ -9,7 +9,7 @@ const ListadoProyectos = ()=>{
     const {proyectos}=store;
 
     useEffect(()=>{
-        actions.getProyectos()
+        actions.getProyectos("/proyectos")
     },[])
 
 
@@ -107,9 +107,9 @@ const ListadoProyectos = ()=>{
                             <td>{proyecto.fecha_inicio}</td>
                             <td>{proyecto.fecha_entrega}</td>
                             <td>{proyecto.estado}</td>
-                            <td>
+                            <td colspan="2" className="d-flex mx-auto" >
                                 <button className="edit-icon border-white bg-transparent text-primary"> <i class="fas fa-database"></i> </button>
-                                <Link className="edit-icon border-white bg-transparent text-success" to="/"><i className="far fa-edit "></i> </Link>
+                                <Link className="edit-icon border-white bg-transparent text-success" to="{`/${proyecto.id}/registro-edicion-proyecto`}"><i className="far fa-edit "></i> </Link>
                                 <button className="trash-icon border-white bg-transparent text-danger"><i className="far fa-trash-alt "></i> </button>
                             </td>
                         </tr>
