@@ -48,6 +48,31 @@ const getState = ({ getStore, getActions, setStore }) => {
       usuario: null,
     },
     actions: {
+      Login: (email, password, history) => {
+        const opts = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        };
+        fetch("/token", opts)
+          .then((resp) => {
+            if (resp.status === 200) return resp.json();
+            else alert("Aqui hay un error");
+          })
+          .then((data) => {
+            sessionStorage.setItem("token", data.access_token);
+            history.push("/")
+          })
+          .catch((error) => {
+            console.log("Aqui hay un error mas grande", error);
+          });
+      },
+
       getActividades: (url) => {
         fetch(url, {})
           .then((response) => {
@@ -78,19 +103,19 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((error) => {});
       },
-        getUsuarios: (url) => {
+      getUsuarios: (url) => {
         fetch(url, {})
-        .then((response) => {
-        if (!response.ok) setStore({ error: response.error });
-        return response.json();
-        })
-        .then((data) => {
-        setStore({
-        usuarios: data,
-        });
-        })
-        .catch(() => {});
-        },
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              usuarios: data,
+            });
+          })
+          .catch(() => {});
+      },
       getActivityById: (url, id) => {
         fetch(`${url}/${id}`, {})
           .then((response) => {

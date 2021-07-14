@@ -21,9 +21,9 @@ import { Login } from "./views/Login";
 const App= ()=>{
     return (
         <BrowserRouter>
-            <Navbar />
             <Switch>
                 <Route exact path="/">
+                    <Navbar />
                     <Home/>
                 </Route>
                 <Route exact path="/listado-actividades">
