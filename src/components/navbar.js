@@ -1,19 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Login } from "../views/Login";
+import { Contact } from "../components/contact";
 
 
 
 const navbar = () => {
 	return (
-		<nav className="navbar navbar-dark bg-dark text-white mb-3">
+		<nav className="navbar navbar-dark bg-dark text-white">
 			<div className="container">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">Controlify Pro</span>
+					<span className="navbar-brand mb-0 fs-2">Controlify Pro</span>
 				</Link>
 				<div className="ml-auto"> 
 				<Link to="/Login">
-					<span className="navbar-brand mb-0 h1">LogIn</span>
+					<span className="navbar-brand mb-0 fs-2">Log In</span>
+				</Link>
+				<Link to= "/contact">				
+					<span className="navbar-brand mb-0 fs-2">Contact us</span>
 				</Link>
 			
 				

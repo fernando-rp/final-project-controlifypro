@@ -8,6 +8,7 @@ import RegistroEdicionProyecto from './views/registro-edicion-proyecto'
 
 import Navbar from './components/navbar'
 import Footer from './components/footer'
+import Contact from './components/contact'
 
 import Error404 from './views/error404'
 
@@ -25,6 +26,9 @@ const App= ()=>{
             <Switch>
                 <Route exact path="/">
                     <Home/>
+                </Route>
+                <Route exact path="/contact">
+                    <Contact />
                 </Route>
                 <Route exact path="/listado-actividades">
                     <ListadoActividades />
@@ -49,6 +53,7 @@ const App= ()=>{
           </Route>
           <Route exact path="/Login">
             <Login />
+            
           </Route>
                 <Route>
                     <Error404 />
