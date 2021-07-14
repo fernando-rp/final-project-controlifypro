@@ -9,12 +9,11 @@ import RegistroActividad from "./views/registro-actividad"
 
 import Navbar from './components/navbar'
 import Footer from './components/footer'
-
 import Error404 from './views/error404'
+
 
 import { ListaUsuarios } from './views/ListaUsuarios'
 import { RegistroUsuario } from './views/RegistroUsuario'
-import { EdicionUsuario } from "./views/EdicionUsuario";
 
 import { Login } from "./views/Login";
 import injectContext from './store/appContext'
@@ -24,9 +23,9 @@ import injectContext from './store/appContext'
 const App= ()=>{
     return (
         <BrowserRouter>
-            <Navbar />
             <Switch>
                 <Route exact path="/">
+                    <Navbar />
                     <Home/>
                 </Route>
                 <Route exact path="/listado-actividades">
@@ -49,9 +48,6 @@ const App= ()=>{
                 </Route>
           <Route exact path="/RegistroUsuario">
             <RegistroUsuario />
-          </Route>
-          <Route exact path="/EdicionUsuario">
-            <EdicionUsuario />
           </Route>
           <Route exact path="/Login">
             <Login />
