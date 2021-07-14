@@ -18,7 +18,9 @@ const injectContext = PassedComponent => {
 
 		useEffect(() => {
 
-			// actions.getUsarios();
+			state.actions.getProyectos("/proyectos")
+			state.actions.getActividades("/actividades")
+			//state.actions.getUsuarios("/usuarios")
             
 
 		}, []);
