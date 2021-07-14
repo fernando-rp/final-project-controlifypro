@@ -1,6 +1,5 @@
 import { useReducer, useState } from "react";
 
-
 const getState=({getStore, getActions, setStore})=>{
 
     return {
@@ -13,6 +12,7 @@ const getState=({getStore, getActions, setStore})=>{
             error:null
         },
         actions:{
+            
             handleChangeActividad: e => {
                 const { actividad } = getStore();
                 actividad[e.target.name] = e.target.value;
@@ -100,7 +100,7 @@ const getState=({getStore, getActions, setStore})=>{
                         })
             },
 
-            updateActividad: (url, id) => {
+            updateActividad: (url, id,history) => {
                 const { actividad } = getStore()
                 fetch(`${url}/${id}`, {
                     method: 'PUT',
@@ -116,7 +116,30 @@ const getState=({getStore, getActions, setStore})=>{
                     .then((data) => {
                         console.log(data)
                         getActions().getActividades("/actividades")
+                        console.log(history)
+                        history.push('/listado-actividades')
 
+                    })
+                    .catch(() => {
+
+                    })
+            },
+            addActividad: ( url,nactividad,history) => {
+                fetch(`${url}`, {
+                    method: 'POST',
+                    body: JSON.stringify(nactividad),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then((response) => {
+                        if (!response.ok) setStore({ error: response.error });
+                        return response.json()
+                    })
+                    .then((data) => {
+                        console.log(data)
+                        getActions().getActividades("/actividades")
+                        history.push('/listado-actividades')
                     })
                     .catch(() => {
 

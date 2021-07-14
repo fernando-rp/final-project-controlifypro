@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 const ListadoActividades = ()=>{
 
     const {store,actions}= useContext(Context);
-    const {actividades}=store;
+    const {actividades,proyectos}=store;
 
     useEffect(()=>{
         actions.getActividades("/actividades")
@@ -90,7 +90,7 @@ const ListadoActividades = ()=>{
 
             <div className="row mt-4">
                 <div className="col-md-12 d-flex justify-content-end">
-                    <Link type="submit" className="btn btn-success" to="/listado-actividades/registro-edicion-actividad">Agregar Actividad</Link>
+                    <Link type="submit" className="btn btn-success" to="/listado-actividades/registro-actividad">Agregar Actividad</Link>
                 </div>
             </div>
 
@@ -101,14 +101,14 @@ const ListadoActividades = ()=>{
             <table className="table">
             <thead>
                 <tr>
-                <th scope="col">ID</th>
+                <th scope="col">Proyecto</th>
                 <th scope="col">Descripción</th>
                 <th scope="col">Fecha inicio</th>
                 <th scope="col">% Avance</th>
                 <th scope="col">Observación</th>
                 <th scope="col">Estado</th>
-                <th scope="col">Id Proyecto</th>
-                <th scope="col">Usuario</th>
+                {/* <th scope="col">Id Proyecto</th> */}
+                {/* <th scope="col">Jefe de Proyectos</th> */}
                 <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -119,14 +119,19 @@ const ListadoActividades = ()=>{
                     actividades.map((actividad,index)=>{
                         return(
                             <tr key={index}>
-                                <th scope="row">{actividad.id}</th>
-                                <td>{actividad.descripcion}</td>
+                                <th scope="row">{!!proyectos &&
+                                    proyectos.map((proyecto)=>{
+                                        if (proyecto.id==actividad.proyecto_id){
+                                            return(`${proyecto.sigla}-${proyecto.nombre}`)
+                                        }
+                                    })}</th>
+                                <td> {actividad.descripcion}</td>
                                 <td>{actividad.fecha_inicio}</td>
                                 <td>{actividad.porcentaje_avance}</td>
                                 <td>{actividad.observacion}</td>
-                                <td>{actividad.estado}</td>
-                                <td>{actividad.proyecto_id}</td>
-                                <td>{actividad.usuario_id}</td>
+                                <td>{actividad.estado=="1"?"Activo":"Inactivo"}</td>
+                                {/* <td>{actividad.proyecto_id}</td> */}
+                                {/* <td>{actividad.usuario_id}</td> */}
                                 <td>
                                     <button className="edit-icon border-white bg-transparent text-primary"> <i className="fas fa-database"></i> </button>
                                     <Link className="edit-icon border-white bg-transparent text-success" to={`/registro-edicion-actividad/${actividad.id}`}><i className="far fa-edit "></i> </Link>
