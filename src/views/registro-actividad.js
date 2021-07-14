@@ -1,5 +1,5 @@
-import { useContext, useEffect,useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useContext,useState } from "react";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
@@ -19,31 +19,23 @@ const RegistroActividad = ()=>{
             })
     }
 
-    const isActive= (e)=>{
-        console.log("funcionando")
-        setData({
-                ...data,
-                [e.target.name]: "1",
-            })
-            console.log(e)
-    }
-
-    const isInactive= (e)=>{
-        setData({
-                ...data,
-                [e.target.name]: 0,
-            })
-    }
-
     
+    const projectName= (e)=>{
+        setData({
+            ...data,
+            ["proyecto_id"]: e.target.value,
+        })
+    }
+
+
     const confirmacion_saved = () => {
 
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Your work has been saved',
+            title: 'Actividad creada',
             showConfirmButton: false,
-            timer: 15000
+            timer: 1300
           })
     }
 
@@ -60,17 +52,18 @@ const RegistroActividad = ()=>{
             <div className="row border boder-primary">
                 <div className="col-12">
                     <div className="row g-3 mt-3">
+
                             <div className="col-md-8 mx-auto">
-                                <select class="form-select" aria-label="">
+                                <select class="form-select" aria-label="" onChange={(e)=>{projectName(e)}}>
+                                <option name="proyecto_id">Selecciona Proyecto</option>
                                     {!!proyectos &&
                                         proyectos.map((proyecto) => {
                                             return (
-                                                <option name="proyecto_id" selected>{proyecto.sigla}-{proyecto.nombre}</option>)
+                                                <option name="proyecto_id" value={proyecto.id} >{proyecto.sigla}-{proyecto.nombre}</option>)
                                         })
                                     }
                                 </select>
                             </div>
-
 
                         <div className="col-md-8 mx-auto">
                             <label for="name" className="form-label">Porcentaje Avance</label>
@@ -118,25 +111,16 @@ const RegistroActividad = ()=>{
                             ></textarea>
                         </div>
 
-                        {/* <div className="col-md-8 mx-auto">
-                            <label for="inputfechafin" className="form-label">Usuario</label>
-                            <input 
-                            name="usuario_id"
-                            type="text" 
-                            className="form-control" 
-                            id="inputusuario" 
-                            onChange={handleChangeActividad}/>
-                        </div> */}
 
                         <div className="col-md-8 mx-auto">
-                        <label className="form-check-label mb-2" for="inlineFormCheck">Estado</label>
+                            <label className="form-check-label mb-2" for="inlineFormCheck">Estado</label>
                             <div className="form-check">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="estado" id="inlineRadioActive" onClick={(e)=>isActive(e)}/>
+                                    <input class="form-check-input" type="radio" name="estado" id="inlineRadioActive" value="1" onClick={(e)=>handleChangeActividad(e)}/>
                                     <label class="form-check-label" for="inlineRadioActive" >Activo</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="estado" id="inlineRadioInactive"  onClick={()=>isInactive}/>
+                                    <input class="form-check-input" type="radio" name="estado" id="inlineRadioInactive" value="0" onClick={(e)=>handleChangeActividad(e)}/>
                                     <label class="form-check-label" for="inlineRadioInactive">Inactivo</label>
                                 </div>      
                             </div>

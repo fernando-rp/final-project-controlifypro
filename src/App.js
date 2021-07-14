@@ -3,7 +3,7 @@ import Home from './views/home'
 import ListadoActividades from './views/listado-actividades'
 import ListadoProyectos from './views/listado-proyectos'
 
-import RegistroEdicionActividad from './views/registro-edicion-actividad'
+import EdicionActividad from './views/edicion-actividad'
 import RegistroEdicionProyecto from './views/registro-edicion-proyecto'
 import RegistroActividad from "./views/registro-actividad"
 
@@ -35,7 +35,7 @@ const App= ()=>{
                     <ListadoProyectos />
                 </Route>
                 <Route exact path="/registro-edicion-actividad/:id">
-                    <RegistroEdicionActividad />
+                    <EdicionActividad />
                 </Route>
                 <Route exact path="/listado-actividades/registro-actividad">
                     <RegistroActividad />
