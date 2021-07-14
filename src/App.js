@@ -7,13 +7,12 @@ import RegistroEdicionActividad from "./views/registro-edicion-actividad";
 import RegistroEdicionProyecto from "./views/registro-edicion-proyecto";
 import RegistroActividad from "./views/registro-actividad";
 
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import Navbar from './components/navbar'
+import Footer from './components/footer'
+import Error404 from './views/error404'
 
-import Error404 from "./views/error404";
-
-import { ListaUsuarios } from "./views/ListaUsuarios";
-import { RegistroUsuario } from "./views/RegistroUsuario";
+import { ListaUsuarios } from './views/ListaUsuarios'
+import { RegistroUsuario } from './views/RegistroUsuario'
 
 import { Login } from "./views/Login";
 import injectContext from "./store/appContext";
