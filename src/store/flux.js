@@ -43,11 +43,11 @@ const getState=({getStore, getActions, setStore})=>{
                         return response.json()
                     })
                     .then((data) => {
-                        console.log(data)
+                        
                         setStore({
                             proyectos: data      
                         })
-                        console.log(data)
+                       
                     })
                     .catch((error) => {
                         console.log(error)                        
@@ -114,9 +114,9 @@ const getState=({getStore, getActions, setStore})=>{
                         return response.json()
                     })
                     .then((data) => {
-                        console.log(data)
+                       
                         getActions().getActividades("/actividades")
-                        console.log(history)
+                     
                         history.push('/listado-actividades')
 
                     })
@@ -137,7 +137,7 @@ const getState=({getStore, getActions, setStore})=>{
                         return response.json()
                     })
                     .then((data) => {
-                        console.log(data)
+                        
                         getActions().getActividades("/actividades")
                         history.push('/listado-actividades')
                     })

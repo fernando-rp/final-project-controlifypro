@@ -3,14 +3,31 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+
+
 
 
 const RegistroActividad = ()=>{
     const {store, actions}= useContext(Context);
     const {proyectos}= store;
     const history= useHistory();
+    const [value, onChange] = useState(new Date());
+
 
     const [data,setData]=useState(null)
+
+    const formatDate = (date)=>{
+        // console.log(date.toLocaleDateString());
+
+        date=date.getFullYear()+"-"+(parseFloat(date.getMonth())+1)+"-"+date.getDate();
+        console.log(date)
+        setData({
+            ...data,
+            fecha_inicio: date
+        })
+    }
 
     const handleChangeActividad= (e)=>{
         setData({
@@ -91,13 +108,22 @@ const RegistroActividad = ()=>{
                         </div>
 
                         <div className="col-md-8 mx-auto">
-                            <label for="presupuesto" className="form-label">Fecha Inicio</label>
-                            <input type="text" 
+                             <label for="presupuesto" className="form-label">Fecha Inicio</label>
+                            {/*<input type="text" 
                             name="fecha_inicio"
                             className="form-control col-2" 
                             id="inputfechainicio" 
                             onChange={handleChangeActividad}
-                            />
+                            /> */}
+
+                                <div className="col-md-8">
+                                    <Calendar
+                                        name="fecha_inicio"
+                                        onChange={onChange}
+                                        onClickDay={formatDate}
+                                        value={value}
+                                    />
+                                </div>
                         </div>
 
                         <div class="col-md-8 mx-auto">
