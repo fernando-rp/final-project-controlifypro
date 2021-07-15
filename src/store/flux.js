@@ -24,7 +24,7 @@ const getState=({getStore, getActions, setStore})=>{
               password: password,
             }),
           };
-          fetch("/token", opts)
+          fetch("/login", opts)
             .then((resp) => {
               if (resp.status === 200) return resp.json();
               else alert("Aqui hay un error");
