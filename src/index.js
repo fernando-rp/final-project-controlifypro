@@ -8,6 +8,9 @@ import 'popper.js';
 import 'bootstrap';
 import 'react-icons';
 
+// libreria
+// import "./css/blk-design-system-pro.css"
+
 
 import App from './App'
 

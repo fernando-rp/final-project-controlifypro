@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Swal from 'sweetalert2'
 
-
 const ListadoActividades = ()=>{
 
     const {store,actions}= useContext(Context);
