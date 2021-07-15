@@ -1,6 +1,6 @@
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-
+footer {
+    clear: both;
+    position: relative !important;
+    height: 50px !important;
+    margin-top: -50px !important;
 }

@@ -1,17 +1,15 @@
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./css/style.css"
+
 import Home from "./views/home";
 import ListadoActividades from "./views/listado-actividades";
 import ListadoProyectos from "./views/listado-proyectos";
-
-
 
 import EdicionActividad from './views/edicion-actividad'
 import EdicionProyecto from './views/edicion-proyecto'
 import RegistroActividad from "./views/registro-actividad"
 import RegistroProyecto from "./views/registro-proyecto"
-
 
 
 import Navbar from './components/navbar'
@@ -91,10 +89,12 @@ const App = () => {
                 </Route>
 
             {/* Horas */}
-                <Route exact path="/lista-horas">
+                {/* <Route exact path="/lista-horas">
                     <NavbarJefe />
+
                     {/* <ListaHoras /> */}
                 </Route>
+
             {/* Otros */}
                 <Route>
                     <Error404 />
