@@ -122,7 +122,6 @@ const RegistroActividad = ()=>{
                             placeholder="" 
                             id="floatingTextarea" 
                             onChange={handleChangeActividad}
-                            
                             >
 
                             </textarea>
@@ -137,18 +136,6 @@ const RegistroActividad = ()=>{
                             onChange={handleChangeActividad}
                             />
                         </div>
-
-                        {/* <div class="col-md-8 mx-auto">
-                            <label for="floatingTextarea">Localidad id</label>
-                            <input 
-                            name="localidad_id"
-                            class="form-control" 
-                            placeholder="" 
-                            id="localidad" 
-                            onChange={handleChangeActividad}
-                            />
-                        </div> */}
-
 
 
                         <div className="col-md-8 mx-auto">

@@ -141,8 +141,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                         return response.json()
                     })
                     .then((data) => {
-                        console.log("proyecto eliminado")
-                        getActions().getActividades("/proyectos")
+                     
+                        getActions().getProyectos("/proyectos")
                     })
                     .catch((error) => {
                         console.log(error)

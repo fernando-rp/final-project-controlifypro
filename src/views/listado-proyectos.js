@@ -23,7 +23,6 @@ const ListadoProyectos = ()=>{
           confirmButtonText: '¡Sí, borrar!'
         }).then((result) => {
           if (result.isConfirmed) {
-              console.log("proyecto eliminado")
               actions.deleteProyecto(a_id)
 
             Swal.fire(
@@ -119,13 +118,8 @@ const ListadoProyectos = ()=>{
                   proyectos.map((proyecto,index)=>{
                       return(
                           <tr key={index}>
-                              {/* <th className="text-center" scope="row">{!!proyectos &&
-                                  proyectos.map((proyecto)=>{
-                                      if (proyecto.id===actividad.proyecto_id){
-                                          return(`${proyecto.sigla}-${proyecto.nombre}`)
-                                      }
-                                  })}</th> */}
-                              <td className="text-center"> {proyecto.sigla}-{proyecto.nombre}</td>    
+
+                              <td className="text-center"> {proyecto.sigla}</td>    
                               <td className="text-center"> {proyecto.nombre}</td>
                               <td className="text-center">{proyecto.descripcion}</td>
                               <td className="text-center">{proyecto.fecha_inicio}</td>
