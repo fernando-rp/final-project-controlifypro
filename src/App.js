@@ -71,7 +71,7 @@ const App = () => {
                     <Error404 />
                 </Route>
             </Switch>
-            <Footer />
+            {/* <Footer /> */}
         </BrowserRouter>
     )
 }

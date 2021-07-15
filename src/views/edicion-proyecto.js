@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const EdicionProyecto = ()=>{
 
     const {store, actions}= useContext(Context);
-    const {actividad,proyectos} = store;
+    const {actividad,proyecto} = store;
     const [value, onChange] = useState(new Date());
 
     const {id}=useParams();
@@ -15,7 +15,7 @@ const EdicionProyecto = ()=>{
 
     useEffect(()=>{
 
-        actions.getActividadById('/actividades',id)
+        actions.getProyectById('/proyectos',id)
         
     },[])
 
@@ -31,11 +31,11 @@ const EdicionProyecto = ()=>{
           })
     }
 
-    const projectName= (e)=>{
+    // const projectName= (e)=>{
 
-        actions.handleChangeProyecto(e)
+    //     actions.handleChangeProyecto(e)
         
-    }
+    // }
 
 
     return(
@@ -52,7 +52,7 @@ const EdicionProyecto = ()=>{
             <div className="row border boder-primary">
                 <div className="col-12">
                     <div className="row g-3 mt-3">
-                        <div className="col-md-8 mx-auto">
+                        {/* <div className="col-md-8 mx-auto">
                                 <select class="form-select" aria-label="" name="proyecto_id" onChange={(e)=>{projectName(e)}}>
                                 <option selected>Seleccionar proyecto</option>
                                     {!!proyectos &&
@@ -62,7 +62,7 @@ const EdicionProyecto = ()=>{
                                         })
                                     }
                                 </select>
-                           </div>
+                           </div> */}
 
                         <div className="col-md-8 mx-auto">
                             <label for="name" className="form-label">Sigla Proyecto</label>
@@ -72,7 +72,7 @@ const EdicionProyecto = ()=>{
                             className="form-control" 
                             id="inputavance"
                             value={!!proyecto && proyecto.sigla}
-                            onChange={proyecto.handleChangeProyecto}
+                            onChange={actions.handleChangeProyecto}
                              />
                         </div>   
 
@@ -83,7 +83,7 @@ const EdicionProyecto = ()=>{
                             name="porcentaje_avance"
                             className="form-control" 
                             id="inputavance"
-                            value={!!actividad && actividad.porcentaje_avance}
+                            value={!!proyecto && proyecto.porcentaje_avance}
                             onChange={actions.handleChangeProyecto}
                              />
                         </div>   
@@ -95,7 +95,7 @@ const EdicionProyecto = ()=>{
                             name="porcentaje_avance"
                             className="form-control" 
                             id="inputavance"
-                            value={!!actividad && actividad.porcentaje_avance}
+                            value={!!proyecto && proyecto.porcentaje_avance}
                             onChange={actions.handleChangeProyecto}
                              />
                         </div>
@@ -107,7 +107,7 @@ const EdicionProyecto = ()=>{
                             class="form-control" 
                             placeholder="" 
                             id="floatingTextarea" 
-                            value={!!actividad && actividad.descripcion}
+                            value={!!proyecto && proyecto.descripcion}
                             onChange={actions.handleChangeProyecto}
                             
                             >
@@ -123,7 +123,7 @@ const EdicionProyecto = ()=>{
                             name="fecha_inicio"
                             className="form-control col-2" 
                             id="inputfechainicio" 
-                            value={!!actividad && actividad.fecha_inicio}
+                            value={!!proyecto && proyecto.fecha_inicio}
                             onChange={actions.handleChangeProyecto}
                             />
 
@@ -149,7 +149,7 @@ const EdicionProyecto = ()=>{
                             class="form-control" 
                             placeholder="" 
                             id="floatingTextarea2" 
-                            value={!!actividad && actividad.observacion}
+                            value={!!proyecto && proyecto.observacion}
                             onChange={actions.handleChangeProyecto}
                             ></textarea>
                         </div>
@@ -161,7 +161,7 @@ const EdicionProyecto = ()=>{
                             type="text" 
                             className="form-control" 
                             id="inputusuario" 
-                            value={!!actividad && actividad.usuario_id}
+                            value={!!proyecto && proyecto.usuario_id}
                             onChange={actions.handleChangeProyecto}/>
                         </div>
 
@@ -188,7 +188,7 @@ const EdicionProyecto = ()=>{
                             <button type="submit" className="btn btn-success" onClick={()=>{confirmacion_saved()}}>Guardar</button>
                         </div>
                         <div className="col-md-2 mx-auto">
-                             <Link className="btn btn-danger" to="/listado-actividades">Cancelar</Link>
+                             <Link className="btn btn-danger" to="/listado-proyectos">Cancelar</Link>
                         </div>
                     </div>
             </div>      

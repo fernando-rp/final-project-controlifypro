@@ -1,49 +1,55 @@
 import { useReducer, useState } from "react";
 
-const getState=({getStore, getActions, setStore})=>{
+const getState = ({ getStore, getActions, setStore }) => {
 
     return {
-        store:{
-            actividades:null,
-            usuarios:[],
+        store: {
+            actividades: null,
+            usuarios: [],
             usurio: null,
-            actividad:null,
-            proyectos:null,
-            proyecto:null,
-            error:null
+            actividad: null,
+            proyectos: null,
+            proyecto: null,
+            error: null
         },
-        actions:{
-              Login: (email, password, history) => {
-          const opts = {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
+        actions: {
+            Login: (email, password, history) => {
+                const opts = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                    }),
+                };
+                fetch("/login", opts)
+                    .then((resp) => {
+                        if (resp.status === 200) return resp.json();
+                        else alert("Aqui hay un error");
+                    })
+                    .then((data) => {
+                        sessionStorage.setItem("token", data.access_token);
+                        history.push("/");
+                    })
+                    .catch((error) => {
+                        console.log("Aqui hay un error mas grande", error);
+                    });
             },
-            body: JSON.stringify({
-              email: email,
-              password: password,
-            }),
-          };
-          fetch("/login", opts)
-            .then((resp) => {
-              if (resp.status === 200) return resp.json();
-              else alert("Aqui hay un error");
-            })
-            .then((data) => {
-              sessionStorage.setItem("token", data.access_token);
-              history.push("/");
-            })
-            .catch((error) => {
-              console.log("Aqui hay un error mas grande", error);
-            });
-            },
-          
-            
             handleChangeActividad: e => {
                 const { actividad } = getStore();
                 actividad[e.target.name] = e.target.value;
                 setStore({
                     actividad: actividad
+                })
+            },
+            handleChangeProyecto: e => {
+                const { proyecto } = getStore();
+                proyecto[e.target.name] = e.target.value;
+                setStore({
+                    proyecto: proyecto
+
                 })
             },
             getActividades: url => {
@@ -62,21 +68,21 @@ const getState=({getStore, getActions, setStore})=>{
                     })
             },
             getProyectos: url => {
-                
+
                 fetch(url)
                     .then((response) => {
-                        if (!response.ok) setStore({ error: response.error });                      
+                        if (!response.ok) setStore({ error: response.error });
                         return response.json()
                     })
                     .then((data) => {
-                        
+
                         setStore({
-                            proyectos: data      
+                            proyectos: data
                         })
-                       
+
                     })
                     .catch((error) => {
-                        console.log(error)                        
+                        console.log(error)
                     })
             },
             getProyectById: (url, id) => {
@@ -109,24 +115,24 @@ const getState=({getStore, getActions, setStore})=>{
 
                     })
             },
-            deleteActividad:(id)=>{
-    
-                    fetch(`actividades/${id}`, {
-                        method: 'DELETE'
+            deleteActividad: (id) => {
+
+                fetch(`actividades/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then((response) => {
+                        if (!response.ok) setStore({ error: response.error });
+                        return response.json()
                     })
-                        .then((response) => {
-                            if (!response.ok) setStore({ error: response.error });
-                            return response.json()
-                        })
-                        .then((data) => {
-                            getActions().getActividades("/actividades")
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                        })
+                    .then((data) => {
+                        getActions().getActividades("/actividades")
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
             },
 
-            updateActividad: (url, id,history) => {
+            updateActividad: (url, id, history) => {
                 const { actividad } = getStore()
                 fetch(`${url}/${id}`, {
                     method: 'PUT',
@@ -140,9 +146,9 @@ const getState=({getStore, getActions, setStore})=>{
                         return response.json()
                     })
                     .then((data) => {
-                       
+
                         getActions().getActividades("/actividades")
-                     
+
                         history.push('/listado-actividades')
 
                     })
@@ -150,7 +156,7 @@ const getState=({getStore, getActions, setStore})=>{
 
                     })
             },
-            addActividad: ( url,nactividad,history) => { 
+            addActividad: (url, nactividad, history) => {
                 fetch(`${url}`, {
                     method: 'POST',
                     body: JSON.stringify(nactividad),
@@ -163,7 +169,7 @@ const getState=({getStore, getActions, setStore})=>{
                         return response.json()
                     })
                     .then((data) => {
-                        
+
                         getActions().getActividades("/actividades")
                         history.push('/listado-actividades')
                     })
@@ -171,33 +177,33 @@ const getState=({getStore, getActions, setStore})=>{
 
                     })
             },
-          getUsuarios: (url) => {
-        fetch(url, {})
-          .then((response) => {
-            if (!response.ok) setStore({ error: response.error });
-            return response.json();
-          })
-          .then((data) => {
-            setStore({
-              usuarios: data,
-            });
-          })
-          .catch(() => {});
-      },
+            getUsuarios: (url) => {
+                fetch(url, {})
+                    .then((response) => {
+                        if (!response.ok) setStore({ error: response.error });
+                        return response.json();
+                    })
+                    .then((data) => {
+                        setStore({
+                            usuarios: data,
+                        });
+                    })
+                    .catch(() => { });
+            },
 
-      getUsuarioById: (url, id) => {
-        fetch(`${url}/${id}`, {})
-          .then((response) => {
-            if (!response.ok) setStore({ usuario: response.error });
-            return response.json();
-          })
-          .then((data) => {
-            setStore({
-              usuario: data,
-            });
-          })
-          .catch(() => {});
-      },
+            getUsuarioById: (url, id) => {
+                fetch(`${url}/${id}`, {})
+                    .then((response) => {
+                        if (!response.ok) setStore({ usuario: response.error });
+                        return response.json();
+                    })
+                    .then((data) => {
+                        setStore({
+                            usuario: data,
+                        });
+                    })
+                    .catch(() => { });
+            },
         }
     }
 }
