@@ -1,21 +1,23 @@
-import {BrowserRouter, Route , Switch} from 'react-router-dom'
-import Home from './views/home'
-import ListadoActividades from './views/listado-actividades'
-import ListadoProyectos from './views/listado-proyectos'
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Home from "./views/home";
+import ListadoActividades from "./views/listado-actividades";
+import ListadoProyectos from "./views/listado-proyectos";
+
 
 import EdicionActividad from './views/edicion-actividad'
 import RegistroEdicionProyecto from './views/registro-edicion-proyecto'
 import RegistroActividad from "./views/registro-actividad"
 
+
 import Navbar from './components/navbar'
 import Footer from './components/footer'
 import Error404 from './views/error404'
-
 
 import { ListaUsuarios } from './views/ListaUsuarios'
 import { RegistroUsuario } from './views/RegistroUsuario'
 
 import { Login } from "./views/Login";
+
 import injectContext from './store/appContext'
 
 
@@ -62,3 +64,4 @@ const App= ()=>{
 }
 
 export default injectContext(App);
+
