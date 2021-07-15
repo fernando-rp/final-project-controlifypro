@@ -13,7 +13,9 @@ const Tecnologias = () => {
 
     return (
                  
-        <div className="tittle text-black-50 text-center bg-light"><h1>Tecnologias</h1>
+        <div className="tittle text-black-50 text-center bg-light"><h1>....</h1>
+        
+                <h1 className>Tecnologias</h1>
             <div class="row row-cols-1 row-cols-md-3 ">
                 <div class="col">
                     <img src={imghtml5css3} className="img-fluid rounded-star" alt="..."/>

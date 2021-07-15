@@ -6,17 +6,23 @@ import imgvision from '../img/imgvision.jpg'
 const History = () => {
 
     return (
-        <>
-            <div className="body-home">
+       
+            <div className="container-fluid text-center bg-light ">
                 
+                <h1 className>...</h1>
+                
+                <h1 className>¿Quienes Somos?</h1>
+                <p>Controlify es una App que agrupa recursos para  personas y empresas, quienes como actores de la Industria  
+                            y dentro del marco de una visión compartida paras el logro de su misión, contribuyen con su acción e inversión en la relacion Horas-Colaborador con la intencion de aumentar su productividad, lograr el rendimiento efectivo de todos sus equipos de trabajo y
+                            gestionar con exito las horas de trabajo  de los  colaboradores en cada proyecto .</p> 
                     
-                    {/* <div className="card mb-4-center max-width: 540px;"> */}
+                    
                         <div className="row g-0">
                             <div className="col-md-6">
-                                <div className="card-body text-justify">
-                                    <h1 className="text-center">Historia</h1>
+                                <div className="card-body ">
+                                    <h1 className="text-justify">Historia</h1>
                                     
-                                <p> Nuestra App, fue fundada por 4 emprendedores el 21 de mayo de 2021, liderado por Ernesto. Inicialmente la denominaron "la App para organizar el trabajo".   
+                                <p className="text-justify"> Nuestra App, fue fundada por 4 emprendedores el 21 de mayo de 2021, liderado por Ernesto. Inicialmente la denominaron "la App para organizar el trabajo".   
                                 Con el transcurrir del tiempo y durante el desarrollo de la app,  pasó a denominarse ControliFypro, hasta hoy día.</p>
                                 </div>
                             </div>
@@ -24,12 +30,7 @@ const History = () => {
                                 <img src= {imghistoria} className="img-fluid rounded-star" alt="..."/> 
                             </div>                    
                         </div>
-                    {/* </div> */}
-                
-                
-                
-                    
-                    {/* <div className="card mb-4-center max-width: 540px;"> */}
+                   
                         <div className="row g-0">
                             <div className="col-md-6 ">
                                 <img src= {imgmision} className="img-fluid rounded-star" alt="..."/> 
@@ -45,11 +46,7 @@ const History = () => {
                             </div>
                                                
                         </div>
-                    {/* </div> */}
-                
-                 
-                    
-                    {/* <div className="card mb-4-center max-width: 540px;"> */}
+                   
                         <div className="row g-0">
                             <div className="col-md-6">
                                 <div className="card-body text-justify">
@@ -63,10 +60,10 @@ const History = () => {
                                 <img src= {imgvision} className="img-fluid rounded-star" alt="..."/> 
                             </div>                    
                         </div>
-                    {/* </div> */}
+                   
                 
             </div>    
-        </>
+        
     );
 };  
 

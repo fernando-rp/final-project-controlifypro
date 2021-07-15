@@ -1,5 +1,8 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Home from './views/home'
+import "./css/style.css"
+
+
 import ListadoActividades from './views/listado-actividades'
 import ListadoProyectos from './views/listado-proyectos'
 
@@ -8,6 +11,9 @@ import RegistroEdicionProyecto from './views/registro-edicion-proyecto'
 import RegistroActividad from "./views/registro-actividad"
 
 import Navbar from './components/navbar'
+import Navbarusuaruios from './components/navbarjefe'
+import Navbarproyect from './components/navbarproyecto'
+
 import Footer from './components/footer'
 import Contact from './components/contact'
 
@@ -20,12 +26,14 @@ import { EdicionUsuario } from "./views/EdicionUsuario";
 import { Login } from "./views/Login";
 import injectContext from './store/appContext'
 
+
 const App = () => {
     return (
         <BrowserRouter>
             <Navbar />
             <Switch>
                 <Route exact path="/">
+                   
                     <Home />
                 </Route>
                 <Route exact path="/contact">
@@ -35,6 +43,7 @@ const App = () => {
                     <ListadoActividades />
                 </Route>
                 <Route exact path="/listado-proyectos">
+                    
                     <ListadoProyectos />
                 </Route>
                 <Route exact path="/registro-edicion-actividad/:id">
@@ -47,6 +56,7 @@ const App = () => {
                     <RegistroEdicionProyecto />
                 </Route>
                 <Route exact path="/ListaUsuarios">
+                   
                     <ListaUsuarios />
                 </Route>
                 <Route exact path="/RegistroUsuario">
