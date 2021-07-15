@@ -85,7 +85,7 @@ const App = () => {
             {/* Horas */}
                 <Route exact path="/lista-horas">
                     <NavbarJefe />
-                    <ListaHoras />
+                    {/* <ListaHoras /> */}
                 </Route>
             {/* Otros */}
                 <Route>

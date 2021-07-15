@@ -90,7 +90,7 @@ const ListadoProyectos = ()=>{
 
           <div className="row mt-4">
               <div className="col-md-12 d-flex justify-content-end">
-                  <Link type="submit" className="btn btn-success" to="/listado-actividades/registro-actividad">Agregar Proyecto</Link>
+                  <Link type="submit" className="btn btn-success" to="/registro-proyectos">Agregar Proyecto</Link>
               </div>
           </div>
 
