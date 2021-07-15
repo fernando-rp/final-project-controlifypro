@@ -5,7 +5,6 @@ import { faUserTie } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router";
 import { Context } from "../store/appContext";
 
-
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

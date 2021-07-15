@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Login } from "../views/Login";
-import { Contact } from "../components/contact";
 
 
 
-const navbar = () => {
+
+const Navbarjefe = () => {
 	return (
 		<nav className="navbar navbar-dark bg-dark text-white">
 			<div className="container">
@@ -14,16 +13,16 @@ const navbar = () => {
 				</Link>
 				<div className="ml-auto"> 
 				<Link to="/Login">
-					<span className="navbar-brand mb-0 fs-2">Log In</span>
+					<span className="navbar-brand mb-0 fs-2">Proyectos</span>
 				</Link>
 				<Link to= "/contact">				
-					<span className="navbar-brand mb-0 fs-2">Contact us</span>
-				</Link>
-				              
-				</div> 
+					<span className="navbar-brand mb-0 fs-2">actividades</span>
+				</Link>         
+                
+                </div> 
 			</div>
 		</nav>
 	);
 };
 
-export default navbar;
+export default Navbarjefe;

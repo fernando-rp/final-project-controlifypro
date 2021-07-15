@@ -1,7 +1,10 @@
+
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "./css/style.css"
 import Home from "./views/home";
 import ListadoActividades from "./views/listado-actividades";
 import ListadoProyectos from "./views/listado-proyectos";
+
 
 
 import EdicionActividad from './views/edicion-actividad'
@@ -10,7 +13,12 @@ import RegistroActividad from "./views/registro-actividad"
 
 
 import Navbar from './components/navbar'
+import Navbarusuaruios from './components/navbarjefe'
+import Navbarproyect from './components/navbarproyecto'
+
 import Footer from './components/footer'
+import Contact from './components/contact'
+
 import Error404 from './views/error404'
 
 import { ListaUsuarios } from './views/ListaUsuarios'
@@ -21,19 +29,24 @@ import { Login } from "./views/Login";
 import injectContext from './store/appContext'
 
 
-
-const App= ()=>{
+const App = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path="/">
+              
+             <Route exact path="/contact">
+                    <Contact />
+               </Route>
+              <Route exact path="/">
                     <Navbar />
                     <Home/>
+
                 </Route>
                 <Route exact path="/listado-actividades">
                     <ListadoActividades />
                 </Route>
                 <Route exact path="/listado-proyectos">
+                    
                     <ListadoProyectos />
                 </Route>
                 <Route exact path="/registro-edicion-actividad/:id">
