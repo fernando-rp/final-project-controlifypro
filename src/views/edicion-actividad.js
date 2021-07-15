@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
+import Calendar from 'react-calendar';
 
 
 
@@ -10,6 +11,7 @@ import Swal from "sweetalert2";
 const EdicionActividad = ()=>{
     const {store, actions}= useContext(Context);
     const {actividad,proyectos} = store;
+    const [value, onChange] = useState(new Date());
 
     const {id}=useParams();
     const history= useHistory();
@@ -92,9 +94,11 @@ const EdicionActividad = ()=>{
 
                             </textarea>
                         </div>
+                        
 
                         <div className="col-md-8 mx-auto">
-                            <label for="presupuesto" className="form-label">Fecha Inicio</label>
+                           
+                            <label for="presupuesto" className="form-label">Fecha Inicio (dd-mm-aa)</label>
                             <input type="text" 
                             name="fecha_inicio"
                             className="form-control col-2" 
@@ -102,6 +106,20 @@ const EdicionActividad = ()=>{
                             value={!!actividad && actividad.fecha_inicio}
                             onChange={actions.handleChangeActividad}
                             />
+
+
+                            {/* <div className="col-md-6 bg-info">
+                            
+                             <Calendar
+                             
+                             name="fecha_inicio"
+                             onChange={onChange}
+                               value={value}
+                             />
+                           
+                           </div> */}
+                            
+
                         </div>
 
                         <div class="col-md-8 mx-auto">
