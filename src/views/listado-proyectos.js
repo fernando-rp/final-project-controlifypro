@@ -23,11 +23,12 @@ const ListadoProyectos = ()=>{
           confirmButtonText: '¡Sí, borrar!'
         }).then((result) => {
           if (result.isConfirmed) {
-              actions.deleteActividad(a_id)
+              console.log("proyecto eliminado")
+              actions.deleteProyecto(a_id)
 
             Swal.fire(
               'Eliminado',
-              'Tu proyecto ha sido eliminada',
+              'Tu proyecto ha sido eliminado',
               'success'
             )
           }
