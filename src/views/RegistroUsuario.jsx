@@ -178,7 +178,7 @@ export function RegistroUsuario(props) {
               <Link
                 type="submit"
                 className="btn btn-danger"
-                to="/listaUsuarios"
+                to="/lista-usuarios"
               >
                 Cancelar
               </Link>

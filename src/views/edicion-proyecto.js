@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
 
-const EdicionProyecto = ()=>{
+const EdicionProyecto = (props)=>{
 
     const {store, actions}= useContext(Context);
     const {actividad,proyecto} = store;
@@ -68,8 +68,8 @@ const EdicionProyecto = ()=>{
                             <input 
                             type="text" 
                             name="sigla"
-                            className="form-control" 
-                            id="inputavance"
+                            className="inputavanceform-control" 
+                            id=""
                             value={!!proyecto && proyecto.sigla}
                             onChange={actions.handleChangeProyecto}
                              />
