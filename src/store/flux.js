@@ -156,6 +156,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 
                     })
             },
+            updateProyecto: (url, id, history) => {
+                const { proyecto } = getStore()
+                fetch(`${url}/${id}`, {
+                    method: 'PUT',
+                    body: JSON.stringify(proyecto),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then((response) => {
+                        if (!response.ok) setStore({ error: response.error });
+                        return response.json()
+                    })
+                    .then((data) => {
+
+                        getActions().getActividades("/proyectos")
+
+                        history.push('/listado-proyectos')
+
+                    })
+                    .catch(() => {
+
+                    })
+            },
             addActividad: (url, nactividad, history) => {
                 fetch(`${url}`, {
                     method: 'POST',
@@ -172,6 +196,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 
                         getActions().getActividades("/actividades")
                         history.push('/listado-actividades')
+                    })
+                    .catch(() => {
+
+                    })
+            },
+            addProyecto: (url, nproyecto, history) => {
+                fetch(`${url}`, {
+                    method: 'POST',
+                    body: JSON.stringify(nproyecto),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then((response) => {
+                        if (!response.ok) setStore({ error: response.error });
+                        return response.json()
+                    })
+                    .then((data) => {
+
+                        getActions().getProyectos("/proyectos")
+                        history.push('/listado-proyectos')
                     })
                     .catch(() => {
 

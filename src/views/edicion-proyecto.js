@@ -45,8 +45,7 @@ const EdicionProyecto = ()=>{
             </div>
             <form onSubmit={(e) => {
                             e.preventDefault();
-                            actions.updateActividad("/actividades", id, history);
-                        
+                            actions.updateProyecto("/proyectos", id, history);                     
                             
                         }}> 
             <div className="row border boder-primary">
@@ -80,10 +79,10 @@ const EdicionProyecto = ()=>{
                             <label for="name" className="form-label">Nombre</label>
                             <input 
                             type="text" 
-                            name="porcentaje_avance"
+                            name="nombre"
                             className="form-control" 
                             id="inputavance"
-                            value={!!proyecto && proyecto.porcentaje_avance}
+                            value={!!proyecto && proyecto.nombre}
                             onChange={actions.handleChangeProyecto}
                              />
                         </div>   
@@ -125,43 +124,32 @@ const EdicionProyecto = ()=>{
                             id="inputfechainicio" 
                             value={!!proyecto && proyecto.fecha_inicio}
                             onChange={actions.handleChangeProyecto}
-                            />
+                            />                          
 
-
-                            {/* <div className="col-md-6 bg-info">
-                            
-                             <Calendar
-                             
-                             name="fecha_inicio"
-                             onChange={onChange}
-                               value={value}
-                             />
-                           
-                           </div> */}
-                            
-
-                        </div>
-
-                        <div class="col-md-8 mx-auto">
-                            <label for="floatingTextarea">Observación</label>
-                            <textarea 
-                            name="observacion"
-                            class="form-control" 
-                            placeholder="" 
-                            id="floatingTextarea2" 
-                            value={!!proyecto && proyecto.observacion}
-                            onChange={actions.handleChangeProyecto}
-                            ></textarea>
                         </div>
 
                         <div className="col-md-8 mx-auto">
-                            <label for="inputfechafin" className="form-label">Usuario</label>
+                           
+                            <label for="presupuesto" className="form-label">Fecha Término (dd-mm-aa)</label>
+                            <input type="text" 
+                            name="fecha_entrega"
+                            className="form-control col-2" 
+                            id="inputfechaentrega" 
+                            value={!!proyecto && proyecto.fecha_entrega}
+                            onChange={actions.handleChangeProyecto}
+                            />                          
+
+                        </div>
+
+
+                        <div className="col-md-8 mx-auto">
+                            <label for="inputfechafin" className="form-label">Jefe Proyecto</label>
                             <input 
-                            name="usuario_id"
+                            name="jefe_proyecto"
                             type="text" 
                             className="form-control" 
                             id="inputusuario" 
-                            value={!!proyecto && proyecto.usuario_id}
+                            value={!!proyecto && proyecto.jefe_proyecto}
                             onChange={actions.handleChangeProyecto}/>
                         </div>
 
