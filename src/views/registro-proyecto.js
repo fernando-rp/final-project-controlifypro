@@ -14,6 +14,7 @@ const RegistroActividad = ()=>{
     const {proyectos}= store;
     const history= useHistory();
     const [value, onChange] = useState(new Date());
+    const [value2, onChange2] = useState(new Date());
 
 
     const [data,setData]=useState(null)
@@ -41,14 +42,6 @@ const RegistroActividad = ()=>{
             })
     }
 
-    
-    // const projectName= (e)=>{
-    //     setData({
-    //         ...data,
-    //         ["proyecto_id"]: e.target.value,
-    //     })
-    // }
-
 
     const confirmacion_saved = () => {
 
@@ -74,18 +67,7 @@ const RegistroActividad = ()=>{
             <div className="row border boder-primary">
                 <div className="col-12">
                     <div className="row g-3 mt-3">
-{/* 
-                            <div className="col-md-8 mx-auto">
-                                <select class="form-select" aria-label="" onChange={(e)=>{projectName(e)}}>
-                                <option name="proyecto_id">Selecciona Proyecto</option>
-                                    {!!proyectos &&
-                                        proyectos.map((proyecto) => {
-                                            return (
-                                                <option name="proyecto_id" value={proyecto.id} >{proyecto.sigla}-{proyecto.nombre}</option>)
-                                        })
-                                    }
-                                </select>
-                            </div> */}
+
 
                         <div className="col-md-8 mx-auto">
                             <label for="name" className="form-label">Sigla</label>
@@ -93,7 +75,7 @@ const RegistroActividad = ()=>{
                             type="text" 
                             name="sigla"
                             className="form-control" 
-                            id="inputavance"
+                            id="inputsigla"
                             onChange={handleChangeActividad}
                              />
                         </div>
@@ -104,14 +86,25 @@ const RegistroActividad = ()=>{
                             type="text" 
                             name="nombre"
                             className="form-control" 
-                            id="inputavance"
+                            id="inputname"
                             onChange={handleChangeActividad}
                              />
                         </div>
 
 
                         <div className="col-md-8 mx-auto">
-                            <label for="name" className="form-label">Porcentaje Avance</label>
+                            <label for="name" className="form-label">Horas Vendidas</label>
+                            <input 
+                            type="text" 
+                            name="presupuesto"
+                            className="form-control" 
+                            id="inputavance"
+                            onChange={handleChangeActividad}
+                             />
+                        </div>
+
+                        <div className="col-md-8 mx-auto">
+                            <label for="name" className="form-label">HH Utilizadas</label>
                             <input 
                             type="text" 
                             name="porcentaje_avance"
@@ -129,11 +122,21 @@ const RegistroActividad = ()=>{
                             placeholder="" 
                             id="floatingTextarea" 
                             onChange={handleChangeActividad}
-                            
                             >
 
                             </textarea>
                         </div>
+                        <div class="col-md-8 mx-auto">
+                            <label for="floatingTextarea">Jefe de Proyecto</label>
+                            <input 
+                            name="jefe_proyecto_id"
+                            class="form-control" 
+                            placeholder="" 
+                            id="floatingTextarea2" 
+                            onChange={handleChangeActividad}
+                            />
+                        </div>
+
 
                         <div className="col-md-8 mx-auto">
                              <label for="presupuesto" className="form-label">Fecha Inicio</label>
@@ -152,24 +155,14 @@ const RegistroActividad = ()=>{
                                 <div className="col-md-8">
                                     <Calendar
                                         name="fecha_entrega"
-                                        onChange={onChange}
+                                        onChange={onChange2}
                                         onClickDay={formatDateFin}
-                                        value={value}
+                                        value={value2}
                                     />
                                 </div>
                         </div>
 
-                        <div class="col-md-8 mx-auto">
-                            <label for="floatingTextarea">Jefe de Proyecto</label>
-                            <textarea 
-                            name="jefe_proyecto"
-                            class="form-control" 
-                            placeholder="" 
-                            id="floatingTextarea2" 
-                            onChange={handleChangeActividad}
-                            ></textarea>
-                        </div>
-
+                        
 
                         <div className="col-md-8 mx-auto">
                             <label className="form-check-label mb-2" for="inlineFormCheck">Estado</label>

@@ -23,11 +23,11 @@ const ListadoProyectos = ()=>{
           confirmButtonText: '¡Sí, borrar!'
         }).then((result) => {
           if (result.isConfirmed) {
-              actions.deleteActividad(a_id)
+              actions.deleteProyecto(a_id)
 
             Swal.fire(
               'Eliminado',
-              'Tu proyecto ha sido eliminada',
+              'Tu proyecto ha sido eliminado',
               'success'
             )
           }
@@ -90,7 +90,7 @@ const ListadoProyectos = ()=>{
 
           <div className="row mt-4">
               <div className="col-md-12 d-flex justify-content-end">
-                  <Link type="submit" className="btn btn-success" to="/listado-actividades/registro-actividad">Agregar Proyecto</Link>
+                  <Link type="submit" className="btn btn-success" to="/registro-proyectos">Agregar Proyecto</Link>
               </div>
           </div>
 
@@ -118,13 +118,8 @@ const ListadoProyectos = ()=>{
                   proyectos.map((proyecto,index)=>{
                       return(
                           <tr key={index}>
-                              {/* <th className="text-center" scope="row">{!!proyectos &&
-                                  proyectos.map((proyecto)=>{
-                                      if (proyecto.id===actividad.proyecto_id){
-                                          return(`${proyecto.sigla}-${proyecto.nombre}`)
-                                      }
-                                  })}</th> */}
-                              <td className="text-center"> {proyecto.sigla}-{proyecto.nombre}</td>    
+
+                              <td className="text-center"> {proyecto.sigla}</td>    
                               <td className="text-center"> {proyecto.nombre}</td>
                               <td className="text-center">{proyecto.descripcion}</td>
                               <td className="text-center">{proyecto.fecha_inicio}</td>

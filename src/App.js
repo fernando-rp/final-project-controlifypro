@@ -9,6 +9,8 @@ import ListadoProyectos from "./views/listado-proyectos";
 import EdicionActividad from './views/edicion-actividad'
 import EdicionProyecto from './views/edicion-proyecto'
 import RegistroActividad from "./views/registro-actividad"
+import RegistroProyecto from "./views/registro-proyecto"
+
 
 import Navbar from './components/navbar'
 import NavbarJefe from './components/navbarjefe'
@@ -19,7 +21,9 @@ import Contact from './components/contact'
 
 import Error404 from './views/error404'
 
-import { ListaUsuarios } from './views/ListaUsuarios'
+
+import  ListaUsuarios  from './views/ListaUsuarios'
+
 import { RegistroUsuario } from './views/RegistroUsuario'
 
 import { Login } from "./views/Login";
@@ -54,6 +58,10 @@ const App = () => {
                     <NavbarJefe />
                     <EdicionProyecto />
                 </Route>
+                <Route exact path="/registro-proyectos">
+                    <NavbarJefe />
+                    <RegistroProyecto />
+                </Route>
 
 
             {/* actividades */}
@@ -83,14 +91,16 @@ const App = () => {
             {/* Horas */}
                 {/* <Route exact path="/lista-horas">
                     <NavbarJefe />
-                    <ListaHoras />
-                </Route> */}
+
+                    {/* <ListaHoras /> */}
+                </Route>
+
             {/* Otros */}
                 <Route>
                     <Error404 />
                 </Route>
             </Switch>
-            <Footer />
+            {/* <Footer /> */}
         </BrowserRouter>
     )
 }

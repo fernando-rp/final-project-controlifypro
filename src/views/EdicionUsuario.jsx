@@ -1,22 +1,17 @@
 import { event } from "jquery";
-import React, { useContext, useEffect  } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
 
-
-export function RegistroUsuario(props) {
-
-
+export function EdicionUsuario(props) {
   const { store, actions } = useContext(Context);
-  const { usuario } = store; 
+  const { usuario } = store;
   const { id } = useParams();
 
-  useEffect(()=>{
-      actions.getUsuarios("/usuarios");
-   },[])
-
-
+  useEffect(() => {
+    actions.getUsuarios("/usuarios");
+  }, []);
 
   const confirmacion2 = () => {
     Swal.fire({
@@ -32,7 +27,7 @@ export function RegistroUsuario(props) {
       <div className="container mt-4 ">
         <div className="row  caption-top m-0 ">
           <div className="col-4 fs-5 bg-primary text-light">
-            Registrar Colaborador
+            Editar Colaborador
           </div>
         </div>
         <div className="row border boder-primary">
@@ -188,4 +183,4 @@ export function RegistroUsuario(props) {
       </div>
     </>
   );
-};
+}
