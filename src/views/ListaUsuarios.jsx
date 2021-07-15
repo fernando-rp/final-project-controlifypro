@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
 
+
 const ListaUsuarios = () => {
   const { store, actions } = useContext(Context);
   const { usuarios } = store;
@@ -153,7 +154,7 @@ const ListaUsuarios = () => {
                     <td className="text-center">
                       <Link
                         className="edit-icon border-0 bg-transparent text-success mx-1"
-                        to={`/EditarUsuario/${usuario.id}`}
+                        to={`/EdicionUsuario/${usuario.id}`}
                       >
                         <i className="far fa-edit "></i>
                       </Link>

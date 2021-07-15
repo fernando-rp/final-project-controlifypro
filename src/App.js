@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./css/style.css"
 
@@ -17,22 +16,18 @@ import Navbar from './components/navbar'
 import NavbarJefe from './components/navbarjefe'
 import Navbarproyect from './components/navbarproyecto'
 
-import Footer from './components/footer'
-import Contact from './components/contact'
+import ListaUsuarios from "./views/ListaUsuarios";
 
-import Error404 from './views/error404'
+import { RegistroUsuario } from "./views/RegistroUsuario";
 
-
-import  ListaUsuarios  from './views/ListaUsuarios'
-
-import { RegistroUsuario } from './views/RegistroUsuario'
+import { EdicionUsuario } from "./views/EdicionUsuario";
 
 import { Login } from "./views/Login";
 
-import injectContext from './store/appContext'
-
+import injectContext from "./store/appContext";
 
 const App = () => {
+
     return (
         <BrowserRouter>
             <Switch>
@@ -81,13 +76,17 @@ const App = () => {
             
             {/* Usuarios */}
                 <Route exact path="/lista-usuarios">
-                    <NavbarJefe />
-                    <ListaUsuarios />
-                </Route>
-                <Route exact path="/RegistroUsuario">
-                    <NavbarJefe />
-                <RegistroUsuario />
-                </Route>
+          <NavbarJefe />
+          <ListaUsuarios />
+        </Route>
+        <Route exact path="/EdicionUsuario/:id">
+          <NavbarJefe />
+          <EdicionUsuario />
+        </Route>
+        <Route exact path="/RegistroUsuario">
+          <NavbarJefe />
+          <RegistroUsuario />
+        </Route>
 
             {/* Horas */}
                 <Route exact path="/lista-horas">
@@ -106,3 +105,4 @@ const App = () => {
 }
 
 export default injectContext(App);
+
