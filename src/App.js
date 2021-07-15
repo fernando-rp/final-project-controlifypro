@@ -13,7 +13,7 @@ import RegistroActividad from "./views/registro-actividad"
 
 
 import Navbar from './components/navbar'
-import Navbarusuaruios from './components/navbarjefe'
+import NavbarJefe from './components/navbarjefe'
 import Navbarproyect from './components/navbarproyecto'
 
 import Footer from './components/footer'
@@ -33,48 +33,68 @@ const App = () => {
     return (
         <BrowserRouter>
             <Switch>
-              
-             <Route exact path="/contact">
+
+            
+            {/* landingPage */}
+                <Route exact path="/contact">
                     <Contact />
-               </Route>
-              <Route exact path="/">
+                </Route>
+                <Route exact path="/">
                     <Navbar />
                     <Home/>
+                </Route>
+                <Route exact path="/Login">
+                    <Login />
+                </Route>
 
-                </Route>
-                <Route exact path="/listado-actividades">
-                    <ListadoActividades />
-                </Route>
+            {/* proyectos */}
                 <Route exact path="/listado-proyectos">
-                    
+                    <NavbarJefe />
                     <ListadoProyectos />
                 </Route>
+                <Route exact path="/registro-edicion-proyecto/:id">
+                    <NavbarJefe />
+                    <EdicionProyecto />
+                </Route>
+
+
+            {/* actividades */}
+                <Route exact path="/listado-actividades">
+                    <NavbarJefe />
+                    <ListadoActividades />
+                </Route>
                 <Route exact path="/registro-edicion-actividad/:id">
+                    <NavbarJefe />
                     <EdicionActividad />
                 </Route>
                 <Route exact path="/listado-actividades/registro-actividad">
+                    <NavbarJefe />
                     <RegistroActividad />
                 </Route>
-                <Route exact path="/registro-edicion-proyecto/:id">
-                    <EdicionProyecto />
+            
+            {/* Usuarios */}
+                <Route exact path="/lista-usuarios">
+                    <NavbarJefe />
+                    <ListaUsuarios />
                 </Route>
-                <Route exact path="/ListaUsuarios">
-                  <ListaUsuarios />
+                <Route exact path="/RegistroUsuario">
+                    <NavbarJefe />
+                <RegistroUsuario />
                 </Route>
-          <Route exact path="/RegistroUsuario">
-            <RegistroUsuario />
-          </Route>
-          <Route exact path="/Login">
-            <Login />
-          </Route>
+
+            {/* Horas */}
+                <Route exact path="/lista-horas">
+                    <NavbarJefe />
+                    <ListaHoras />
+                </Route>
+            {/* Otros */}
                 <Route>
                     <Error404 />
                 </Route>
             </Switch>
-            {/* <Footer /> */}
+            <Footer />
         </BrowserRouter>
     )
 }
 
 export default injectContext(App);
-
