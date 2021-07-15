@@ -1,15 +1,17 @@
-import { useContext, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
+import Calendar from 'react-calendar';
 
 
 
 
-const RegistroEdicionActividad = ()=>{
+const EdicionActividad = ()=>{
     const {store, actions}= useContext(Context);
-    const {actividad} = store;
+    const {actividad,proyectos} = store;
+    const [value, onChange] = useState(new Date());
 
     const {id}=useParams();
     const history= useHistory();
@@ -26,11 +28,19 @@ const RegistroEdicionActividad = ()=>{
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Your work has been saved',
+            title: 'Actividad Editada',
             showConfirmButton: false,
-            timer: 15000
+            timer: 1300
           })
     }
+
+    const projectName= (e)=>{
+        console.log(e.target.value)
+        console.log(e.target.name)
+        actions.handleChangeActividad(e)
+        
+    }
+
 
     return(
         <div className="container mt-4">
@@ -47,16 +57,16 @@ const RegistroEdicionActividad = ()=>{
                 <div className="col-12">
                     <div className="row g-3 mt-3">
                         <div className="col-md-8 mx-auto">
-                            <label for="name" className="form-label">Id Proyecto</label>
-                            <input 
-                            type="text" 
-                            name="proyecto_id"
-                            className="form-control" 
-                            id="inputname"
-                            value={!!actividad && actividad.proyecto_id}
-                            onChange={actions.handleChangeActividad}
-                             />
-                        </div>
+                                <select class="form-select" aria-label="" name="proyecto_id" onChange={(e)=>{projectName(e)}}>
+                                <option selected>Seleccionar proyecto</option>
+                                    {!!proyectos &&
+                                        proyectos.map((proyecto) => {
+                                            return (
+                                                <option value={proyecto.id}>{proyecto.sigla}-{proyecto.nombre}</option>)
+                                        })
+                                    }
+                                </select>
+                           </div>
 
                         <div className="col-md-8 mx-auto">
                             <label for="name" className="form-label">Porcentaje Avance</label>
@@ -84,9 +94,11 @@ const RegistroEdicionActividad = ()=>{
 
                             </textarea>
                         </div>
+                        
 
                         <div className="col-md-8 mx-auto">
-                            <label for="presupuesto" className="form-label">Fecha Inicio</label>
+                           
+                            <label for="presupuesto" className="form-label">Fecha Inicio (dd-mm-aa)</label>
                             <input type="text" 
                             name="fecha_inicio"
                             className="form-control col-2" 
@@ -94,6 +106,20 @@ const RegistroEdicionActividad = ()=>{
                             value={!!actividad && actividad.fecha_inicio}
                             onChange={actions.handleChangeActividad}
                             />
+
+
+                            {/* <div className="col-md-6 bg-info">
+                            
+                             <Calendar
+                             
+                             name="fecha_inicio"
+                             onChange={onChange}
+                               value={value}
+                             />
+                           
+                           </div> */}
+                            
+
                         </div>
 
                         <div class="col-md-8 mx-auto">
@@ -123,11 +149,11 @@ const RegistroEdicionActividad = ()=>{
                         <label className="form-check-label mb-2" for="inlineFormCheck">Estado</label>
                             <div className="form-check">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioActive" value={!!actividad && actividad.estado} />
+                                    <input class="form-check-input" type="radio" name="estado" id="inlineRadioActive" value="1" onClick={(e)=> actions.handleChangeActividad(e)} />
                                     <label class="form-check-label" for="inlineRadioActive">Activo</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioInactive" value={!!actividad && actividad.estado} />
+                                    <input class="form-check-input" type="radio" name="estado" id="inlineRadioInactive" value="0" onClick={(e)=>actions.handleChangeActividad(e)} />
                                     <label class="form-check-label" for="inlineRadioInactive">Inactivo</label>
                                 </div>      
                             </div>
@@ -155,4 +181,4 @@ const RegistroEdicionActividad = ()=>{
     )
 }
 
-export default RegistroEdicionActividad ;
+export default EdicionActividad ;

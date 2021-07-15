@@ -1,9 +1,16 @@
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faUserTie } from "@fortawesome/free-solid-svg-icons";
-
+import { faUserTie } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router";
+import { Context } from "../store/appContext";
 
 export function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { actions } = useContext(Context);
+  const history = useHistory();
+
   return (
     <>
       <div className="container mt-4">
@@ -18,11 +25,14 @@ export function Login() {
                 <label for="name" className="form-label">
                   EMAIL
                 </label>
+
                 <input
                   type="email"
                   className="form-control"
                   id="inputname"
                   placeholder="name@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
 
@@ -36,24 +46,9 @@ export function Login() {
                     class="form-control"
                     id="inputPassword"
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
-                </div>
-              </div>
-
-              <div className="col-md-8 mx-auto">
-                <div className="form-check">
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadioActive"
-                      value="Activo"
-                    />
-                    <label class="form-check-label" for="inlineRadioActive">
-                      REMENBER ME
-                    </label>
-                  </div>
                 </div>
               </div>
             </form>
@@ -61,7 +56,13 @@ export function Login() {
         </div>
 
         <div className="col-12 d-flex justify-content-end mb-4">
-          <form className="row g-3 mt-3">
+          <form
+            className="row g-3 mt-3"
+            onSubmit={(e) => {
+              e.preventDefault();
+              actions.Login(email, password, history);
+            }}
+          >
             <div class="col-12">
               <button class="btn btn-primary" type="submit">
                 LOGIN

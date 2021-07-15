@@ -1,14 +1,16 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Home from './views/home'
+
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./css/style.css"
+import Home from "./views/home";
+import ListadoActividades from "./views/listado-actividades";
+import ListadoProyectos from "./views/listado-proyectos";
 
 
-import ListadoActividades from './views/listado-actividades'
-import ListadoProyectos from './views/listado-proyectos'
 
-import RegistroEdicionActividad from './views/registro-edicion-actividad'
+import EdicionActividad from './views/edicion-actividad'
 import RegistroEdicionProyecto from './views/registro-edicion-proyecto'
 import RegistroActividad from "./views/registro-actividad"
+
 
 import Navbar from './components/navbar'
 import Navbarusuaruios from './components/navbarjefe'
@@ -21,23 +23,24 @@ import Error404 from './views/error404'
 
 import { ListaUsuarios } from './views/ListaUsuarios'
 import { RegistroUsuario } from './views/RegistroUsuario'
-import { EdicionUsuario } from "./views/EdicionUsuario";
 
 import { Login } from "./views/Login";
+
 import injectContext from './store/appContext'
 
 
 const App = () => {
     return (
         <BrowserRouter>
-            <Navbar />
             <Switch>
-                <Route exact path="/">
-                   
-                    <Home />
-                </Route>
-                <Route exact path="/contact">
+              
+             <Route exact path="/contact">
                     <Contact />
+               </Route>
+              <Route exact path="/">
+                    <Navbar />
+                    <Home/>
+
                 </Route>
                 <Route exact path="/listado-actividades">
                     <ListadoActividades />
@@ -47,7 +50,7 @@ const App = () => {
                     <ListadoProyectos />
                 </Route>
                 <Route exact path="/registro-edicion-actividad/:id">
-                    <RegistroEdicionActividad />
+                    <EdicionActividad />
                 </Route>
                 <Route exact path="/listado-actividades/registro-actividad">
                     <RegistroActividad />
@@ -56,33 +59,14 @@ const App = () => {
                     <RegistroEdicionProyecto />
                 </Route>
                 <Route exact path="/ListaUsuarios">
-                   
-                    <ListaUsuarios />
+                  <ListaUsuarios />
                 </Route>
-                <Route exact path="/RegistroUsuario">
-                    <RegistroUsuario />
-                </Route>
-                <Route exact path="/EdicionUsuario">
-                    <EdicionUsuario />
-                </Route>
-                <Route exact path="/Login">
-                    <Login />
-                </Route>
-
-                <Route exact path="/Contact">
-                    <Contact />
-
-                </Route>
-                <Route exact path="/RegistroUsuario">
-                    <RegistroUsuario />
-                </Route>
-                <Route exact path="/EdicionUsuario">
-                    <EdicionUsuario />
-                </Route>
-                <Route exact path="/Login">
-                    <Login />
-
-                </Route>
+          <Route exact path="/RegistroUsuario">
+            <RegistroUsuario />
+          </Route>
+          <Route exact path="/Login">
+            <Login />
+          </Route>
                 <Route>
                     <Error404 />
                 </Route>
@@ -93,3 +77,4 @@ const App = () => {
 }
 
 export default injectContext(App);
+

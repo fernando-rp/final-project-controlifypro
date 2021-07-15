@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Swal from 'sweetalert2'
 
+
 const ListadoActividades = ()=>{
 
     const {store,actions}= useContext(Context);
@@ -37,9 +38,9 @@ const ListadoActividades = ()=>{
     return(
         <div className="container mt-4">
             <div className="row">
-            <div className="col-4 fs-5 bg-primary text-light">Buscar actividades</div>
+            <div className="col-4 fs-5 bg-info text-light">Buscar actividades</div>
             </div>
-            <div className="row border boder-primary">
+            <div className="row border boder-info">
                 <div className="col-8">
                     <form className="row g-3 mt-3">
                         <div className="col-md-4">
@@ -95,21 +96,19 @@ const ListadoActividades = ()=>{
             </div>
 
             <div className="row mt-4">
-                <div className="col-4 fs-5 bg-primary text-light">Mis Actividades</div>
+                <div className="col-4 fs-5 bg-info text-light">Mis Actividades</div>
             </div>
 
             <table className="table">
             <thead>
                 <tr>
-                <th scope="col">Proyecto</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Fecha inicio</th>
-                <th scope="col">% Avance</th>
-                <th scope="col">Observación</th>
-                <th scope="col">Estado</th>
-                {/* <th scope="col">Id Proyecto</th> */}
-                {/* <th scope="col">Jefe de Proyectos</th> */}
-                <th scope="col">Acciones</th>
+                <th className="text-center" scope="col">Proyecto</th>
+                <th className="text-center" scope="col">Descripción</th>
+                <th className="text-center" scope="col">Fecha Inicio</th>
+                <th className="text-center" scope="col">Porcentaje Avance</th>
+                <th className="text-center" scope="col">Observación</th>
+                <th className="text-center" scope="col">Estado</th>
+                <th className="text-center" scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -119,23 +118,22 @@ const ListadoActividades = ()=>{
                     actividades.map((actividad,index)=>{
                         return(
                             <tr key={index}>
-                                <th scope="row">{!!proyectos &&
+                                <th className="text-center" scope="row">{!!proyectos &&
                                     proyectos.map((proyecto)=>{
-                                        if (proyecto.id==actividad.proyecto_id){
+                                        if (proyecto.id===actividad.proyecto_id){
                                             return(`${proyecto.sigla}-${proyecto.nombre}`)
                                         }
                                     })}</th>
-                                <td> {actividad.descripcion}</td>
-                                <td>{actividad.fecha_inicio}</td>
-                                <td>{actividad.porcentaje_avance}</td>
-                                <td>{actividad.observacion}</td>
-                                <td>{actividad.estado=="1"?"Activo":"Inactivo"}</td>
-                                {/* <td>{actividad.proyecto_id}</td> */}
-                                {/* <td>{actividad.usuario_id}</td> */}
-                                <td>
-                                    <button className="edit-icon border-white bg-transparent text-primary"> <i className="fas fa-database"></i> </button>
-                                    <Link className="edit-icon border-white bg-transparent text-success" to={`/registro-edicion-actividad/${actividad.id}`}><i className="far fa-edit "></i> </Link>
-                                    <button className="trash-icon border-white bg-transparent text-danger" onClick={()=>{confirmacion(actividad.id)}}><i className="far fa-trash-alt "></i> </button>
+                                <td className="text-center"> {actividad.descripcion}</td>
+                                <td className="text-center">{actividad.fecha_inicio}</td>
+                                <td className="text-center">{actividad.porcentaje_avance} %</td>
+                                <td className="text-center">{actividad.observacion}</td>
+                                <td className="text-center">{actividad.estado===1?"Activo":"Inactivo"}</td>
+
+                                <td className="text-center">
+                                    <button className="edit-icon border-0 bg-transparent text-primary mx-1"> <i className="fas fa-database"></i> </button>
+                                    <Link className="edit-icon border-0 bg-transparent text-success mx-1" to={`/registro-edicion-actividad/${actividad.id}`}><i className="far fa-edit "></i></Link>
+                                    <button className="trash-icon border-0 bg-transparent text-danger" onClick={()=>{confirmacion(actividad.id)}}><i className="far fa-trash-alt "></i></button>
                                     
                                     </td>
                             </tr>
