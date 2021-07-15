@@ -21,7 +21,7 @@ import Contact from './components/contact'
 
 import Error404 from './views/error404'
 
-import { ListaUsuarios } from './views/ListaUsuarios'
+import ListaUsuarios from './views/ListaUsuarios'
 import { RegistroUsuario } from './views/RegistroUsuario'
 
 import { Login } from "./views/Login";
@@ -92,7 +92,7 @@ const App = () => {
                     <Error404 />
                 </Route>
             </Switch>
-            <Footer />
+            {/* <Footer /> */}
         </BrowserRouter>
     )
 }

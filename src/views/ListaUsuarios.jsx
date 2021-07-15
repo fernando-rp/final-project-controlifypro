@@ -144,14 +144,6 @@ const ListaUsuarios = () => {
               usuarios.map((usuario, index) => {
                 return (
                   <tr key={index}>
-                    <th className="text-center" scope="row">
-                      {!!usuarios &&
-                        usuarios.map((usuario) => {
-                          // if (usuario.id === usuario.proyecto_id) {
-                          //   return `${usuario.sigla}-${usuario.nombre}`;
-                          // }
-                        })}
-                    </th>
                     <td className="text-center"> {usuario.primer_nombre}</td>
                     <td className="text-center">{usuario.segundo_nombre}</td>
                     <td className="text-center">{usuario.apellido_paterno}</td>
@@ -161,7 +153,7 @@ const ListaUsuarios = () => {
                     <td className="text-center">
                       <Link
                         className="edit-icon border-0 bg-transparent text-success mx-1"
-                        to={`/RegistroUsuario/${usuario.id}`}
+                        to={`/EditarUsuario/${usuario.id}`}
                       >
                         <i className="far fa-edit "></i>
                       </Link>
