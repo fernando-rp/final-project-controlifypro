@@ -8,7 +8,7 @@ import ListadoProyectos from "./views/listado-proyectos";
 
 
 import EdicionActividad from './views/edicion-actividad'
-import RegistroEdicionProyecto from './views/registro-edicion-proyecto'
+import EdicionProyecto from './views/edicion-proyecto'
 import RegistroActividad from "./views/registro-actividad"
 
 
@@ -55,8 +55,8 @@ const App = () => {
                 <Route exact path="/listado-actividades/registro-actividad">
                     <RegistroActividad />
                 </Route>
-                <Route exact path="/listado-proyectos/registro-edicion-proyecto">
-                    <RegistroEdicionProyecto />
+                <Route exact path="/registro-edicion-proyecto/:id">
+                    <EdicionProyecto />
                 </Route>
                 <Route exact path="/ListaUsuarios">
                   <ListaUsuarios />
