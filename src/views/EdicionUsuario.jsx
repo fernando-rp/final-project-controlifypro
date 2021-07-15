@@ -1,4 +1,3 @@
-import { event } from "jquery";
 import React, { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router";
@@ -41,7 +40,8 @@ export function EdicionUsuario(props) {
         >
           <div className="row border boder-primary">
             <div className="col-12">
-              <form className="row g-3 mt-3">
+              <div className="row g-3 mt-3">
+
                 <div className="col-md-8 mx-auto">
                   <label for="name" className="form-label">
                     Rut
@@ -50,7 +50,7 @@ export function EdicionUsuario(props) {
                     name="rut"
                     type="text"
                     className="form-control"
-                    id="inputname"
+                    id="inputrut"
                     placeholder="Ingrese RUN Chileno"
                     value={!!usuario && usuario.rut}
                     onChange={actions.handleChangeUsuario}
@@ -79,7 +79,7 @@ export function EdicionUsuario(props) {
                     name="segundo_nombre"
                     type="text"
                     className="form-control"
-                    id="inputname"
+                    id="inputsecondname"
                     value={!!usuario && usuario.segundo_nombre}
                     onChange={actions.handleChangeUsuario}
                   />
@@ -93,7 +93,7 @@ export function EdicionUsuario(props) {
                     name="apellido_paterno"
                     type="text"
                     className="form-control"
-                    id="inputname"
+                    id="inputlastname_father"
                     value={!!usuario && usuario.apellido_paterno}
                     onChange={actions.handleChangeUsuario}
                   />
@@ -107,7 +107,7 @@ export function EdicionUsuario(props) {
                     name="apellido_materno"
                     type="text"
                     className="form-control"
-                    id="inputname"
+                    id="inputlasname_mother"
                     value={!!usuario && usuario.apellido_materno}
                     onChange={actions.handleChangeUsuario}
                   />
@@ -157,9 +157,10 @@ export function EdicionUsuario(props) {
                       <input
                         class="form-check-input"
                         type="radio"
-                        name="inlineRadioOptions"
+                        name="estado"
                         id="inlineRadioActive"
-                        value="Activo"
+                        value="1"
+                        onClick={(e)=>actions.handleChangeUsuario(e)}
                       />
                       <label class="form-check-label" for="inlineRadioActive">
                         Activo
@@ -171,8 +172,9 @@ export function EdicionUsuario(props) {
                         type="radio"
                         name="inlineRadioOptions"
                         id="inlineRadioInactive"
-                        value="Inactivo"
-                        value={!!usuario && usuario.estado}
+                        value="0"
+                        onClick={(e)=>actions.handleChangeUsuario(e)}
+                        
                       />
                       <label class="form-check-label" for="inlineRadioInactive">
                         Inactivo
@@ -180,13 +182,12 @@ export function EdicionUsuario(props) {
                     </div>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
-        </form>
 
-        <div className="col-10 d-flex justify-content-end mb-4">
-          <form className="row g-3 mt-3">
+          <div className="col-10 d-flex justify-content-end mb-4">
+          <div className="row g-3 mt-3">
             <div className="col-md-2 mx-auto">
               <button
                 type="submit"
@@ -205,8 +206,11 @@ export function EdicionUsuario(props) {
                 Cancelar
               </Link>
             </div>
-          </form>
-        </div>
+            </div>
+          </div>
+        </form>
+
+
       </div>
     </>
   );

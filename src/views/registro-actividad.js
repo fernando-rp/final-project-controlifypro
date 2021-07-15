@@ -66,8 +66,9 @@ const RegistroActividad = ()=>{
             <div className="row border boder-primary">
                 <div className="col-12">
                     <div className="row g-3 mt-3">
-
+                    
                             <div className="col-md-8 mx-auto">
+                            <label for="proyecto" className="form-label">Proyecto</label>
                                 <select class="form-select" aria-label="" onChange={(e)=>{projectName(e)}}>
                                 <option name="proyecto_id">Selecciona Proyecto</option>
                                     {!!proyectos &&

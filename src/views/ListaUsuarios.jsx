@@ -34,7 +34,7 @@ const ListaUsuarios = () => {
       <>
       <div className="container mt-4">
         <div className="row">
-          <div className="col-4 fs-5 bg-info text-light">Buscar colaborador</div>
+          <div className="col-4 fs-5 bg-info text-light">Buscar Colaborador</div>
         </div>
         <div className="row border boder-info">
           <div className="col-8">
@@ -158,8 +158,7 @@ const ListaUsuarios = () => {
                       >
                         <i className="far fa-edit "></i>
                       </Link>
-                      <button
-                        className="trash-icon border-0 bg-transparent text-danger"
+                      <button className="trash-icon border-0 bg-transparent text-danger"
                         onClick={() => {
                           confirmacion(usuario.id);
                         }}

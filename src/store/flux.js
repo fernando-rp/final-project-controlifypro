@@ -135,8 +135,24 @@ const getState = ({ getStore, getActions, setStore }) => {
             return response.json();
           })
           .then((data) => {
-            console.log("proyecto eliminado");
+            
             getActions().getActividades("/proyectos");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      },
+      deleteUsuario: (id) => {
+        fetch(` usuarios/${id}`, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            
+            getActions().getUsuarios("/usuarios");
           })
           .catch((error) => {
             console.log(error);
@@ -197,9 +213,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             return response.json();
           })
           .then((data) => {
-            getActions().getUsuarios("/usuario");
-
-            history.push("/lista-usuario");
+            getActions().getUsuarios("/usuarios");
+            history.push("/lista-usuarios");
           })
           .catch(() => {});
       },
@@ -240,6 +255,24 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch(() => {});
       },
+      addUsuario: (url, nusuario, history) => {
+        fetch(`${url}`, {
+          method: "POST",
+          body: JSON.stringify(nusuario),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            getActions().getProyectos("/usuarios");
+            history.push("/lista-usuarios");
+          })
+          .catch(() => {});
+      },
       getUsuarios: (url) => {
         fetch(url, {})
           .then((response) => {
@@ -270,6 +303,5 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
   };
 };
-=
 
 export default getState;

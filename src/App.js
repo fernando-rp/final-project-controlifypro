@@ -23,6 +23,8 @@ import { RegistroUsuario } from "./views/RegistroUsuario";
 import { EdicionUsuario } from "./views/EdicionUsuario";
 
 import { Login } from "./views/Login";
+import Error404 from "./views/error404";
+import Contact from "./components/contact";
 
 import injectContext from "./store/appContext";
 

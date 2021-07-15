@@ -11,7 +11,6 @@ import 'react-calendar/dist/Calendar.css';
 
 const RegistroActividad = ()=>{
     const {store, actions}= useContext(Context);
-    const {proyectos}= store;
     const history= useHistory();
     const [value, onChange] = useState(new Date());
     const [value2, onChange2] = useState(new Date());
