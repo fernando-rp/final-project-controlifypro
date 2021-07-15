@@ -131,6 +131,23 @@ const getState = ({ getStore, getActions, setStore }) => {
                         console.log(error)
                     })
             },
+            deleteProyecto: (id) => {
+
+                fetch(`proyectos/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then((response) => {
+                        if (!response.ok) setStore({ error: response.error });
+                        return response.json()
+                    })
+                    .then((data) => {
+                        console.log("proyecto eliminado")
+                        getActions().getActividades("/proyectos")
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            },
 
             updateActividad: (url, id, history) => {
                 const { actividad } = getStore()
