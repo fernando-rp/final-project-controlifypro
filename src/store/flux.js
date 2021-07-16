@@ -30,7 +30,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .then((data) => {
             sessionStorage.setItem("token", data.access_token);
-            history.push("/");
+
+            console.log(data)
+            history.push("/listado-proyectos");
           })
           .catch((error) => {
             console.log("Aqui hay un error mas grande", error);

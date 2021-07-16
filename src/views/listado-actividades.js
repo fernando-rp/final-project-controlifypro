@@ -37,7 +37,7 @@ const ListadoActividades = ()=>{
     return(
         <div className="container mt-4">
             <div className="row">
-            <div className="col-4 fs-5 bg-info text-light">Buscar actividades</div>
+            <div className="col-4 fs-5 bg-info text-light">Buscar Actividades</div>
             </div>
             <div className="row border boder-info">
                 <div className="col-8">

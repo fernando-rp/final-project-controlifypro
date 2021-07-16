@@ -6,8 +6,6 @@ import Swal from "sweetalert2";
 import Calendar from 'react-calendar';
 
 
-
-
 const ListaHoras = ()=>{
     const {store, actions}= useContext(Context);
     const {actividades,proyectos,actividad} = store;
@@ -61,7 +59,7 @@ const ListaHoras = ()=>{
                         
                             
                         }}> 
-            <div className="row border boder-primary">
+            <div className="row border boder-primary mb-4">
                 <div className="col-12">
                     <div className="row g-3 mt-3">
                         <div className="col-md-6 mx-auto">
@@ -105,7 +103,7 @@ const ListaHoras = ()=>{
                         </div>
                         
 
-                        <div className="col-md-6 ">
+                        {/* <div className="col-md-6 ">
                              <label for="presupuesto" className="form-label">Fecha Inicio</label>
 
                                 <div className="col-md-8">
@@ -116,9 +114,9 @@ const ListaHoras = ()=>{
                                         value={value}
                                     />
                                 </div>
-                        </div>
+                        </div> */}
 
-                        <div class="col-md-8 mx-auto">
+                        {/* <div class="col-md-8 mx-auto">
                             <label for="floatingTextarea">Observación</label>
                             <textarea 
                             name="observacion"
@@ -139,9 +137,9 @@ const ListaHoras = ()=>{
                             id="inputusuario" 
                             value={!!actividad && actividad.usuario_id}
                             onChange={actions.handleChangeActividad}/>
-                        </div>
+                        </div> */}
 
-                        <div className="col-md-8 mx-auto">
+                        {/* <div className="col-md-8 mx-auto">
                         <label className="form-check-label mb-2" for="inlineFormCheck">Estado</label>
                             <div className="form-check">
                                 <div class="form-check form-check-inline">
@@ -153,7 +151,9 @@ const ListaHoras = ()=>{
                                     <label class="form-check-label" for="inlineRadioInactive">Inactivo</label>
                                 </div>      
                             </div>
-                        </div>
+                        </div> */}
+
+
                     </div>
                 </div> 
             </div>  

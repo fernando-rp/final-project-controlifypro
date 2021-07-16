@@ -10,7 +10,7 @@ import imagen9 from '../img/imagen9.jpg'
 
 const porqueusar = () => {
 	return (
-        <div className="container ">
+        <div className="container mb-4">
         <div>
         <h1 className="text-center">.....</h1>
             <h1 className="text-center">Como se usar ControlifyPro!</h1>

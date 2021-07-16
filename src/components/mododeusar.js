@@ -7,7 +7,7 @@ import imagen5 from '../img/imagen5.jpg'
 
 const mododeusar = () => {
 	return (
-        <div className="container text-center">
+        <div className="container text-center mt-4">
         <div>
             <h1 className>.....</h1>
             <h1 className>Porque Usar ControlifyPro?</h1>

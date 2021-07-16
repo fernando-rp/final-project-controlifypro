@@ -10,7 +10,7 @@ const Equipo = () => {
            
            
            
-           <div className="container">
+           <div className="container mb-4">
                 <div>
                     <h1 className="text-center">.....</h1>
                 </div>
