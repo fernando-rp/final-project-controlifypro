@@ -129,14 +129,14 @@ export function EdicionUsuario(props) {
                 </div>
 
                 <div className="col-md-8 mx-auto">
-                  <label for="inputPassword2" class="form-label">
+                  <label for="inputPassword2" className="form-label">
                     Password
                   </label>
                   <div className="col-sm-12">
                     <input
                       name="password"
                       type="password"
-                      class="form-control"
+                      className="form-control"
                       id="inputPassword"
                       placeholder="Password"
                       value={!!usuario && usuario.password}
@@ -153,22 +153,22 @@ export function EdicionUsuario(props) {
                     Estado
                   </label>
                   <div className="form-check">
-                    <div class="form-check form-check-inline">
+                    <div className="form-check form-check-inline">
                       <input
-                        class="form-check-input"
+                        className="form-check-input"
                         type="radio"
                         name="estado"
                         id="inlineRadioActive"
                         value="1"
                         onClick={(e)=>actions.handleChangeUsuario(e)}
                       />
-                      <label class="form-check-label" for="inlineRadioActive">
+                      <label className="form-check-label" for="inlineRadioActive">
                         Activo
                       </label>
                     </div>
-                    <div class="form-check form-check-inline">
+                    <div className="form-check form-check-inline">
                       <input
-                        class="form-check-input"
+                        className="form-check-input"
                         type="radio"
                         name="inlineRadioOptions"
                         id="inlineRadioInactive"
@@ -176,7 +176,7 @@ export function EdicionUsuario(props) {
                         onClick={(e)=>actions.handleChangeUsuario(e)}
                         
                       />
-                      <label class="form-check-label" for="inlineRadioInactive">
+                      <label className="form-check-label" for="inlineRadioInactive">
                         Inactivo
                       </label>
                     </div>

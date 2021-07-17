@@ -62,9 +62,11 @@ const ListaHoras = ()=>{
             <div className="row border boder-primary mb-4">
                 <div className="col-12">
                     <div className="row g-3 mt-3">
-                        <div className="col-md-6 mx-auto">
-                                <select class="form-select" aria-label="" name="proyecto_id" onChange={(e)=>{projectName(e)}}>
-                                <option selected>Seleccionar proyecto</option>
+                            <div className="col-md-6 mb-3">
+
+                                <label for="floatingTextarea">Proyecto</label> <br/>
+                                <select class="form-select" aria-label="" name="proyecto_id" onChange={(e) => { projectName(e) }}>
+                                    <option selected>Seleccionar proyecto</option>
                                     {!!proyectos &&
                                         proyectos.map((proyecto) => {
                                             return (
@@ -72,9 +74,10 @@ const ListaHoras = ()=>{
                                         })
                                     }
                                 </select>
-                           </div>
+                            </div>
 
-                           <div className="col-md-6 mx-auto">
+                           <div className="col-md-6 mb-3">
+                           <label for="floatingTextarea">Actividad</label> <br/>
                                 <select class="form-select" aria-label="" name="proyecto_id" onChange={(e)=>{projectName(e)}}>
                                 <option selected>Seleccionar actividad</option>
                                     {!!actividades &&
@@ -86,25 +89,8 @@ const ListaHoras = ()=>{
                                 </select>
                            </div>
 
-
-                        <div class="col-md-8">
-                            <label for="floatingTextarea">Descripción</label>
-                            <textarea 
-                            name="descripcion"
-                            class="form-control" 
-                            placeholder="" 
-                            id="floatingTextarea" 
-                            value={!!actividad && actividad.descripcion}
-                            onChange={actions.handleChangeActividad}
-                            
-                            >
-
-                            </textarea>
-                        </div>
-                        
-
-                        {/* <div className="col-md-6 ">
-                             <label for="presupuesto" className="form-label">Fecha Inicio</label>
+                        <div className="col-md-6 mb-3 ">
+                             <label for="presupuesto" className="form-label">Fecha</label>
 
                                 <div className="col-md-8">
                                     <Calendar
@@ -114,60 +100,83 @@ const ListaHoras = ()=>{
                                         value={value}
                                     />
                                 </div>
-                        </div> */}
-
-                        {/* <div class="col-md-8 mx-auto">
-                            <label for="floatingTextarea">Observación</label>
-                            <textarea 
-                            name="observacion"
-                            class="form-control" 
-                            placeholder="" 
-                            id="floatingTextarea2" 
-                            value={!!actividad && actividad.observacion}
-                            onChange={actions.handleChangeActividad}
-                            ></textarea>
                         </div>
 
-                        <div className="col-md-8 mx-auto">
-                            <label for="inputfechafin" className="form-label">Usuario</label>
+                        <div className="col-md-6 mb-3">
+                            <label for="floatingTextarea" >Descripción</label>
+                            <textarea
+                            rows="4"                         
+                            name="descripcion"
+                            className="form-control mb-3 col-8" 
+                            placeholder="" 
+                            id="floatingTextarea"         
+                            >
+                            </textarea>
+
+                                <div className="row">
+                                    <div className="col-4">
+                                        <label for="floatingTextarea">Horas</label>
+                                        <input
+                                            name="hh"
+                                            type="text"
+                                            className="form-control mb-3 col-12"
+                                            id="inputhh"
+                                        />
+                                    </div>
+                                    <div className="col-4">
+                                        <label for="floatingTextarea">Horas Extras</label>
+                                        <input
+                                            name="hh_extra"
+                                            type="text"
+                                            className="form-control mb-3 col-12"
+                                            id="inputhhe"
+                                        />
+                                    </div>
+
+                                </div>
+
+                            <label for="usuario" className="form-label">Usuario</label>
                             <input 
                             name="usuario_id"
                             type="text" 
-                            className="form-control" 
+                            className="form-control col-5" 
                             id="inputusuario" 
-                            value={!!actividad && actividad.usuario_id}
-                            onChange={actions.handleChangeActividad}/>
-                        </div> */}
+                            />
+                        </div>
 
-                        {/* <div className="col-md-8 mx-auto">
-                        <label className="form-check-label mb-2" for="inlineFormCheck">Estado</label>
+                        <div className="col-md-12 mx-auto">
+                        <label className="form-check-label mb-3" for="inlineFormCheck">Estado</label>
                             <div className="form-check">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="estado" id="inlineRadioActive" value="1" onClick={(e)=> actions.handleChangeActividad(e)} />
-                                    <label class="form-check-label" for="inlineRadioActive">Activo</label>
+                                    <input className="form-check-input" type="radio" name="estado" id="inlineRadioActive" value="1" onClick={(e)=> actions.handleChangeActividad(e)} />
+                                    <label className="form-check-label p-0" for="inlineRadioActive">Activo</label>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="estado" id="inlineRadioInactive" value="0" onClick={(e)=>actions.handleChangeActividad(e)} />
-                                    <label class="form-check-label" for="inlineRadioInactive">Inactivo</label>
+                                <div className="form-check form-check-inline">
+                                    <input className="form-check-input" type="radio" name="estado" id="inlineRadioInactive" value="0" onClick={(e)=>actions.handleChangeActividad(e)} />
+                                    <label className="form-check-label p-0" for="inlineRadioInactive">Inactivo</label>
                                 </div>      
                             </div>
-                        </div> */}
-
-
+                        </div>
                     </div>
+                    
                 </div> 
+
+                <div className="col-11 d-flex justify-content-end mb-4">
+                        <div className="row g-3 mt-3">
+                            <div className="col-md-2 mx-auto">
+                                <button type="submit" className="btn btn-success mb-2" onClick={() => { confirmacion_saved() }}>Agregar</button>
+                            </div>
+                            <div className="col-md-2 mx-auto">
+                                <button className="btn btn-info" type="reset">Limpiar</button>
+                            </div>
+                        </div>
+                    </div>
+                   
+
+
             </div>  
 
-            <div className="col-10 d-flex justify-content-end mb-4">
-                    <div className="row g-3 mt-3">
-                        <div className="col-md-2 mx-auto">
-                            <button type="submit" className="btn btn-success" onClick={()=>{confirmacion_saved()}}>Guardar</button>
-                        </div>
-                        <div className="col-md-2 mx-auto">
-                             <Link className="btn btn-danger" to="/listado-actividades">Cancelar</Link>
-                        </div>
-                    </div>
-            </div>      
+               
 
             </form>
               

@@ -56,7 +56,7 @@ const RegistroActividad = ()=>{
     return(
         <div className="container mt-4">
             <div className="row">
-            <div className="col-4 fs-5 bg-primary text-light">Agregar Proyecto</div>
+                <div className="col-4 fs-5 bg-primary text-light">Agregar Proyecto</div>
             </div>
             <form onSubmit={(e) => {            
                             e.preventDefault();
@@ -68,7 +68,7 @@ const RegistroActividad = ()=>{
                     <div className="row g-3 mt-3">
 
 
-                        <div className="col-md-8 mx-auto">
+                        <div className="col-md-8 mx-auto mb-4">
                             <label for="name" className="form-label">Sigla</label>
                             <input 
                             type="text" 
@@ -79,7 +79,7 @@ const RegistroActividad = ()=>{
                              />
                         </div>
 
-                        <div className="col-md-8 mx-auto">
+                        <div className="col-md-8 mx-auto mb-4">
                             <label for="name" className="form-label">Nombre</label>
                             <input 
                             type="text" 
@@ -91,7 +91,7 @@ const RegistroActividad = ()=>{
                         </div>
 
 
-                        <div className="col-md-8 mx-auto">
+                        <div className="col-md-8 mx-auto mb-2">
                             <label for="name" className="form-label">Horas Vendidas</label>
                             <input 
                             type="text" 
@@ -102,7 +102,7 @@ const RegistroActividad = ()=>{
                              />
                         </div>
 
-                        <div className="col-md-8 mx-auto">
+                        <div className="col-md-8 mx-auto mb-4">
                             <label for="name" className="form-label">HH Utilizadas</label>
                             <input 
                             type="text" 
@@ -113,7 +113,7 @@ const RegistroActividad = ()=>{
                              />
                         </div>
 
-                        <div class="col-md-8 mx-auto">
+                        <div class="col-md-8 mx-auto mb-4">
                             <label for="floatingTextarea">Descripción</label>
                             <textarea 
                             name="descripcion"
@@ -125,7 +125,7 @@ const RegistroActividad = ()=>{
 
                             </textarea>
                         </div>
-                        <div class="col-md-8 mx-auto">
+                        <div class="col-md-8 mx-auto mb-4">
                             <label for="floatingTextarea">Jefe de Proyecto</label>
                             <input 
                             name="jefe_proyecto_id"
@@ -137,7 +137,7 @@ const RegistroActividad = ()=>{
                         </div>
 
 
-                        <div className="col-md-8 mx-auto">
+                        <div className="col-md-8 mx-auto mb-4">
                              <label for="presupuesto" className="form-label">Fecha Inicio</label>
                                 <div className="col-md-8">
                                     <Calendar
@@ -149,7 +149,7 @@ const RegistroActividad = ()=>{
                                 </div>
                         </div>
 
-                        <div className="col-md-8 mx-auto">
+                        <div className="col-md-8 mx-auto mb-4">
                              <label for="presupuesto" className="form-label">Fecha Entrega</label>
                                 <div className="col-md-8">
                                     <Calendar

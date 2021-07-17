@@ -56,7 +56,9 @@ const EdicionActividad = ()=>{
             <div className="row border boder-primary">
                 <div className="col-12">
                     <div className="row g-3 mt-3">
-                        <div className="col-md-8 mx-auto">
+                        <div className="col-md-8 mx-auto mb-4">
+                            <label for="name" className="form-label">Proyecto</label>
+                            <br/>
                                 <select class="form-select" aria-label="" name="proyecto_id" onChange={(e)=>{projectName(e)}}>
                                 <option selected>Seleccionar proyecto</option>
                                     {!!proyectos &&
@@ -68,7 +70,7 @@ const EdicionActividad = ()=>{
                                 </select>
                            </div>
 
-                        <div className="col-md-8 mx-auto">
+                        <div className="col-md-8 mx-auto mb-3">
                             <label for="name" className="form-label">Porcentaje Avance</label>
                             <input 
                             type="text" 
@@ -80,7 +82,7 @@ const EdicionActividad = ()=>{
                              />
                         </div>
 
-                        <div class="col-md-8 mx-auto">
+                        <div class="col-md-8 mx-auto mb-3">
                             <label for="floatingTextarea">Descripción</label>
                             <textarea 
                             name="descripcion"
@@ -96,7 +98,7 @@ const EdicionActividad = ()=>{
                         </div>
                         
 
-                        <div className="col-md-8 mx-auto">
+                        <div className="col-md-8 mx-auto mb-3">
                            
                             <label for="presupuesto" className="form-label">Fecha Inicio (dd-mm-aa)</label>
                             <input type="text" 
@@ -122,7 +124,7 @@ const EdicionActividad = ()=>{
 
                         </div>
 
-                        <div class="col-md-8 mx-auto">
+                        <div class="col-md-8 mx-auto mb-3">
                             <label for="floatingTextarea">Observación</label>
                             <textarea 
                             name="observacion"
@@ -134,7 +136,7 @@ const EdicionActividad = ()=>{
                             ></textarea>
                         </div>
 
-                        <div className="col-md-8 mx-auto">
+                        <div className="col-md-8 mx-auto mb-3">
                             <label for="inputfechafin" className="form-label">Usuario</label>
                             <input 
                             name="usuario_id"
@@ -145,7 +147,7 @@ const EdicionActividad = ()=>{
                             onChange={actions.handleChangeActividad}/>
                         </div>
 
-                        <div className="col-md-8 mx-auto">
+                        <div className="col-md-8 mx-auto mb-3">
                         <label className="form-check-label mb-2" for="inlineFormCheck">Estado</label>
                             <div className="form-check">
                                 <div class="form-check form-check-inline">
