@@ -1,4 +1,5 @@
 import { useReducer, useState } from "react";
+import Swal from 'sweetalert2'
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -10,6 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       proyectos: null,
       proyecto: null,
       error: null,
+      localidades: null,
     },
     actions: {
       Login: (email, password, history) => {
@@ -25,17 +27,55 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         fetch("/login", opts)
           .then((resp) => {
-            if (resp.status === 200) return resp.json();
-            else alert("Aqui hay un error");
+            if (resp.status === 200) {
+              return resp.json()
+            } else if (resp.status === 204) {
+              Swal.fire({
+                icon: 'warning',
+                title: 'Su usuario se encuentra desactivado del sistema',
+                text: 'Contactese con su administrador del sistema',
+              })
+            } else {
+              Swal.fire(
+                'Error',
+                'Usuario o contraseña incorrecto',
+                'error'
+              )
+            }
           })
           .then((data) => {
-            sessionStorage.setItem("token", data.access_token);
+            //sessionStorage.setItem("token", data.access_token);
 
-            console.log(data)
-            history.push("/listado-proyectos");
+            switch (data.rol_id) {
+              case 1:
+                  // código para redireccionar al administrador
+                  sessionStorage.setItem("token", data.access_token);
+                  
+                  history.push("/listado-proyectos");
+                break;
+              case 2:
+                  // código para redireccionar al jefe
+                break;
+              case 3:
+                  // código para redireccionar al Colaborador
+                  sessionStorage.setItem("token", data.access_token);
+
+                  history.push("/listado-proyectos");
+                break;
+              default:
+                Swal.fire({
+                  icon: 'error',
+                  text: 'Usuario sin rol asignado',
+                })
+                break;
+            }
+
+            //sessionStorage.setItem("token", data.access_token);
+
+            // history.push("/listado-proyectos");
           })
           .catch((error) => {
-            console.log("Aqui hay un error mas grande", error);
+            console.log("Error Login", error);
           });
       },
       handleChangeActividad: (e) => {
@@ -302,6 +342,57 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch(() => {});
       },
+
+      /****** Proyectos ******/
+      srcProyectos: (url, datos) => {
+        console.log(JSON.stringify(datos))
+
+        fetch(`${url}`, {
+          method: "POST",
+          body: JSON.stringify(datos),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((resp) => {
+            if (resp.status === 200) {
+              return resp.json()
+            } else {
+              Swal.fire(
+                'Atención',
+                'Datos del formulario no arrojan resultados.',
+                'warning'
+              )
+            }
+
+          })
+          .then((data) => {
+            console.log(data)
+            setStore({
+              proyectos: data,
+            });
+          })
+          .catch(() => {});
+      },
+
+
+      /****** Localidades ******/
+      getLocalidades: (url) => {
+        fetch(url, {})
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              localidades: data,
+            });
+          })
+          .catch(() => {});
+      },
+
+
+
     },
   };
 };
