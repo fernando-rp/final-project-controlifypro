@@ -36,13 +36,14 @@ const EdicionProyecto = () => {
     })
   }
 
-  const handleInputChange = (e) => {
-    // console.log(event.target.name)
-    // console.log(event.target.value)
-    setDatos({
-      ...datos,
-      [e.target.name]: e.target.value
-    })
+  const mostrar = (e) => {
+    console.log(e.target.name)
+    console.log(e.target.value)
+
+    // setDatos({
+    //   ...datos,
+    //   [e.target.name]: e.target.value
+    // })
   }
 
 
@@ -153,6 +154,7 @@ const EdicionProyecto = () => {
                   className="form-control"
                   name="fecha_entrega"
                   value={!!proyecto && moment(proyecto.fecha_entrega, "DD-MM-YYYY").format("YYYY-MM-DD")}
+                  onClick={mostrar}
                   onChange={actions.handleChangeProyecto}
                 />
               </div>
