@@ -82,7 +82,7 @@ const EdicionProyecto = () => {
                       className="form-control" 
                       id="inputname"
                       value={!!proyecto && proyecto.nombre}
-                      onChange={handleInputChange}
+                      onChange={actions.handleChangeProyecto}
                     />
                   </div>
                 </div>
@@ -96,7 +96,7 @@ const EdicionProyecto = () => {
                       placeholder="" 
                       id="floatingTextarea" 
                       value={!!proyecto && proyecto.descripcion}
-                      onChange={handleInputChange}
+                      onChange={actions.handleChangeProyecto}
                       >
                     </textarea>
                   </div>
@@ -105,7 +105,7 @@ const EdicionProyecto = () => {
                 <div className="row mt-3 justify-content-center">
                   <div className="col-md-5">
                     <label htmlFor="localidad_id" className="form-label">Localidad</label>
-                    <select className="form-control" defaultValue={'DEFAULT'} name="localidad_id" onChange={handleInputChange} >
+                    <select className="form-control" defaultValue={'DEFAULT'} name="localidad_id" onChange={actions.handleChangeProyecto} >
                         <option value={!!proyecto && proyecto.localidad_id} disabled>Seleccionar...</option>
                       {!!localidades &&
                         localidades.length>0 &&
@@ -120,7 +120,7 @@ const EdicionProyecto = () => {
 
                   <div className="col-md-5">
                     <label htmlFor="jefe_proyecto_id" className="form-label">Jefe Proyecto</label>
-                    <select className="form-control" defaultValue={'DEFAULT'} name="jefe_proyecto_id" onChange={handleInputChange} >
+                    <select className="form-control" defaultValue={'DEFAULT'} name="jefe_proyecto_id" onChange={actions.handleChangeProyecto} >
                       <option value={!!proyecto && proyecto.jefe_proyecto_id} disabled>Seleccionar...</option>
                       {!!usuarios &&
                         usuarios.length>0 &&
@@ -142,7 +142,7 @@ const EdicionProyecto = () => {
                       className="form-control" 
                       name="fecha_inicio" 
                       value={!!proyecto && moment(proyecto.fecha_inicio, "DD-MM-YYYY").format("YYYY-MM-DD")}
-                      onChange={handleInputChange}
+                      onChange={actions.handleChangeProyecto}
                     />
                   </div>
                   <div className="col-md-5">
@@ -152,7 +152,7 @@ const EdicionProyecto = () => {
                       className="form-control" 
                       name="fecha_entrega" 
                       value={!!proyecto && moment(proyecto.fecha_entrega, "DD-MM-YYYY").format("YYYY-MM-DD")}
-                      onChange={handleInputChange}
+                      onChange={actions.handleChangeProyecto}
                     />
                   </div>
                 </div>
@@ -166,7 +166,7 @@ const EdicionProyecto = () => {
                       className="form-control" 
                       id="inputavance"
                       value={!!proyecto && proyecto.presupuesto}
-                      onChange={handleInputChange}
+                      onChange={actions.handleChangeProyecto}
                     />
                   </div>
 
@@ -181,7 +181,7 @@ const EdicionProyecto = () => {
                             id="inlineRadioActive" 
                             value="1" 
                             checked={!!proyecto && proyecto.estado === 1}
-                            onClick={(e)=>handleInputChange(e)}
+                            onClick={(e)=>actions.handleChangeProyecto(e)}
                           />
                           <label className="form-check-label pl-1 mr-4" htmlFor="inlineRadioActive">Activo</label>
                       </div>
@@ -193,7 +193,7 @@ const EdicionProyecto = () => {
                             id="inlineRadioInactive" 
                             value="0" 
                             checked={!!proyecto && proyecto.estado === 0}
-                            onClick={(e)=>handleInputChange(e)}
+                            onClick={(e)=>actions.handleChangeProyecto(e)}
                           />
                           <label className="form-check-label pl-1" htmlFor="inlineRadioInactive">Inactivo</label>
                       </div>      
