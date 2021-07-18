@@ -78,17 +78,17 @@ const App = () => {
             
             {/* Usuarios */}
                 <Route exact path="/lista-usuarios">
-          <NavbarJefe />
-          <ListaUsuarios />
-        </Route>
-        <Route exact path="/EdicionUsuario/:id">
-          <NavbarJefe />
-          <EdicionUsuario />
-        </Route>
-        <Route exact path="/RegistroUsuario">
-          <NavbarJefe />
-          <RegistroUsuario />
-        </Route>
+                    <NavbarJefe />
+                    <ListaUsuarios />
+                </Route>
+                <Route exact path="/EdicionUsuario/:id">
+                    <NavbarJefe />
+                    <EdicionUsuario />
+                </Route>
+                <Route exact path="/RegistroUsuario">
+                    <NavbarJefe />
+                    <RegistroUsuario />
+                </Route>
 
             {/* Horas */}
                 <Route exact path="/lista-horas">

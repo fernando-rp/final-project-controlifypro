@@ -20,9 +20,8 @@ const ListadoProyectos = () => {
     actions.srcProyectos("/proyectos/buscar", datos)
   }
 
+
   const handleInputChange = (e) => {
-    // console.log(event.target.name)
-    // console.log(event.target.value)
     setDatos({
         ...datos,
         [e.target.name] : e.target.value
@@ -139,7 +138,7 @@ const ListadoProyectos = () => {
               <div className="col-4 fs-5 bg-info text-light">Mis Proyectos</div>
           </div> */}
 
-          <table className="table table-hover table-responsive">
+          <table className="table table-hover table-responsive col-12">
             <thead className="thead-dark text-">
                 <tr>
                   <th className="text-center" scope="col">Código</th>
