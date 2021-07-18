@@ -89,6 +89,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       handleChangeProyecto: (e) => {
         const { proyecto } = getStore();
+
+        console.log(e.target.name)
+        console.log(e.target.value)
+        
         proyecto[e.target.name] = e.target.value;
         setStore({
           proyecto: proyecto,

@@ -36,12 +36,12 @@ const EdicionProyecto = () => {
     }
 
     const handleInputChange = (e) => {
-      // console.log(event.target.name)
-      // console.log(event.target.value)
-      setDatos({
-          ...datos,
-          [e.target.name] : e.target.value
-      })
+      console.log(e.target.name)
+      console.log(e.target.value)
+      proyecto[e.target.name] = e.target.value;
+      store.setStore({
+        proyecto: proyecto,
+      });
     }
 
 
@@ -68,10 +68,10 @@ const EdicionProyecto = () => {
                     <input 
                       type="text" 
                       name="sigla"
-                      className="form-control" 
-                      id="inputsigla"
+                      className="form-control"
+                      id = {!!proyecto && proyecto.sigla}
                       value={!!proyecto && proyecto.sigla}
-                      onChange={actions.handleChangeProyecto}
+                      onchange={ actions.handleChangeProyecto }
                     />
                   </div>
                   <div className="col-md-7">
@@ -82,7 +82,7 @@ const EdicionProyecto = () => {
                       className="form-control" 
                       id="inputname"
                       value={!!proyecto && proyecto.nombre}
-                      onChange={actions.handleChangeProyecto}
+                      onchange={actions.handleChangeProyecto}
                     />
                   </div>
                 </div>
