@@ -177,11 +177,6 @@ const RegistroActividad = ()=>{
                   </div>
                 </div>
 
-                <div className="row my-4 justify-content-center">
-                  <button type="submit" className="btn btn-success mx-2" onClick={()=>{confirmacion_saved()}}>Guardar</button>
-                  <Link className="btn btn-outline-danger mx-2" to="/listado-proyectos">Cancelar</Link>
-                </div>
-
               </div>
 
             </form>
