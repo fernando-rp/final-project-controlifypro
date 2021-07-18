@@ -21,7 +21,7 @@ const ListadoProyectos = () => {
   }
 
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (e) => {
     setDatos({
         ...datos,
         [e.target.name] : e.target.value
@@ -138,7 +138,7 @@ const ListadoProyectos = () => {
               <div className="col-4 fs-5 bg-info text-light">Mis Proyectos</div>
           </div> */}
 
-          <table className="table table-hover table-responsive">
+          <table className="table table-hover table-responsive col-12">
             <thead className="thead-dark text-">
                 <tr>
                   <th className="text-center" scope="col">Código</th>

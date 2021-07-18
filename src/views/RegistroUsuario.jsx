@@ -138,20 +138,20 @@ export function RegistroUsuario(props) {
             <div className="col-md-8 mx-auto">
               <label className="form-check-label mb-2" for="inlineFormCheck"> Estado </label>
               <div className="form-check">
-                <div class="form-check form-check-inline">
+                <div className="form-check form-check-inline">
                   <input
-                    class="form-check-input"
+                    className="form-check-input"
                     type="radio"
                     name="estado"
                     id="inlineRadioActive"
                     value="1"
                     onClick={(e) =>handleChangeUsuario(e)}
                   />
-                  <label class="form-check-label" for="inlineRadioActive">Activo </label>
+                  <label className="form-check-label" for="inlineRadioActive">Activo </label>
                 </div>
-                <div class="form-check form-check-inline">
+                <div className="form-check form-check-inline">
                   <input
-                    class="form-check-input"
+                    className="form-check-input"
                     type="radio"
                     name="inlineRadioOptions"
                     id="inlineRadioInactive"
@@ -159,7 +159,7 @@ export function RegistroUsuario(props) {
                     onClick={(e) =>handleChangeUsuario(e)}
 
                   />
-                  <label class="form-check-label" for="inlineRadioInactive"> Inactivo</label>
+                  <label className="form-check-label" for="inlineRadioInactive"> Inactivo</label>
                 </div>
 
                 <div className="col-10 d-flex justify-content-end mb-4">

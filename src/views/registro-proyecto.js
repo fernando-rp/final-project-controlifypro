@@ -183,8 +183,7 @@ const RegistroActividad = ()=>{
                 </div>
 
               </div>
-            </div>
-  
+
             </form>
         </div>
     )
