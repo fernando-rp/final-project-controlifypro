@@ -345,7 +345,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       /****** Proyectos ******/
       srcProyectos: (url, datos) => {
-        console.log(JSON.stringify(datos))
+        // console.log(JSON.stringify(datos))
 
         fetch(`${url}`, {
           method: "POST",

@@ -18,9 +18,15 @@ const injectContext = PassedComponent => {
 
 		useEffect(() => {
 
-			state.actions.getProyectos("/proyectos")
-			state.actions.getActividades("/actividades")
-			state.actions.getUsuarios("/usuarios")
+			/* 	No agregar elementos que se cargan 
+			*	automaticamente porque fallarán cuando 
+			*	se incluya el jwt en la API 
+			*/
+
+
+			//state.actions.getProyectos("/proyectos")
+			// state.actions.getActividades("/actividades")
+			// state.actions.getUsuarios("/usuarios")
             
 
 		}, []);
