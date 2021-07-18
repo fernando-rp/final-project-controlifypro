@@ -157,12 +157,12 @@ const EdicionProyecto = (props)=>{
                         <label className="form-check-label mb-2" for="inlineFormCheck">Estado</label>
                             <div className="form-check">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="estado" id="inlineRadioActive" value="1" onClick={(e)=> actions.handleChangeProyecto(e)} />
-                                    <label class="form-check-label" for="inlineRadioActive">Activo</label>
+                                    <input className="form-check-input" type="radio" name="estado" id="inlineRadioActive" value="1" onClick={(e)=> actions.handleChangeProyecto(e)} />
+                                    <label className="form-check-label" for="inlineRadioActive">Activo</label>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="estado" id="inlineRadioInactive" value="0" onClick={(e)=>actions.handleChangeProyecto(e)} />
-                                    <label class="form-check-label" for="inlineRadioInactive">Inactivo</label>
+                                <div className="form-check form-check-inline">
+                                    <input className="form-check-input" type="radio" name="estado" id="inlineRadioInactive" value="0" onClick={(e)=>actions.handleChangeProyecto(e)} />
+                                    <label className="form-check-label" for="inlineRadioInactive">Inactivo</label>
                                 </div>      
                             </div>
                         </div>

@@ -113,11 +113,11 @@ const RegistroActividad = ()=>{
                              />
                         </div>
 
-                        <div class="col-md-8 mx-auto mb-4">
+                        <div className="col-md-8 mx-auto mb-4">
                             <label for="floatingTextarea">Descripción</label>
                             <textarea 
                             name="descripcion"
-                            class="form-control" 
+                            className="form-control" 
                             placeholder="" 
                             id="floatingTextarea" 
                             onChange={handleChangeActividad}
@@ -125,11 +125,11 @@ const RegistroActividad = ()=>{
 
                             </textarea>
                         </div>
-                        <div class="col-md-8 mx-auto mb-4">
+                        <div className="col-md-8 mx-auto mb-4">
                             <label for="floatingTextarea">Jefe de Proyecto</label>
                             <input 
                             name="jefe_proyecto_id"
-                            class="form-control" 
+                            className="form-control" 
                             placeholder="" 
                             id="floatingTextarea2" 
                             onChange={handleChangeActividad}
@@ -166,13 +166,13 @@ const RegistroActividad = ()=>{
                         <div className="col-md-8 mx-auto">
                             <label className="form-check-label mb-2" for="inlineFormCheck">Estado</label>
                             <div className="form-check">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="estado" id="inlineRadioActive" value="1" onClick={(e)=>handleChangeActividad(e)}/>
-                                    <label class="form-check-label" for="inlineRadioActive" >Activo</label>
+                                <div className="form-check form-check-inline">
+                                    <input className="form-check-input" type="radio" name="estado" id="inlineRadioActive" value="1" onClick={(e)=>handleChangeActividad(e)}/>
+                                    <label className="form-check-label" for="inlineRadioActive" >Activo</label>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="estado" id="inlineRadioInactive" value="0" onClick={(e)=>handleChangeActividad(e)}/>
-                                    <label class="form-check-label" for="inlineRadioInactive">Inactivo</label>
+                                <div className="form-check form-check-inline">
+                                    <input className="form-check-input" type="radio" name="estado" id="inlineRadioInactive" value="0" onClick={(e)=>handleChangeActividad(e)}/>
+                                    <label className="form-check-label" for="inlineRadioInactive">Inactivo</label>
                                 </div>      
                             </div>
                         </div>
