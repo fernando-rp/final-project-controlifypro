@@ -1,33 +1,31 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
-import dateFormat from "dateformat";
 
-const EdicionProyecto = (props)=>{
+import Moment from "react-moment";
+import moment from "moment";
 
-    const {store, actions}= useContext(Context);
-    const {usuarios, localidades, proyecto} = store;
+const EdicionProyecto = () => {
 
-    const [data,setData]=useState(null)
+    const { id } = useParams();
+    const { store, actions } = useContext(Context);
+    const { usuarios, localidades, proyecto } = store;
 
-    const {id}=useParams();
+    const [datos, setDatos] = useState({})
+
     const history= useHistory();
 
     useEffect(()=>{
-
-      actions.getProyectById('/proyectos',id)
-      actions.getUsuarios("/usuarios/jefe_proyectos")
-      actions.getLocalidades("/localidades")
-
-      console.log(proyecto)
-        
+      actions.getProyectById('/proyectos',id);
+      actions.getUsuarios("/usuarios/jefe_proyectos");
+      actions.getLocalidades("/localidades");
     },[])
 
     
+    // console.log(proyecto) 
     const confirmacion_saved = () => {
-
         Swal.fire({
             position: 'center',
             icon: 'success',
@@ -37,12 +35,15 @@ const EdicionProyecto = (props)=>{
           })
     }
 
-    const handleChangeProyecto = (e) => {
-      setData({
-        ...data,
-        [e.target.name]: e.target.value,
+    const handleInputChange = (e) => {
+      // console.log(event.target.name)
+      // console.log(event.target.value)
+      setDatos({
+          ...datos,
+          [e.target.name] : e.target.value
       })
     }
+
 
     return(
         <div className="container mt-4">
@@ -69,7 +70,7 @@ const EdicionProyecto = (props)=>{
                       name="sigla"
                       className="form-control" 
                       id="inputsigla"
-                      defaultValue={!!proyecto && proyecto.sigla}
+                      value={!!proyecto && proyecto.sigla}
                       onChange={actions.handleChangeProyecto}
                     />
                   </div>
@@ -80,8 +81,8 @@ const EdicionProyecto = (props)=>{
                       name="nombre"
                       className="form-control" 
                       id="inputname"
-                      defaultValue={!!proyecto && proyecto.nombre}
-                      onChange={actions.handleChangeProyecto}
+                      value={!!proyecto && proyecto.nombre}
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
@@ -94,8 +95,8 @@ const EdicionProyecto = (props)=>{
                       className="form-control" 
                       placeholder="" 
                       id="floatingTextarea" 
-                      defaultValue={!!proyecto && proyecto.descripcion}
-                      onChange={actions.handleChangeProyecto}
+                      value={!!proyecto && proyecto.descripcion}
+                      onChange={handleInputChange}
                       >
                     </textarea>
                   </div>
@@ -104,8 +105,8 @@ const EdicionProyecto = (props)=>{
                 <div className="row mt-3 justify-content-center">
                   <div className="col-md-5">
                     <label htmlFor="localidad_id" className="form-label">Localidad</label>
-                    <select className="form-control" defaultValue={'DEFAULT'} name="localidad_id" onChange={handleChangeProyecto} >
-                        <option value="DEFAULT" disabled>Seleccionar...</option>
+                    <select className="form-control" defaultValue={'DEFAULT'} name="localidad_id" onChange={handleInputChange} >
+                        <option value={!!proyecto && proyecto.localidad_id} disabled>Seleccionar...</option>
                       {!!localidades &&
                         localidades.length>0 &&
                         localidades.map((localidad,index)=>{
@@ -119,8 +120,8 @@ const EdicionProyecto = (props)=>{
 
                   <div className="col-md-5">
                     <label htmlFor="jefe_proyecto_id" className="form-label">Jefe Proyecto</label>
-                    <select className="form-control" defaultValue={'DEFAULT'} name="jefe_proyecto_id" onChange={handleChangeProyecto} >
-                      <option value="DEFAULT" disabled>Seleccionar...</option>
+                    <select className="form-control" defaultValue={'DEFAULT'} name="jefe_proyecto_id" onChange={handleInputChange} >
+                      <option value={!!proyecto && proyecto.jefe_proyecto_id} disabled>Seleccionar...</option>
                       {!!usuarios &&
                         usuarios.length>0 &&
                         usuarios.map((usuario,index)=>{
@@ -140,8 +141,8 @@ const EdicionProyecto = (props)=>{
                       type="date" 
                       className="form-control" 
                       name="fecha_inicio" 
-                      defaultValue={!!proyecto && proyecto.fecha_inicio}
-                      onChange={actions.handleChangeProyecto}
+                      value={!!proyecto && moment(proyecto.fecha_inicio, "DD-MM-YYYY").format("YYYY-MM-DD")}
+                      onChange={handleInputChange}
                     />
                   </div>
                   <div className="col-md-5">
@@ -150,34 +151,50 @@ const EdicionProyecto = (props)=>{
                       type="date" 
                       className="form-control" 
                       name="fecha_entrega" 
-                      defaultValue={!!proyecto && proyecto.fecha_entrega ? "" : ""}
-                      onChange={actions.handleChangeProyecto}
+                      value={!!proyecto && moment(proyecto.fecha_entrega, "DD-MM-YYYY").format("YYYY-MM-DD")}
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
 
                 <div className="row mt-3 justify-content-center">
                   <div className="col-md-3">
-                    <label htmlFor="name" className="form-label">Horas Vendidas</label>
+                    <label htmlFor="presupuesto" className="form-label">Horas Vendidas</label>
                     <input 
                       type="number" 
                       name="presupuesto"
                       className="form-control" 
                       id="inputavance"
-                      defaultValue={!!proyecto && proyecto.presupuesto}
-                      onChange={actions.handleChangeProyecto}
+                      value={!!proyecto && proyecto.presupuesto}
+                      onChange={handleInputChange}
                     />
                   </div>
 
                   <div className="col-md-7">
-                    <label className="form-check-label mb-2" htmlFor="inlineFormCheck">Estado</label>
+                    <label htmlFor="estado" className="form-check-label mb-2" htmlFor="inlineFormCheck">Estado</label>
                     <div className="form-check">
                       <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="estado" id="inlineRadioActive" value="1" onClick={(e)=>handleChangeProyecto(e)}/>
+                          <input 
+                            className="form-check-input" 
+                            type="radio" 
+                            name="estado" 
+                            id="inlineRadioActive" 
+                            value="1" 
+                            checked={!!proyecto && proyecto.estado === 1}
+                            onClick={(e)=>handleInputChange(e)}
+                          />
                           <label className="form-check-label pl-1 mr-4" htmlFor="inlineRadioActive">Activo</label>
                       </div>
                       <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="radio" name="estado" id="inlineRadioInactive" value="0" onClick={(e)=>handleChangeProyecto(e)}/>
+                          <input 
+                            className="form-check-input" 
+                            type="radio" 
+                            name="estado" 
+                            id="inlineRadioInactive" 
+                            value="0" 
+                            checked={!!proyecto && proyecto.estado === 0}
+                            onClick={(e)=>handleInputChange(e)}
+                          />
                           <label className="form-check-label pl-1" htmlFor="inlineRadioInactive">Inactivo</label>
                       </div>      
                     </div>
