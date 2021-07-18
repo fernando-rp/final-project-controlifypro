@@ -78,6 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("Error Login", error);
           });
       },
+      
       handleChangeActividad: (e) => {
         const { actividad } = getStore();
         actividad[e.target.name] = e.target.value;
@@ -85,6 +86,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           actividad: actividad,
         });
       },
+
       handleChangeProyecto: (e) => {
         const { proyecto } = getStore();
         proyecto[e.target.name] = e.target.value;
@@ -92,6 +94,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           proyecto: proyecto,
         });
       },
+
       handleChangeUsuario: (e) => {
         const { usuario } = getStore();
         usuario[e.target.name] = e.target.value;
@@ -99,6 +102,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           usuario: usuario,
         });
       },
+      
       getActividades: (url) => {
         fetch(url, {})
           .then((response) => {
@@ -134,9 +138,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             return response.json();
           })
           .then((data) => {
-            setStore({
-              proyecto: data,
-            });
+            console.log(data)
+            setStore({  proyecto: data, });
           })
           .catch(() => {});
       },
@@ -345,7 +348,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       /****** Proyectos ******/
       srcProyectos: (url, datos) => {
-        console.log(JSON.stringify(datos))
+        // console.log(JSON.stringify(datos))
 
         fetch(`${url}`, {
           method: "POST",
