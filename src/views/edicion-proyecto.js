@@ -197,6 +197,20 @@ const EdicionProyecto = () => {
                           />
                           <label className="form-check-label pl-1" htmlFor="inlineRadioInactive">Inactivo</label>
                       </div>      
+ 
+                    </div>
+                </div> 
+            </div>  
+
+            <div className="col-10 d-flex justify-content-end mb-4">
+                    <div className="row g-3 mt-3">
+                        <div className="col-md-2 mx-auto">
+                            <button type="submit" className="btn btn-success" onClick={()=>{confirmacion_saved()}}>Guardar</button>
+                        </div>
+                        <div className="col-md-2 mx-auto">
+                             <Link className="btn btn-danger" to="/listado-proyectos">Cancelar</Link>
+                        </div>
+
                     </div>
                   </div>
                 </div>

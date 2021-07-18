@@ -20,9 +20,8 @@ const ListadoProyectos = () => {
     actions.srcProyectos("/proyectos/buscar", datos)
   }
 
-  const handleInputChange = (e) => {
-    // console.log(event.target.name)
-    // console.log(event.target.value)
+
+  const handleInputChange = (event) => {
     setDatos({
         ...datos,
         [e.target.name] : e.target.value

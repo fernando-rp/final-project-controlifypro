@@ -37,6 +37,7 @@ const RegistroActividad = ()=>{
     return(
         <div className="container mt-4">
 
+
           <div className="row justify-content-center">
             <div className="col-md-8 p-0 bg-dark text-white">
               <div className="pl-2"><h3>Agregar proyecto</h3></div>
@@ -48,6 +49,7 @@ const RegistroActividad = ()=>{
                             actions.addProyecto("/proyectos", data, history);    
                             
                         }}> 
+
 
             <div className="row justify-content-center">
               <div className="col-md-8 border border-dark">
@@ -154,7 +156,23 @@ const RegistroActividad = ()=>{
                       <div className="form-check form-check-inline">
                           <input className="form-check-input" type="radio" name="estado" id="inlineRadioInactive" value="0" onClick={(e)=>handleChangeProyecto(e)}/>
                           <label className="form-check-label pl-1" htmlFor="inlineRadioInactive">Inactivo</label>
-                      </div>      
+                      </div>  
+
+          </div>
+                </div> 
+            </div>  
+
+
+
+            <div className="col-10 d-flex justify-content-end mb-4">
+                    <div className="row g-3 mt-3">
+                        <div className="col-md-2 mx-auto">
+                            <button type="submit" className="btn btn-success" onClick={()=>{confirmacion_saved()}}>Guardar</button>
+                        </div>
+                        <div className="col-md-2 mx-auto">
+                             <Link className="btn btn-danger" to="/listado-actividades">Cancelar</Link>
+                        </div>
+
                     </div>
                   </div>
                 </div>
