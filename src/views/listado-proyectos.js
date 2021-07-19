@@ -138,7 +138,7 @@ const ListadoProyectos = () => {
               <div className="col-4 fs-5 bg-info text-light">Mis Proyectos</div>
           </div> */}
 
-          <table className="table table-hover table-responsive col-12">
+          <table className="table table-hover table-responsive">
             <thead className="thead-dark text-">
                 <tr>
                   <th className="text-center" scope="col">Código</th>
@@ -173,7 +173,6 @@ const ListadoProyectos = () => {
                                   <button className="edit-icon border-0 bg-transparent text-primary mx-1"> <i className="fas fa-database"></i> </button>
                                   <Link className="edit-icon border-0 bg-transparent text-success mx-1" to={`/registro-edicion-proyecto/${proyecto.id}`}><i className="far fa-edit "></i></Link>
                                   <button className="trash-icon border-0 bg-transparent text-danger" onClick={()=>{confirmacion(proyecto.id)}} ><i className="far fa-trash-alt "></i></button>
-                                  
                               </td>
                             </tr>
                         )
