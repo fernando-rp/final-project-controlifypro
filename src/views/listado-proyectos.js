@@ -112,7 +112,7 @@ const ListadoProyectos = () => {
               </div>
 
               <div className="row">
-                <div className="col-md-4 mx-auto">
+                <div className="col-md-4 mx-auto text-center">
                     <button 
                       className="btn btn-success btn-round mb-3 mx-2"
                       type="submit"
@@ -130,7 +130,7 @@ const ListadoProyectos = () => {
 
           <div className="row mt-4">
               <div className="col-md-12 d-flex justify-content-end">
-                  <Link className="btn btn-success" to="/registro-proyectos">Agregar Proyecto</Link>
+                  <Link className="btn btn-success" to="/registro-proyectos"><i class="fas fa-plus-circle mr-2"></i> Agregar Proyecto</Link>
               </div>
           </div>
 
@@ -153,32 +153,32 @@ const ListadoProyectos = () => {
                 </tr>
             </thead>
             <tbody>
-
-                {!!proyectos &&
-                    proyectos.length>0 &&
-                    proyectos.map((proyecto,index)=>{
-                        return(
-                            <tr key={index}>
-                              <td className="text-center">{proyecto.sigla}</td>    
-                              <td className="">{proyecto.nombre}</td>
-                              <td className="">{proyecto.descripcion}</td>
-                              <td className="text-center">{proyecto.fecha_inicio}</td>
-                              <td className="text-center">{proyecto.fecha_entrega}</td>
-                              <td className="text-center">{proyecto.porcentaje_avance} %</td>
-                              <td className="text-center">{proyecto.presupuesto}</td>
-                              <td className="text-center align-items-center">
-                                <span className={proyecto.estado===1?"tag badge badge-success":"tag badge badge-danger"}>{proyecto.estado===1?"Activo":"Inactivo"}</span>
-                              </td>
-                              <td className="text-center">
-                                  <button className="edit-icon border-0 bg-transparent text-primary mx-1"> <i className="fas fa-database"></i> </button>
-                                  <Link className="edit-icon border-0 bg-transparent text-success mx-1" to={`/registro-edicion-proyecto/${proyecto.id}`}><i className="far fa-edit "></i></Link>
-                                  <button className="trash-icon border-0 bg-transparent text-danger" onClick={()=>{confirmacion(proyecto.id)}} ><i className="far fa-trash-alt "></i></button>
-                                  
-                              </td>
-                            </tr>
-                        )
-                    })
-                }
+              
+              {!!proyectos &&
+                proyectos.length>0 &&
+                proyectos.map((proyecto,index)=>{
+                  return(
+                    <tr key={index}>
+                      <td className="text-center">{proyecto.sigla}</td>    
+                      <td className="">{proyecto.nombre}</td>
+                      <td className="">{proyecto.descripcion}</td>
+                      <td className="text-center">{proyecto.fecha_inicio}</td>
+                      <td className="text-center">{proyecto.fecha_entrega}</td>
+                      <td className="text-center">{proyecto.porcentaje_avance} %</td>
+                      <td className="text-center">{proyecto.presupuesto}</td>
+                      <td className="text-center align-items-center">
+                        <span className={proyecto.estado===1?"tag badge badge-success":"tag badge badge-danger"}>{proyecto.estado===1?"Activo":"Inactivo"}</span>
+                      </td>
+                      <td className="text-center">
+                          <button className="edit-icon border-0 bg-transparent text-primary mx-1"> <i className="fas fa-database"></i> </button>
+                          <Link className="edit-icon border-0 bg-transparent text-success mx-1" to={`/registro-edicion-proyecto/${proyecto.id}`}><i className="far fa-edit "></i></Link>
+                          <button className="trash-icon border-0 bg-transparent text-danger" onClick={()=>{confirmacion(proyecto.id)}} ><i className="far fa-trash-alt "></i></button>
+                          
+                      </td>
+                    </tr>
+                  )
+                })
+              }
             </tbody>
           </table>
       </div>
