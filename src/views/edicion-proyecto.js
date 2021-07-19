@@ -6,24 +6,17 @@ import Swal from "sweetalert2";
 
 // import Moment from "react-moment";
 import moment from "moment";
-import Moment from "react-moment";
 
 const EdicionProyecto = () => {
-
+  const { store: { usuarios, localidades, proyecto } , actions } = useContext(Context);
   const { id } = useParams();
-  const { store, actions } = useContext(Context);
-  const { usuarios, localidades, proyecto } = store;
-
-  const [datos, setDatos] = useState({})
-
   const history = useHistory();
 
   useEffect(() => {
-    actions.getProyectById('/proyectos', id);
+    actions.getProyectById("/proyectos", id);
     actions.getUsuarios("/usuarios/jefe_proyectos");
     actions.getLocalidades("/localidades");
   }, [])
-
 
   // console.log(proyecto) 
   const confirmacion_saved = () => {
@@ -35,17 +28,6 @@ const EdicionProyecto = () => {
       timer: 1300
     })
   }
-
-  const mostrar = (e) => {
-    console.log(e.target.name)
-    console.log(e.target.value)
-
-    // setDatos({
-    //   ...datos,
-    //   [e.target.name]: e.target.value
-    // })
-  }
-
 
   return (
     <div className="container mt-4">
@@ -66,23 +48,25 @@ const EdicionProyecto = () => {
 
             <div className="row mt-4 justify-content-center">
               <div className="col-md-3">
-                <label htmlFor="name" className="form-label">Sigla</label>
+                <label htmlFor="sigla" className="form-label">Sigla</label>
                 <input
                   type="text"
                   name="sigla"
                   className="form-control"
-                  id="inputsigla"
+                  id="sigla"
+                  autoComplete="off"
                   value={!!proyecto && proyecto.sigla}
                   onChange={actions.handleChangeProyecto}
                 />
               </div>
               <div className="col-md-7">
-                <label htmlFor="name" className="form-label">Nombre Proyecto</label>
+                <label htmlFor="nombre" className="form-label">Nombre Proyecto</label>
                 <input
                   type="text"
                   name="nombre"
                   className="form-control"
-                  id="inputname"
+                  id="nombre"
+                  autoComplete="off"
                   value={!!proyecto && proyecto.nombre}
                   onChange={actions.handleChangeProyecto}
                 />
@@ -91,12 +75,13 @@ const EdicionProyecto = () => {
 
             <div className="row mt-3 justify-content-center">
               <div className="col-md-10">
-                <label htmlFor="floatingTextarea">Descripción</label>
+                <label htmlFor="descripcion">Descripción</label>
                 <textarea
                   name="descripcion"
                   className="form-control"
                   placeholder=""
-                  id="floatingTextarea"
+                  id="descripcion"
+                  autoComplete="off"
                   value={!!proyecto && proyecto.descripcion}
                   onChange={actions.handleChangeProyecto}
                 >
@@ -154,9 +139,9 @@ const EdicionProyecto = () => {
                   className="form-control"
                   name="fecha_entrega"
                   value={!!proyecto && moment(proyecto.fecha_entrega, "DD-MM-YYYY").format("YYYY-MM-DD")}
-                  onClick={mostrar}
-                  onChange={actions.handleChangeProyecto}
+                  onChange={actions.handleChangeProyecto} 
                 />
+
               </div>
             </div>
 
@@ -167,7 +152,8 @@ const EdicionProyecto = () => {
                   type="number"
                   name="presupuesto"
                   className="form-control"
-                  id="inputavance"
+                  id="presupuesto"
+                  autoComplete="off"
                   value={!!proyecto && proyecto.presupuesto}
                   onChange={actions.handleChangeProyecto}
                 />
@@ -183,8 +169,8 @@ const EdicionProyecto = () => {
                       name="estado"
                       id="inlineRadioActive"
                       value="1"
-                      checked={!!proyecto && proyecto.estado === 1}
-                      onClick={(e) => actions.handleChangeProyecto(e)}
+                      checked={!!proyecto && proyecto.estado == 1}
+                      onClick={actions.handleChangeProyecto}
                     />
                     <label className="form-check-label pl-1 mr-4" htmlFor="inlineRadioActive">Activo</label>
                   </div>
@@ -195,8 +181,8 @@ const EdicionProyecto = () => {
                       name="estado"
                       id="inlineRadioInactive"
                       value="0"
-                      checked={!!proyecto && proyecto.estado === 0}
-                      onClick={(e) => actions.handleChangeProyecto(e)}
+                      checked={!!proyecto && proyecto.estado == 0}
+                      onClick={actions.handleChangeProyecto}
                     />
                     <label className="form-check-label pl-1" htmlFor="inlineRadioInactive">Inactivo</label>
                   </div>
@@ -205,17 +191,11 @@ const EdicionProyecto = () => {
               </div>
             </div>
 
-            <div className="col-10 d-flex justify-content-end mb-4">
-              <div className="row g-3 mt-3">
-                <div className="col-md-2 mx-auto">
-                  <button type="submit" className="btn btn-success" onClick={() => { confirmacion_saved() }}>Guardar</button>
-                </div>
-                <div className="col-md-2 mx-auto">
-                  <Link className="btn btn-danger" to="/listado-proyectos">Cancelar</Link>
-                </div>
-
-              </div>
+            <div className="row my-4 justify-content-center">
+                  <button type="submit" className="btn btn-success mx-2" onClick={()=>{confirmacion_saved()}}>Guardar</button>
+                  <Link className="btn btn-outline-danger mx-2" to="/listado-proyectos">Cancelar</Link>
             </div>
+
           </div>
 
         </div>
