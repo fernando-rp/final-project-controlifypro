@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       proyecto: null,
       error: null,
       localidades: null,
+      horas: null,
     },
     actions: {
       Login: (email, password, history) => {
@@ -111,7 +112,19 @@ const getState = ({ getStore, getActions, setStore }) => {
           usuario: usuario,
         });
       },
-      
+      getHoras: (url) => {
+        fetch(url, {})
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              horas: data,
+            });
+          })
+          .catch(() => {});
+      },
       getActividades: (url) => {
         fetch(url, {})
           .then((response) => {
