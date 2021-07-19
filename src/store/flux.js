@@ -1,5 +1,6 @@
 import { useReducer, useState } from "react";
 import Swal from 'sweetalert2'
+import moment from "moment";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -90,10 +91,14 @@ const getState = ({ getStore, getActions, setStore }) => {
       handleChangeProyecto: (e) => {
         const { proyecto } = getStore();
 
-        console.log(e.target.name)
-        console.log(e.target.value)
-        
-        proyecto[e.target.name] = e.target.value;
+        //realiza set de la fecha para que lo reconozca el input type=date
+        if(e.target.name == "fecha_inicio" || e.target.name == "fecha_entrega"){
+          // console.log(e.target.name +' : '+moment(e.target.value, "YYYY-MM-DD").format("DD-MM-YYYY"))
+          proyecto[e.target.name] = moment(e.target.value, "YYYY-MM-DD").format("DD-MM-YYYY");
+        } else {
+          proyecto[e.target.name] = e.target.value;
+        }
+
         setStore({
           proyecto: proyecto,
         });
@@ -143,7 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .then((data) => {
             console.log(data)
-            setStore({  proyecto: data, });
+            setStore({  proyecto: data })
           })
           .catch(() => {});
       },
@@ -228,26 +233,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch(() => {});
       },
-      updateProyecto: (url, id, history) => {
-        const { proyecto } = getStore();
-        fetch(`${url}/${id}`, {
-          method: "PUT",
-          body: JSON.stringify(proyecto),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((response) => {
-            if (!response.ok) setStore({ error: response.error });
-            return response.json();
-          })
-          .then((data) => {
-            getActions().getActividades("/proyectos");
 
-            history.push("/listado-proyectos");
-          })
-          .catch(() => {});
-      },
       updateUsuario: (url, id, history) => {
         const { usuario } = getStore();
         fetch(`${url}/${id}`, {
@@ -351,9 +337,29 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       /****** Proyectos ******/
-      srcProyectos: (url, datos) => {
-        // console.log(JSON.stringify(datos))
 
+      updateProyecto: (url, id, history) => {
+        const { proyecto } = getStore();
+        fetch(`${url}/${id}`, {
+          method: "PUT",
+          body: JSON.stringify(proyecto),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            getActions().getActividades("/proyectos");
+
+            history.push("/listado-proyectos");
+          })
+          .catch(() => {});
+      },
+
+      srcProyectos: (url, datos) => {
         fetch(`${url}`, {
           method: "POST",
           body: JSON.stringify(datos),
@@ -371,7 +377,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                 'warning'
               )
             }
-
           })
           .then((data) => {
             console.log(data)
