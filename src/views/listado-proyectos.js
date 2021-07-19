@@ -43,7 +43,7 @@ const ListadoProyectos = () => {
           confirmButtonText: '¡Sí, borrar!'
         }).then((result) => {
           if (result.isConfirmed) {
-
+            actions.deleteProyecto(a_id)
             Swal.fire(
               'Eliminado',
               'Tu proyecto ha sido eliminado',
@@ -54,12 +54,11 @@ const ListadoProyectos = () => {
   }
 
   return(
-    <>
       <div className="container mt-4">
           
-          <div className="col-sm-4 p-0 bg-dark text-white">
-            <div className="pl-2"><h3>Buscar proyectos</h3></div>
-          </div>
+        <div className="col-sm-4 p-0 bg-dark text-white">
+          <div className="pl-2"><h3>Buscar Proyectos</h3></div>
+        </div>
 
           <div className="col border border-dark">
             <form onSubmit={(e) => {            
@@ -182,7 +181,6 @@ const ListadoProyectos = () => {
             </tbody>
           </table>
       </div>
-    </>
   )
 }
 

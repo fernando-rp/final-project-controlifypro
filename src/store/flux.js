@@ -190,7 +190,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .then((data) => {
             
-            getActions().getActividades("/proyectos");
+            getActions().getProyectos("/proyectos");
           })
           .catch((error) => {
             console.log(error);
