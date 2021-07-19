@@ -8,7 +8,7 @@ import Calendar from 'react-calendar';
 
 const ListaHoras = () => {
     const { store, actions } = useContext(Context);
-    const { actividades, proyectos, horas } = store;
+    const { actividades, proyectos, horas, actividades_proyecto } = store;
     const { id } = useParams();
     const history = useHistory();
 
@@ -19,6 +19,7 @@ const ListaHoras = () => {
         actions.getHoras('/horas')
         actions.getProyectos('/proyectos')
         actions.getActividades('/actividades')
+        
 
     }, [])
 
@@ -29,6 +30,12 @@ const ListaHoras = () => {
             fecha_inicio: date
         })
     }
+
+    const actividadesProyecto=(e)=>{
+        actions.getActividadesProyectos(`/actividades/${e.target.value}/proyectos`)
+
+    }
+
 
     const confirmacion_saved = () => {
 
@@ -88,12 +95,12 @@ const ListaHoras = () => {
                             <div className="col-md-6 mb-3">
 
                                 <label for="floatingTextarea">Proyecto</label> <br />
-                                <select className="form-select" aria-label="" name="proyecto_id" >
+                                <select className="form-select" aria-label="" name="proyecto_id" onChange={(e)=>{actividadesProyecto(e)}}>
                                     <option selected>Seleccionar proyecto</option>
                                     {!!proyectos &&
                                         proyectos.map((proyecto) => {
                                             return (
-                                                <option >{proyecto.id}- {proyecto.sigla}-{proyecto.nombre}</option>)
+                                                <option value={proyecto.id} >{proyecto.id}- {proyecto.sigla}-{proyecto.nombre}</option>)
                                         })
                                     }
                                 </select>
@@ -103,8 +110,8 @@ const ListaHoras = () => {
                                 <label for="floatingTextarea">Actividad</label> <br />
                                 <select class="form-select" aria-label="" name="proyecto_id" >
                                     <option selected>Seleccionar actividad</option>
-                                    {!!actividades &&
-                                        actividades.map((actividad) => {
+                                    {!!actividades_proyecto &&
+                                        actividades_proyecto.map((actividad) => {
                                             return (
                                                 <option value="">{actividad.descripcion}</option>)
                                         })

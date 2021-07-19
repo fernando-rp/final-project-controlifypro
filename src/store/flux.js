@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       error: null,
       localidades: null,
       horas: null,
+      actividades_proyecto:null,
     },
     actions: {
       Login: (email, password, history) => {
@@ -174,6 +175,19 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => {
             setStore({
               actividad: data,
+            });
+          })
+          .catch(() => {});
+      },
+      getActividadesProyectos: (url) => {
+        fetch(url, {})
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              actividades_proyecto: data,
             });
           })
           .catch(() => {});
