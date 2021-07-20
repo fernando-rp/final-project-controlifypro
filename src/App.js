@@ -20,7 +20,7 @@ import ListaUsuarios from "./views/ListaUsuarios";
 import { RegistroUsuario } from "./views/RegistroUsuario";
 import { EdicionUsuario } from "./views/EdicionUsuario";
 
-import { DashboardAdministrador } from "./views/Dashboard-administrador";
+import DashboardAdministrador from "./views/Dashboard-administrador";
 
 
 import { Login } from "./views/Login";
