@@ -5,26 +5,25 @@ import Swal from 'sweetalert2'
 
 const ListadoProyectos = () => {
 
-  const {store,actions}= useContext(Context);
+  const {store, actions} = useContext(Context);
   const {proyectos, localidades} = store;
 
   const [datos, setDatos] = useState({})
 
   useEffect(()=>{
-      actions.getProyectos("/proyectos")
-      actions.getLocalidades("/localidades")
+    actions.getProyectos("/proyectos")
+    actions.getLocalidades("/localidades")
   },[])
 
   const buscar_proyectos = () => {
-    // console.log(datos);
+    //console.log(datos);
     actions.srcProyectos("/proyectos/buscar", datos)
   }
 
-
   const handleInputChange = (e) => {
     setDatos({
-        ...datos,
-        [e.target.name] : e.target.value
+      ...datos,
+      [e.target.name] : e.target.value
     })
   }
 
@@ -41,16 +40,16 @@ const ListadoProyectos = () => {
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
           confirmButtonText: '¡Sí, borrar!'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            actions.deleteProyecto(a_id)
-            Swal.fire(
-              'Eliminado',
-              'Tu proyecto ha sido eliminado',
-              'success'
-            )
-          }
-        })
+      }).then((result) => {
+        if (result.isConfirmed) {
+          actions.deleteProyecto(a_id)
+          Swal.fire(
+            'Desactivado',
+            'Tu proyecto ha sido desactivado',
+            'success'
+          )
+        }
+      })
   }
 
   return(
@@ -126,7 +125,6 @@ const ListadoProyectos = () => {
             </form>
           </div>    
           
-
           <div className="row mt-4">
               <div className="col-md-12 d-flex justify-content-end">
                   <Link className="btn btn-success" to="/registro-proyectos"><i class="fas fa-plus-circle mr-2"></i> Agregar Proyecto</Link>
@@ -137,49 +135,50 @@ const ListadoProyectos = () => {
               <div className="col-4 fs-5 bg-info text-light">Mis Proyectos</div>
           </div> */}
 
-          <table className="table table-hover table-responsive">
-            <thead className="thead-dark text-">
-                <tr>
-                  <th className="text-center" scope="col">Código</th>
-                  <th className="text-center" scope="col">Nombre</th>
-                  <th className="text-center" scope="col">Descripción</th>
-                  <th className="text-center" scope="col">Fecha Inicio</th>
-                  <th className="text-center" scope="col">Fecha Término</th>
-                  <th className="text-center" scope="col">% Uso HH</th>
-                  <th className="text-center" scope="col">Presupuesto HH</th>
-                  <th className="text-center" scope="col">Estado</th>
-                  <th className="text-center" scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-              
-              {!!proyectos &&
-                proyectos.length>0 &&
-                proyectos.map((proyecto,index)=>{
-                  return(
-                    <tr key={index}>
-                      <td className="text-center">{proyecto.sigla}</td>    
-                      <td className="">{proyecto.nombre}</td>
-                      <td className="">{proyecto.descripcion}</td>
-                      <td className="text-center">{proyecto.fecha_inicio}</td>
-                      <td className="text-center">{proyecto.fecha_entrega}</td>
-                      <td className="text-center">{proyecto.porcentaje_avance} %</td>
-                      <td className="text-center">{proyecto.presupuesto}</td>
-                      <td className="text-center align-items-center">
-                        <span className={proyecto.estado===1?"tag badge badge-success":"tag badge badge-danger"}>{proyecto.estado===1?"Activo":"Inactivo"}</span>
-                      </td>
-                      <td className="text-center">
-                          <button className="edit-icon border-0 bg-transparent text-primary mx-1"> <i className="fas fa-database"></i> </button>
-                          <Link className="edit-icon border-0 bg-transparent text-success mx-1" to={`/registro-edicion-proyecto/${proyecto.id}`}><i className="far fa-edit "></i></Link>
-                          <button className="trash-icon border-0 bg-transparent text-danger" onClick={()=>{confirmacion(proyecto.id)}} ><i className="far fa-trash-alt "></i></button>
-                          
-                      </td>
-                    </tr>
-                  )
-                })
-              }
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table className="table table-hover ">
+              <thead className="thead-dark">
+                  <tr>
+                    <th className="text-center" scope="col">Código</th>
+                    <th className="text-center" scope="col">Nombre</th>
+                    <th className="text-center" scope="col">Descripción</th>
+                    <th className="text-center" scope="col">Fecha Inicio</th>
+                    <th className="text-center" scope="col">Fecha Término</th>
+                    <th className="text-center" scope="col">% Uso HH</th>
+                    <th className="text-center" scope="col">Presupuesto HH</th>
+                    <th className="text-center" scope="col">Estado</th>
+                    <th className="text-center" scope="col">Acciones</th>
+                  </tr>
+              </thead>
+              <tbody>
+                
+                {!!proyectos &&
+                  proyectos.length>0 &&
+                  proyectos.map((proyecto,index)=>{
+                    return(
+                      <tr key={index}>
+                        <td className="text-center">{proyecto.sigla}</td>
+                        <td className="">{proyecto.nombre}</td>
+                        <td className="">{proyecto.descripcion}</td>
+                        <td className="text-center">{proyecto.fecha_inicio}</td>
+                        <td className="text-center">{proyecto.fecha_entrega}</td>
+                        <td className="text-center">{proyecto.porcentaje_avance} %</td>
+                        <td className="text-center">{proyecto.presupuesto}</td>
+                        <td className="text-center align-items-center">
+                          <span className={proyecto.estado===1?"tag badge badge-success":"tag badge badge-danger"}>{proyecto.estado===1?"Activo":"Inactivo"}</span>
+                        </td>
+                        <td className="text-center">
+                            <button className="edit-icon border-0 bg-transparent text-primary mx-1"> <i className="fas fa-database"></i></button>
+                            <Link className="edit-icon border-0 bg-transparent text-success mx-1" to={`/registro-edicion-proyecto/${proyecto.id}`}><i className="far fa-edit "></i></Link>
+                            <button className="trash-icon border-0 bg-transparent text-danger" onClick={()=>{confirmacion(proyecto.id)}} ><i className="far fa-trash-alt "></i></button>
+                        </td>
+                      </tr>
+                    )
+                  })
+                }
+              </tbody>
+            </table>
+          </div>
       </div>
   )
 }

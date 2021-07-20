@@ -1,4 +1,3 @@
-import { useReducer, useState } from "react";
 import Swal from 'sweetalert2'
 import moment from "moment";
 
@@ -226,6 +225,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
       },
 
+      
+      /****** Actividad ******/
+
       updateActividad: (url, id, history) => {
         const { actividad } = getStore();
         fetch(`${url}/${id}`, {
@@ -246,6 +248,37 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch(() => {});
       },
+
+      srcActividades: (url, datos) => {
+        fetch(`${url}`, {
+          method: "POST",
+          body: JSON.stringify(datos),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((resp) => {
+          if (resp.status === 200) {
+            return resp.json()
+          } else {
+            Swal.fire(
+              'Atención',
+              'Datos del formulario no arrojan resultados.',
+              'warning'
+            )
+          }
+        })
+        .then((data) => {
+          console.log(data)
+          setStore({
+            actividades: data,
+          });
+        })
+        .catch(() => {});
+      },
+
+
+      /****** Usuarios ******/
 
       updateUsuario: (url, id, history) => {
         const { usuario } = getStore();
@@ -351,27 +384,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       /****** Proyectos ******/
 
-      updateProyecto: (url, id, history) => {
-        const { proyecto } = getStore();
-        fetch(`${url}/${id}`, {
-          method: "PUT",
-          body: JSON.stringify(proyecto),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((response) => {
-            if (!response.ok) setStore({ error: response.error });
-            return response.json();
-          })
-          .then((data) => {
-            getActions().getActividades("/proyectos");
-
-            history.push("/listado-proyectos");
-          })
-          .catch(() => {});
-      },
-
       srcProyectos: (url, datos) => {
         fetch(`${url}`, {
           method: "POST",
@@ -396,6 +408,26 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({
               proyectos: data,
             });
+          })
+          .catch(() => {});
+      },
+      updateProyecto: (url, id, history) => {
+        const { proyecto } = getStore();
+        fetch(`${url}/${id}`, {
+          method: "PUT",
+          body: JSON.stringify(proyecto),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            getActions().getActividades("/proyectos");
+
+            history.push("/listado-proyectos");
           })
           .catch(() => {});
       },

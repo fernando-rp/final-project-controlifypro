@@ -1,113 +1,136 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Swal from 'sweetalert2'
 
 const ListadoActividades = ()=>{
 
-    const {store,actions}= useContext(Context);
-    const {actividades,proyectos}=store;
+  const {store, actions} = useContext(Context);
+  const {actividades, proyectos, localidades} = store;
+  
+  const [datos, setDatos] = useState({})
 
-    useEffect(()=>{
-        actions.getActividades("/actividades")
-    },[])
+  useEffect(()=>{
+    actions.getActividades("/actividades")
+    actions.getProyectos("/proyectos")
+  },[])
 
-    const buscar_actividades = () => {
-      // console.log(datos);
-      //actions.srcProyectos("/proyectos/buscar", datos)
-    }
+  const buscar_actividades = () => {
+    // console.log(datos);
+    actions.srcActividades("/actividades/buscar", datos)
+  }
 
-    const confirmacion = (a_id) => {
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: "El proyecto quedará desactivado en el sistema",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: '¡Sí!'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              actions.deleteActividad(a_id)
-              Swal.fire(
-                'Eliminado',
-                'Tu actividad ha sido eliminada',
-                'success'
-              )
-            }
-          })
-    }
+  const handleInputChange = (e) => {
+    console.log(e.target.name);
+    console.log(e.target.value);
+    setDatos({
+      ...datos,
+      [e.target.name] : e.target.value
+    })
+  }
 
-    return(
-      <div className="container mt-4">
+  const limpiar = () => {
+    // console.log('click')
+    setDatos({})
+  }
 
-        <div className="col-sm-4 p-0 bg-dark text-white">
-          <div className="pl-2"><h3>Buscar Actividades</h3></div>
-        </div>
+  const confirmacion = (a_id) => {
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Se desactivará la actividad",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Sí!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          actions.deleteActividad(a_id)
+          Swal.fire(
+            'Desactivado',
+            'Tu actividad ha sido desactivada',
+            'success'
+          )
+        }
+      })
+  }
 
-        <div className="col border boder-info">
-          <form onSubmit={(e) => {            
-                            e.preventDefault();
-                            buscar_actividades();
-                          }}>
+  return(
+    <div className="container mt-4">
+
+      <div className="col-sm-4 p-0 bg-dark text-white">
+        <div className="pl-2"><h3>Buscar Actividades</h3></div>
+      </div>
+
+      <div className="col border boder-dark">
+        <form onSubmit={(e) => {            
+                        e.preventDefault();
+                        buscar_actividades();
+                      }}>
+              <div className="row m-2 mt-3 justify-content-center">
+
                 <div className="col-md-4">
-                    <label for="code" className="form-label">Código</label>
-                    <input type="text" className="form-control" id="inputcode" />
-                </div>
-                <div className="col-md-4">
-                    <label for="inputName" className="form-label">Nombre</label>
-                    <input type="text" className="form-control" id="inputname" />
-                </div>
-                <div className="col-md-4">
-                    <label for="inputSite" className="form-label">Site</label>
-                    <select id="inputSite" className="form-select">
-                        <option selected>Select...</option>
-                        <option>...</option>
+                    <label htmlFor="proyecto_id" className="form-label">Proyecto</label>
+                    <select className="form-control" defaultValue={'DEFAULT'} name="proyecto_id" onChange={handleInputChange} >
+                        <option value="DEFAULT" disabled>Seleccionar...</option>
+                      {!!proyectos &&
+                        proyectos.length>0 &&
+                        proyectos.map((proyecto,index)=>{
+                            return(
+                              <option key={index} value={proyecto.id}>{proyecto.nombre}</option>
+                            )
+                        })
+                      }
                     </select>
                 </div>
+
                 <div className="col-md-4">
-                    <label for="inputfechainicio" className="form-label">Fecha inicio</label>
-                    <input type="text" className="form-control" id="inputfechainicio" />
+                    <label htmlFor="nombre" className="form-label">Nombre</label>
+                    <input type="text" className="form-control" name="nombre" autoComplete="off" onChange={handleInputChange}/>
                 </div>
+
+              </div>
+
+              <div className="row m-2 justify-content-center">
                 <div className="col-md-4">
-                    <label for="inputfechafin" className="form-label">Fecha fin</label>
-                    <input type="text" className="form-control" id="inputfechafin" />
+                    <label htmlFor="fecha_inicio" className="form-label">Fecha inicio</label>
+                    <input type="date" className="form-control" name="fecha_inicio" onChange={handleInputChange} />
                 </div>
                 <div className="col-md-4 mb-4">
-                    <label for="inputstate" className="form-label">Estado</label>
-                    <select id="inputstate" className="form-select">
-                        <option selected>Select...</option>
-                        <option>...</option>
+                    <label htmlFor="estado" className="form-label">Estado</label>
+                    <select name="estado" className="form-control" defaultValue={'DEFAULT'} onChange={handleInputChange} >
+                        <option value="DEFAULT" disabled>Seleccionar...</option>
+                        <option value="1">Activos</option>
+                        <option value="0">Inactivos</option>
                     </select>
                 </div>
-            </form>
-          
+              </div>
 
-          <div className="col-4 d-flex justify-content-left align-items-center">
-              <form className="row g-3 mt-3">
-                  <div className="col-md-2 mx-auto">
-                      <button type="submit" className="btn btn-success">Buscar</button>
-                  </div>
-                  <div className="col-md-2 mx-auto">
-                      <button type="submit" className="btn btn-light">Limpiar</button>
-                  </div>
-
-              </form>
-          </div>
-        </div>    
-
-        <div className="row mt-4">
-            <div className="col-md-12 d-flex justify-content-end">
-                <Link type="submit" className="btn btn-success" to="/listado-actividades/registro-actividad">Agregar Actividad</Link>
+          <div className="row">
+            <div className="col-md-4 mx-auto text-center">
+                <button 
+                  className="btn btn-success btn-round mb-3 mx-2"
+                  type="submit"
+                >Buscar</button>
+                <button 
+                  className="btn btn-outline-primary btn-round mb-3 mx-2"
+                  type="reset"
+                  onClick={()=>{limpiar()}}
+                >Limpiar</button>
             </div>
-        </div>
+          </div>
+        </form>
+      </div>    
 
-        <div className="row mt-4">
-            <div className="col-4 fs-5 bg-info text-light">Mis Actividades</div>
-        </div>
+      <div className="row mt-4">
+          <div className="col-md-12 d-flex justify-content-end">
+              <Link type="submit" className="btn btn-success" to="/registro-actividad">Agregar Actividad</Link>
+          </div>
+      </div>
 
-        <table className="table">
-          <thead>
+      <div className="table-responsive">
+        <table className="table table-hover ">
+        <thead className="thead-dark">
               <tr>
               <th className="text-center" scope="col">Proyecto</th>
               <th className="text-center" scope="col">Descripción</th>
@@ -121,38 +144,38 @@ const ListadoActividades = ()=>{
           <tbody>
 
               {!!actividades &&
-                  actividades.length>0 &&
-                  actividades.map((actividad,index)=>{
-                      return(
-                          <tr key={index}>
-                              <th className="text-center" scope="row">{!!proyectos &&
-                                  proyectos.map((proyecto)=>{
-                                      if (proyecto.id===actividad.proyecto_id){
-                                          return(`${proyecto.sigla}-${proyecto.nombre}`)
-                                      }
-                                  })}</th>
-                              <td className="text-center"> {actividad.descripcion}</td>
-                              <td className="text-center">{actividad.fecha_inicio}</td>
-                              <td className="text-center">{actividad.porcentaje_avance} %</td>
-                              <td className="text-center">{actividad.observacion}</td>
-                              <td className="text-center">{actividad.estado===1?"Activo":"Inactivo"}</td>
-
-                              <td className="text-center">
-                                  <button className="edit-icon border-0 bg-transparent text-primary mx-1"> <i className="fas fa-database"></i> </button>
-                                  <Link className="edit-icon border-0 bg-transparent text-success mx-1" to={`/registro-edicion-actividad/${actividad.id}`}><i className="far fa-edit "></i></Link>
-                                  <button className="trash-icon border-0 bg-transparent text-danger" onClick={()=>{confirmacion(actividad.id)}}><i className="far fa-trash-alt "></i></button>
-                                  
-                                  </td>
-                          </tr>
-                          )
-                  })
+                actividades.length>0 &&
+                actividades.map((actividad,index)=>{
+                  return(
+                    <tr key={index}>
+                        <th className="text-center" scope="row">{!!proyectos &&
+                            proyectos.map((proyecto)=>{
+                                if (proyecto.id===actividad.proyecto_id){
+                                    return(`${proyecto.sigla}-${proyecto.nombre}`)
+                                }
+                            })}</th>
+                        <td className="text-center">{actividad.descripcion}</td>
+                        <td className="text-center">{actividad.fecha_inicio}</td>
+                        <td className="text-center">{actividad.porcentaje_avance} %</td>
+                        <td className="text-center">{actividad.observacion}</td>
+                        <td className="text-center align-items-center">
+                          <span className={actividad.estado===1?"tag badge badge-success":"tag badge badge-danger"}>{actividad.estado===1?"Activo":"Inactivo"}</span>
+                        </td>
+                        <td className="text-center">
+                            <button className="edit-icon border-0 bg-transparent text-primary mx-1"> <i className="fas fa-database"></i> </button>
+                            <Link className="edit-icon border-0 bg-transparent text-success mx-1" to={`/registro-edicion-actividad/${actividad.id}`}><i className="far fa-edit "></i></Link>
+                            <button className="trash-icon border-0 bg-transparent text-danger" onClick={()=>{confirmacion(actividad.id)}}><i className="far fa-trash-alt "></i></button>
+                        </td>
+                    </tr>
+                  )
+                })
               }
-                            
+                
           </tbody>
-        
         </table>
-      </div>   
-    )
+      </div> 
+    </div>   
+  )
 }
 
 export default ListadoActividades ;
