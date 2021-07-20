@@ -17,10 +17,11 @@ import NavbarJefe from './components/navbarjefe'
 import Navbarproyect from './components/navbarproyecto'
 
 import ListaUsuarios from "./views/ListaUsuarios";
-
 import { RegistroUsuario } from "./views/RegistroUsuario";
-
 import { EdicionUsuario } from "./views/EdicionUsuario";
+
+import DashboardAdministrador from "./views/Dashboard-administrador";
+
 
 import { Login } from "./views/Login";
 import Error404 from "./views/error404";
@@ -31,6 +32,7 @@ import injectContext from "./store/appContext";
 const App = () => {
 
     return (
+<<<<<<< HEAD
         <BrowserRouter>
             <Switch>
 
@@ -104,6 +106,84 @@ const App = () => {
             {/* <Footer /> */}
         </BrowserRouter>
     )
+=======
+      <BrowserRouter>
+        <Switch>
+          {/* landingPage */}
+          <Route exact path="/contact">
+            <Contact />
+          </Route>
+          <Route exact path="/">
+            <Navbar />
+            <Home />
+          </Route>
+          <Route exact path="/Login">
+            <Login />
+          </Route>
+
+          {/* proyectos */}
+          <Route exact path="/listado-proyectos">
+            <NavbarJefe />
+            <ListadoProyectos />
+          </Route>
+          <Route exact path="/registro-edicion-proyecto/:id">
+            <NavbarJefe />
+            <EdicionProyecto />
+          </Route>
+          <Route exact path="/registro-proyectos">
+            <NavbarJefe />
+            <RegistroProyecto />
+          </Route>
+
+          {/* actividades */}
+          <Route exact path="/listado-actividades">
+            <NavbarJefe />
+            <ListadoActividades />
+          </Route>
+          <Route exact path="/registro-edicion-actividad/:id">
+            <NavbarJefe />
+            <EdicionActividad />
+          </Route>
+          <Route exact path="/listado-actividades/registro-actividad">
+            <NavbarJefe />
+            <RegistroActividad />
+          </Route>
+
+          {/* Usuarios */}
+          <Route exact path="/lista-usuarios">
+            <NavbarJefe />
+            <ListaUsuarios />
+          </Route>
+          <Route exact path="/EdicionUsuario/:id">
+            <NavbarJefe />
+            <EdicionUsuario />
+          </Route>
+          <Route exact path="/RegistroUsuario">
+            <NavbarJefe />
+            <RegistroUsuario />
+          </Route>
+
+          {/* Horas */}
+          <Route exact path="/lista-horas">
+            <NavbarJefe />
+            <ListaHoras />
+          </Route>
+
+          {/* Dashboard */}
+          <Route exact path="/Dashboard-administrador">
+            <NavbarJefe />
+            <DashboardAdministrador />
+          </Route>
+
+          {/* Otros */}
+          <Route>
+            <Error404 />
+          </Route>
+        </Switch>
+        {/* <Footer /> */}
+      </BrowserRouter>
+    );
+>>>>>>> 0b670c62a219eab802e34a9df1a994cb5f8ebb34
 }
 
 export default injectContext(App);
