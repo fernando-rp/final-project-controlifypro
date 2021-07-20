@@ -368,6 +368,23 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch(() => {});
       },
+      addHoras: (url, nhoras) => {
+        fetch(`${url}`, {
+          method: "POST",
+          body: JSON.stringify(nhoras),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            getActions().getActividades("/horas");
+          })
+          .catch(() => {});
+      },
       getUsuarios: (url) => {
         fetch(url, {})
           .then((response) => {

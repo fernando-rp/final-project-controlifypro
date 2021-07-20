@@ -3,37 +3,42 @@ import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
-import Calendar from 'react-calendar';
 
 
 const ListaHoras = () => {
     const { store, actions } = useContext(Context);
-    const { actividades, proyectos, horas, actividades_proyecto } = store;
-    const { id } = useParams();
-    const history = useHistory();
-
+    const { actividades, proyectos, horas, actividades_proyecto,usuarios } = store;
+    // const { id } = useParams();
+    // const history = useHistory();
     const [data, setData] = useState(null)
+
 
     useEffect(() => {
 
         actions.getHoras('/horas')
         actions.getProyectos('/proyectos')
         actions.getActividades('/actividades')
-        
+        actions.getUsuarios('/usuarios')
 
     }, [])
 
-    const formatDate = (date) => {
-        date = date.getFullYear() + "-" + (parseFloat(date.getMonth()) + 1) + "-" + date.getDate();
-        setData({
-            ...data,
-            fecha_inicio: date
-        })
+    
+
+    const formatDate = (date)=>{ 
+        
+        // onChange({
+        //     value: date.target.value
+        // })
+        //  console.log(typeof date)
     }
+
 
     const actividadesProyecto=(e)=>{
         actions.getActividadesProyectos(`/actividades/${e.target.value}/proyectos`)
-
+        setData({
+            ...data,
+            [e.target.name]: e.target.value,
+        })
     }
 
 
@@ -48,11 +53,11 @@ const ListaHoras = () => {
         })
     }
 
-    const projectName = (e) => {
-        console.log(e.target.value)
-        console.log(e.target.name)
-        actions.handleChangeActividad(e)
-
+    const handleChangeHH = (e) => {
+        setData({
+            ...data,
+            [e.target.name]: e.target.value,
+        })
     }
 
     const confirmacion = (a_id) => {
@@ -85,7 +90,7 @@ const ListaHoras = () => {
             </div>
             <form onSubmit={(e) => {
                 e.preventDefault();
-                // actions.updateActividad("/horas", id, history);
+                actions.addHoras("/horas",data);
 
 
             }}>
@@ -107,21 +112,26 @@ const ListaHoras = () => {
                             </div>
 
                             <div className="col-md-6 mb-3">
-                                <label for="floatingTextarea">Actividad</label> <br />
-                                <select class="form-select" aria-label="" name="proyecto_id" >
+                                <label for="actividad_id">Actividad</label> <br />
+                                <select class="form-select" aria-label="" name="actividad_id" onChange={handleChangeHH}>
                                     <option selected>Seleccionar actividad</option>
                                     {!!actividades_proyecto &&
                                         actividades_proyecto.map((actividad) => {
                                             return (
-                                                <option value="">{actividad.descripcion}</option>)
+                                                <option value={actividad.id}>{actividad.descripcion}</option>)
                                         })
                                     }
                                 </select>
                             </div>
 
                             <div className="col-md-6 mb-3 ">
-                                <label for="presupuesto" className="form-label">Fecha</label>
-                                <input type="date" className="form-control mb-3 col-8"/>
+                                <label for="fecha" className="form-label">Fecha</label>
+                                <input 
+                                type="date" 
+                                className="form-control mb-3 col-8"
+                                name="fecha"
+                                onChange ={handleChangeHH}   
+                                />
                             </div>
 
                             <div className="col-md-6 mb-3">
@@ -132,6 +142,7 @@ const ListaHoras = () => {
                                     className="form-control mb-3 col-8"
                                     placeholder=""
                                     id="floatingTextarea"
+                                    onChange={handleChangeHH}
                                 >
                                 </textarea>
 
@@ -140,28 +151,34 @@ const ListaHoras = () => {
                                         <label for="floatingTextarea">Horas</label>
                                         <input
                                             name="hh"
-                                            type="text"
+                                            type="number"
                                             className="form-control mb-3 col-12"
                                             id="inputhh"
+                                            onChange={handleChangeHH}
                                         />
                                     </div>
                                     <div className="col-4">
                                         <label for="floatingTextarea">Horas Extras</label>
                                         <input
                                             name="hh_extra"
-                                            type="text"
+                                            type="number"
                                             className="form-control mb-3 col-12"
                                             id="inputhhe"
+                                            onChange={handleChangeHH}
                                         />
                                     </div>
                                 </div>
-                                <label for="usuario" className="form-label">Usuario</label>
-                                <input
-                                    name="usuario_id"
-                                    type="text"
-                                    className="form-control col-5"
-                                    id="inputusuario"
-                                />
+                                <label for="usuario" className="form-label">Colaborador</label><br/>
+                                <select class="form-select" aria-label="" name="usuario_id" onChange={(e)=>{handleChangeHH(e)}}  >
+                                    <option selected>Seleccionar colaborador</option>
+                                    
+                                    {!!usuarios &&
+                                        usuarios.map((usuario) => {
+                                            return (
+                                                <option value={usuario.id} >{usuario.primer_nombre} {usuario.apellido_paterno}</option>)
+                                        })
+                                    }
+                                </select>
                             </div>
 
                             {/* <div className="col-md-12 mx-auto">
@@ -226,10 +243,11 @@ const ListaHoras = () => {
                                                 }
                                                 {!!actividades &&
                                                     actividades.map((actividad) => {
-                                                        if(actividad.proyecto_id==horas.actividad_id)
+                                                        if(actividad.id==horas.actividad_id)
                                                         return (
                                                             <td className="text-center">{actividad.descripcion}</td>
                                                             )
+                                                        
                                                     })
                                                 }
                                                 
