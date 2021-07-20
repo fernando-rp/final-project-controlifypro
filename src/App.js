@@ -71,7 +71,7 @@ const App = () => {
                     <NavbarJefe />
                     <EdicionActividad />
                 </Route>
-                <Route exact path="/listado-actividades/registro-actividad">
+                <Route exact path="/registro-actividad">
                     <NavbarJefe />
                     <RegistroActividad />
                 </Route>
