@@ -10,7 +10,7 @@ const DashboardJefe = () => {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
       {
-        label: "# of Votes",
+        label: "#",
         data: [12, 19, 3, 5, 2, 3],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
@@ -59,7 +59,7 @@ const DashboardJefe = () => {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
       {
-        label: "# of Votes",
+        label: "#",
         data: [12, 19, 3, 5, 2, 3],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
@@ -176,61 +176,42 @@ const options3 = {
     <>
       <>
         <div className="container">
-          <div className="row justify-content-md-center">
-            <div className="col-5">
+          <div className="row  caption-top mt-5 ">
+            <div className="col-4 fs-5 bg-primary text-light">
+              Dashboard Colaborador
+            </div>
+          </div>
+          <div className="row justify-content-md-center border boder-primary mb-5">
+            <div className="col">
               <div className="header">
-                <h1 className="title">Horizontal Bar Chart</h1>
+                <h3 className="title">% Ejecucion de Proyectos</h3>
                 <div className="links">
-                  <a
-                    className="btn btn-gh"
-                    href="https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/HorizontalBar.js"
-                  >
-                    Github Source
-                  </a>
                 </div>
               </div>
               <Bar data={proyectos} options={options2} />
             </div>
-            <div className="col-7">
+            <div className="col-4">
               <div className="header">
-                <h1 className="title">Pie Chart</h1>
+                <h3 className="title">Proyectos / Actividades</h3>
                 <div className="links">
-                  <a
-                    className="btn btn-gh"
-                    href="https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/Pie.js"
-                  >
-                    Github Source
-                  </a>
                 </div>
               </div>
               <Pie data={data} />
             </div>
           </div>
-          <div className="row justify-content-md-center">
-            <div className="col-5">
+          <div className="row justify-content-md-center border boder-primary mb-5">
+            <div className="col">
               <div className="header">
-                <h1 className="title">Horizontal Bar Chart</h1>
+                <h3 className="title">% Ejecucion de Actividades</h3>
                 <div className="links">
-                  <a
-                    className="btn btn-gh"
-                    href="https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/HorizontalBar.js"
-                  >
-                    Github Source
-                  </a>
                 </div>
               </div>
               <Bar data={actividades} options={options} />
             </div>
-            <div className="col-7">
+            <div className="col">
               <div className="header">
-                <h1 className="title">Vertical Bar Chart</h1>
+                <h3 className="title">Horas de los Colaboradores</h3>
                 <div className="links">
-                  <a
-                    className="btn btn-gh"
-                    href="https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/VerticalBar.js"
-                  >
-                    Github Source
-                  </a>
                 </div>
               </div>
               <Bar data={colaboradores} options={options3} />

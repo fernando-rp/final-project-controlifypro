@@ -8,43 +8,31 @@ import { Line } from "react-chartjs-2";
 
 const DashboardAdministrador = ()=> {
 
-const data = {
-  labels: ["1", "2", "3", "4", "5", "6"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
-      fill: false,
-      backgroundColor: "rgb(255, 99, 132)",
-      borderColor: "rgba(255, 99, 132, 0.2)",
-    },
-  ],
-};
-
-const options = {
-  scales: {
-    yAxes: [
-      {
-        ticks: {
-          beginAtZero: true,
-        },
-      },
-    ],
-  },
-};
 return (
   <>
-    <div className="header">
-      <h1 className="title">Line Chart</h1>
-      <div className="links">
-        <a
-          className="btn btn-gh"
-        >
-          Github Source
-        </a>
+    <div className="card mt-3" data-background="color" data-color="orange">
+      <div className="card-body card-just-text">
+        <div className="author">
+          <a href="javascript:;">
+            <img
+              src="../../../assets/img/faces/erik-lucatero-2.jpg"
+              alt="..."
+              class="avatar img-raised"
+            />
+            <span>Erik Johnson</span>
+          </a>
+        </div>
+        <span className="category-social pull-right">
+          <i className="fa fa-quote-right"></i>
+        </span>
+        <div className="clearfix"></div>
+        <p className="card-description">
+          "Less, but better – because it concentrates on the essential aspects,
+          and the products are not burdened with non-essentials. Back to purity,
+          back to simplicity. At best, it is self-explanatory."
+        </p>
       </div>
     </div>
-    <Line data={data} options={options} />
   </>
 );
 }
