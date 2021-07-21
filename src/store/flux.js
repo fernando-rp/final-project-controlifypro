@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       error: null,
       localidades: null,
       horas: null,
+      hora:null,
       actividades_proyecto:null,
     },
     actions: {
@@ -111,19 +112,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({
           usuario: usuario,
         });
-      },
-      getHoras: (url) => {
-        fetch(url, {})
-          .then((response) => {
-            if (!response.ok) setStore({ error: response.error });
-            return response.json();
-          })
-          .then((data) => {
-            setStore({
-              horas: data,
-            });
-          })
-          .catch(() => {});
       },
       getActividades: (url) => {
         fetch(url, {})
@@ -237,6 +225,97 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((error) => {
             console.log(error);
           });
+      },
+
+      /****** Horas ******/
+      getHoraById: (url, id) => {
+        fetch(`${url}/${id}`, {})
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              hora: data,
+            });
+          })
+          .catch(() => {});
+      },
+      handleChangeHora: (e) => {
+        const { hora } = getStore();
+        hora[e.target.name] = e.target.value;
+        setStore({
+          hora: hora,
+        });
+      },
+      getHoras: (url) => {
+        fetch(url, {})
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              horas: data,
+            });
+          })
+          .catch(() => {});
+      },
+      addHoras: (url, nhoras) => {
+        fetch(`${url}`, {
+          method: "POST",
+          body: JSON.stringify(nhoras),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            getActions().getHoras("/horas");
+            setStore({
+              horas: data,
+            });
+
+          })
+          .catch(() => {});
+      },
+      deleteHora: (id) => {
+        fetch(` horas/${id}`, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            
+            getActions().getHoras("/horas");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      },
+      updateHora: (url, id, history) => {
+        const { hora } = getStore();
+        fetch(`${url}/${id}`, {
+          method: "PUT",
+          body: JSON.stringify(hora),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            getActions().getHoras("/horas");
+            history.push("/lista-horas");
+          })
+          .catch(() => {});
       },
 
       
@@ -365,23 +444,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => {
             getActions().getProyectos("/usuarios");
             history.push("/lista-usuarios");
-          })
-          .catch(() => {});
-      },
-      addHoras: (url, nhoras) => {
-        fetch(`${url}`, {
-          method: "POST",
-          body: JSON.stringify(nhoras),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((response) => {
-            if (!response.ok) setStore({ error: response.error });
-            return response.json();
-          })
-          .then((data) => {
-            getActions().getActividades("/horas");
           })
           .catch(() => {});
       },

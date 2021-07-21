@@ -22,17 +22,7 @@ const ListaHoras = () => {
 
     }, [])
 
-    
-
-    const formatDate = (date)=>{ 
-        
-        // onChange({
-        //     value: date.target.value
-        // })
-        //  console.log(typeof date)
-    }
-
-
+ 
     const actividadesProyecto=(e)=>{
         actions.getActividadesProyectos(`/actividades/${e.target.value}/proyectos`)
         setData({
@@ -71,8 +61,8 @@ const ListaHoras = () => {
             confirmButtonText: '¡Sí, borrar!'
           }).then((result) => {
             if (result.isConfirmed) {
-  
-              Swal.fire(
+            actions.deleteHora(a_id)
+            Swal.fire(
                 'Eliminado',
                 'Tus horas han sido eliminadas',
                 'success'
@@ -180,20 +170,6 @@ const ListaHoras = () => {
                                     }
                                 </select>
                             </div>
-
-                            {/* <div className="col-md-12 mx-auto">
-                        <label className="form-check-label mb-3" for="inlineFormCheck">Estado</label>
-                            <div className="form-check">
-                                <div class="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="estado" id="inlineRadioActive" value="1" onClick={(e)=> actions.handleChangeActividad(e)} />
-                                    <label className="form-check-label p-0" for="inlineRadioActive">Activo</label>
-                                </div>
-                                <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="estado" id="inlineRadioInactive" value="0" onClick={(e)=>actions.handleChangeActividad(e)} />
-                                    <label className="form-check-label p-0" for="inlineRadioInactive">Inactivo</label>
-                                </div>      
-                            </div>
-                        </div> */}
                         </div>
                     </div>
 
@@ -258,7 +234,7 @@ const ListaHoras = () => {
                                                 <td className="text-center">{horas.hh_extra}</td>
                                                 <td className="text-center">
                                                     {/* <button className="edit-icon border-0 bg-transparent text-primary mx-1"> <i className="fas fa-database"></i> </button> */}
-                                                    <Link className="edit-icon border-0 bg-transparent text-success mx-1" to={`/registro-edicion-proyecto/${horas.id}`}><i className="far fa-edit "></i></Link>
+                                                    <Link className="edit-icon border-0 bg-transparent text-success mx-1" to={`/lista-horas/${horas.id}`}><i className="far fa-edit "></i></Link>
                                                     <button className="trash-icon border-0 bg-transparent text-danger" onClick={() => { confirmacion(horas.id) }} ><i className="far fa-trash-alt "></i></button>
                                                 </td>
                                             </tr>

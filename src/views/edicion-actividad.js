@@ -11,7 +11,6 @@ import Calendar from 'react-calendar';
 const EdicionActividad = ()=>{
     const {store, actions}= useContext(Context);
     const {actividad,proyectos} = store;
-    const [value, onChange] = useState(new Date());
 
     const {id}=useParams();
     const history= useHistory();
@@ -35,8 +34,7 @@ const EdicionActividad = ()=>{
     }
 
     const projectName= (e)=>{
-        console.log(e.target.value)
-        console.log(e.target.name)
+
         actions.handleChangeActividad(e)
         
     }
