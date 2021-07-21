@@ -85,8 +85,8 @@ const ListadoActividades = ()=>{
                 </div>
 
                 <div className="col-md-4">
-                    <label htmlFor="nombre" className="form-label">Nombre</label>
-                    <input type="text" className="form-control" name="nombre" autoComplete="off" onChange={handleInputChange}/>
+                    <label htmlFor="descripcion" className="form-label">Descripción</label>
+                    <input type="text" className="form-control" name="descripcion" autoComplete="off" onChange={handleInputChange}/>
                 </div>
 
               </div>
@@ -124,7 +124,7 @@ const ListadoActividades = ()=>{
 
       <div className="row mt-4">
           <div className="col-md-12 d-flex justify-content-end">
-              <Link type="submit" className="btn btn-success" to="/registro-actividad">Agregar Actividad</Link>
+              <Link type="submit" className="btn btn-success" to="/registro-actividad"><i className="fas fa-plus-circle mr-2"></i> Agregar Actividad</Link>
           </div>
       </div>
 
@@ -135,8 +135,8 @@ const ListadoActividades = ()=>{
               <th className="text-center" scope="col">Proyecto</th>
               <th className="text-center" scope="col">Descripción</th>
               <th className="text-center" scope="col">Fecha Inicio</th>
-              <th className="text-center" scope="col">Porcentaje Avance</th>
-              <th className="text-center" scope="col">Observación</th>
+              <th className="text-center" scope="col">% Uso HH</th>
+              <th className="text-center" scope="col">Presupuesto HH</th>
               <th className="text-center" scope="col">Estado</th>
               <th className="text-center" scope="col">Acciones</th>
               </tr>
@@ -157,7 +157,7 @@ const ListadoActividades = ()=>{
                         <td className="text-center">{actividad.descripcion}</td>
                         <td className="text-center">{actividad.fecha_inicio}</td>
                         <td className="text-center">{actividad.porcentaje_avance} %</td>
-                        <td className="text-center">{actividad.observacion}</td>
+                        <td className="text-center">{actividad.presupuesto}</td>
                         <td className="text-center align-items-center">
                           <span className={actividad.estado===1?"tag badge badge-success":"tag badge badge-danger"}>{actividad.estado===1?"Activo":"Inactivo"}</span>
                         </td>
