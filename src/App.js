@@ -21,6 +21,8 @@ import { RegistroUsuario } from "./views/RegistroUsuario";
 import { EdicionUsuario } from "./views/EdicionUsuario";
 
 import DashboardAdministrador from "./views/Dashboard-administrador";
+import DashboardJefe from "./views/Dashboard-jefe";
+import DashboardColaborador from "./views/Dashboard-colaborador";
 
 
 import { Login } from "./views/Login";
@@ -99,6 +101,14 @@ const App = () => {
           <Route exact path="/Dashboard-administrador">
             <NavbarJefe />
             <DashboardAdministrador />
+          </Route>
+          <Route exact path="/Dashboard-jefe">
+            <NavbarJefe />
+            <DashboardJefe />
+          </Route>
+          <Route exact path="/Dashboard-colaborador">
+            <NavbarJefe />
+            <DashboardColaborador />
           </Route>
 
           {/* Otros */}
