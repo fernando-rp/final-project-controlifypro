@@ -175,7 +175,7 @@ const options3 = {
   return (
     <>
       <>
-        <div className="container">
+        <div className="container mx-auto">
           <div className="row  caption-top mt-5 ">
             <div className="col-4 fs-5 bg-primary text-light">
               Dashboard Colaborador
@@ -185,16 +185,14 @@ const options3 = {
             <div className="col">
               <div className="header">
                 <h3 className="title">% Ejecucion de Proyectos</h3>
-                <div className="links">
-                </div>
+                <div className="links"></div>
               </div>
               <Bar data={proyectos} options={options2} />
             </div>
             <div className="col-4">
               <div className="header">
                 <h3 className="title">Proyectos / Actividades</h3>
-                <div className="links">
-                </div>
+                <div className="links"></div>
               </div>
               <Pie data={data} />
             </div>
@@ -203,16 +201,14 @@ const options3 = {
             <div className="col">
               <div className="header">
                 <h3 className="title">% Ejecucion de Actividades</h3>
-                <div className="links">
-                </div>
+                <div className="links"></div>
               </div>
               <Bar data={actividades} options={options} />
             </div>
             <div className="col">
               <div className="header">
                 <h3 className="title">Horas de los Colaboradores</h3>
-                <div className="links">
-                </div>
+                <div className="links"></div>
               </div>
               <Bar data={colaboradores} options={options3} />
             </div>

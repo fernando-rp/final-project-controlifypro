@@ -106,7 +106,7 @@ const options = {
 
   return (
     <>
-      <div className="container">
+      <div className="container mx-auto">
         <div className="row  caption-top mt-5 ">
           <div className="col-4 fs-5 bg-primary text-light">
             Dashboard Colaborador
