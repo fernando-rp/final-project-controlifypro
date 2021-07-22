@@ -127,7 +127,7 @@ const ListadoProyectos = () => {
           
           <div className="row mt-4">
               <div className="col-md-12 d-flex justify-content-end">
-                  <Link className="btn btn-success" to="/registro-proyectos"><i class="fas fa-plus-circle mr-2"></i> Agregar Proyecto</Link>
+                  <Link className="btn btn-success" to="/registro-proyectos"><i className="fas fa-plus-circle mr-2"></i> Agregar Proyecto</Link>
               </div>
           </div>
 
@@ -135,7 +135,7 @@ const ListadoProyectos = () => {
               <div className="col-4 fs-5 bg-info text-light">Mis Proyectos</div>
           </div> */}
 
-          <div class="table-responsive">
+          <div className="table-responsive">
             <table className="table table-hover ">
               <thead className="thead-dark">
                   <tr>

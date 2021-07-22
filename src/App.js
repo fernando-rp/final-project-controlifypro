@@ -122,7 +122,11 @@ const App = () => {
         </Switch>
         {/* <Footer /> */}
       </BrowserRouter>
+<<<<<<< HEAD
     )
+=======
+    );
+>>>>>>> eef23a070ee4a66caa9a5018d26f7388324a43ea
 }
 
 export default injectContext(App);

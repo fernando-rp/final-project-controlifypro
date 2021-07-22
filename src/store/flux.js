@@ -15,6 +15,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       horas: null,
       hora:null,
       actividades_proyecto:null,
+      usuario_id: '',
+      access_token: '',
+      rol_id: '',
     },
     actions: {
       Login: (email, password, history) => {
@@ -47,7 +50,12 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           })
           .then((data) => {
-            //sessionStorage.setItem("token", data.access_token);
+
+            setStore({ 
+              usuario_id: data.usuario_id,
+              access_token: data.access_token,
+              rol_id: data.rol_id
+            })
 
             switch (data.rol_id) {
               case 1:
@@ -58,6 +66,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 break;
               case 2:
                   // código para redireccionar al jefe
+                  history.push("/listado-proyectos");
                 break;
               case 3:
                   // código para redireccionar al Colaborador
