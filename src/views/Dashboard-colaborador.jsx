@@ -4,22 +4,42 @@ import { useHistory } from "react-router";
 import { Context } from "../store/appContext";
 import { Bar } from "react-chartjs-2";
 
+
+
+
+
 const DashboardColaborador = () => {
+
+
+  const { store, actions } = useContext(Context);
+  const { horasPorActividad } = store;
+
+  useEffect(() => {
+    actions.getHorasPorActividad("/HorasPorActividad");
+  }, []);  
+
+  const color= () => {
+    const n = mat: 
+      return (
+        "rgba("+n+")"
+      )
+  }
+
 const proyectos = {
   labels: [
-  "Puerto Balize 2", 
-  "Puerto Mejillones", 
-  "Costanera Sur", 
-  "Aeropuerto AMB", 
-  "Vespucio Norte", 
-  "Pnamericana Sur"
-],
+    "Puerto Balize 2",
+    "Puerto Mejillones",
+    "Costanera Sur",
+    "Aeropuerto AMB",
+    "Vespucio Norte",
+    "Pnamericana Sur",
+  ],
   datasets: [
     {
-      label: "Horas Cargadas a Proyectos",
+      label: { horasPorActividad.label },
       data: [12, 19, 3, 5, 2, 3],
       backgroundColor: [
-        "rgba(255, 99, 132, 0.2)",
+        {color},
         "rgba(54, 162, 235, 0.2)",
         "rgba(255, 206, 86, 0.2)",
         "rgba(75, 192, 192, 0.2)",

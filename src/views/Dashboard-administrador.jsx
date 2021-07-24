@@ -16,7 +16,7 @@ return (
           Dashboard Colaborador
         </div>
       </div>
-      <div className="row border boder-primary mb-5">
+      <div className="row border boder-primary mb-5 p-3">
         <div className="col-6">
           <div
             className="card-big-shadow p-3"
@@ -28,7 +28,7 @@ return (
                 <span>Usuarios</span>
               </div>
               <span className="category-social pull-right">
-                <h1 className="fas fa-handshake m-2"></h1>
+                <h1 className="fas fa-handshake ml-5"></h1>
               </span>
               <div className="clearfix p-2">
                 <h1>2.900</h1>
@@ -50,7 +50,7 @@ return (
                 <span>Proyectos</span>
               </div>
               <span className="category-social pull-right">
-                <h1 className="fas fa-project-diagram m-2"></h1>
+                <h1 className="fas fa-project-diagram ml-5"></h1>
               </span>
               <div className="clearfix p-2">
                 <h1>1.020</h1>
@@ -72,7 +72,7 @@ return (
                 <span>Actividades</span>
               </div>
               <span className="category-social pull-right">
-                <h1 className="fas fa-chart-line m-2"></h1>
+                <h1 className="fas fa-chart-line ml-5"></h1>
               </span>
               <div className="clearfix p-2">
                 <h1>5.930</h1>
@@ -94,7 +94,7 @@ return (
                 <span>Horas </span>
               </div>
               <span className="category-social pull-right">
-                <h1 className="fas fa-stopwatch m-2"></h1>
+                <h1 className="fas fa-stopwatch ml-5"></h1>
               </span>
               <div className="clearfix p-2">
                 <h1>107.930</h1>
