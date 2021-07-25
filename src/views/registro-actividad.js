@@ -12,8 +12,10 @@ const RegistroActividad = ()=>{
     const {proyectos, usuario_id}= store;
 
     const handleChangeActividad = (e) => {
+      console.log(e.target.value)
       setData({
         ...data,
+        ['usuario_id']: usuario_id,
         [e.target.name]: e.target.value,
       })
     }
@@ -32,11 +34,6 @@ const RegistroActividad = ()=>{
       })
     }
 
-    const registrarActividad = () => {
-      console.log('click + '+ usuario_id);
-      // actions.addActividad("/actividades", data, history);
-    }
-
     return(
         <div className="container mt-4">
             <div className="row justify-content-center">
@@ -46,7 +43,7 @@ const RegistroActividad = ()=>{
             </div>
             <form onSubmit={(e) => {            
                             e.preventDefault();
-                            registrarActividad();
+                            actions.addActividad("/actividades", data, history);
                         }}> 
 
             <div className="row justify-content-center">
