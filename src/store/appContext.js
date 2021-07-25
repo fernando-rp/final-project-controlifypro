@@ -27,7 +27,7 @@ const injectContext = PassedComponent => {
 			//state.actions.getProyectos("/proyectos")
 			// state.actions.getActividades("/actividades")
 			// state.actions.getUsuarios("/usuarios")
-            
+            state.actions.getHorasPorActividad('/HorasPorActividad')
 
 		}, []);
 

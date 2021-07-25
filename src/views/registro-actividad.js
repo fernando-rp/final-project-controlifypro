@@ -18,6 +18,8 @@ const RegistroActividad = ()=>{
         ['usuario_id']: usuario_id,
         [e.target.name]: e.target.value,
       })
+
+      
     }
 
     useEffect(()=>{

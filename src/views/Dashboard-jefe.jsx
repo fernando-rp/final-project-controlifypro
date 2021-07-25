@@ -4,11 +4,14 @@ import { Bar } from "react-chartjs-2";
 
 const DashboardJefe = () => {
   const { store, actions } = useContext(Context);
+  const { horasPorActividad }= store;
+
+  const [data, setData]=useState({})
 
   useEffect(() => {
-
     actions.getHoras('/horas')
-  
+    actions.getHorasPorActividad('/HorasPorActividad')
+
 }, [])
 
   // grafico horizontal superior de proyectos
@@ -64,7 +67,7 @@ const DashboardJefe = () => {
 
 
   // grafico de pie lateral derecho
-  const data = {
+  const proyectos1 = {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
       {
@@ -142,12 +145,30 @@ const DashboardJefe = () => {
 
 // grafico vertical inferior de horas de colaboradores
 
+const values = (e) => {
+  e.preventDefault();
+
+  
+  let arrHH = !!horasPorActividad && horasPorActividad.map((con) => con.hh)
+  let arrNombre = !!horasPorActividad && horasPorActividad.map((con) => con.descripcion)
+
+  setData({
+    ['labels']: arrHH,
+    ['midata']: arrNombre,
+  })
+
+  // console.log(arrNombre)
+}
+
+
+
 const colaboradores = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  
+  labels: data.midata,
   datasets: [
     {
       label: "Horas",
-      data: [12, 19, 3, 5, 2, 3],
+      data: data.labels,
       backgroundColor: [
         "rgba(255, 99, 132, 0.2)",
         "rgba(54, 162, 235, 0.2)",
@@ -183,6 +204,7 @@ const options3 = {
 
   return (
     <>
+      <button type="button" className="btn btn-outline-primary" onClick={(e) => values(e)}> sdasd </button>
 
         <div className="container">
           <div className="row justify-content-md-center">
@@ -192,7 +214,11 @@ const options3 = {
                 <div className="links">
                 </div>
               </div>
-              <Bar data={proyectos} options={options2} />
+               <Bar data={proyectos1} options={options2} /> 
+
+              
+
+
             </div>
             <div className="col-4">
               <div className="header">

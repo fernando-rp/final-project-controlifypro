@@ -13,12 +13,15 @@ const getState = ({ getStore, getActions, setStore }) => {
       error: null,
       localidades: null,
       horas: null,
-      horasPorActividad: [],
+      horasPorActividad: null,
       hora:null,
       actividades_proyecto:null,
       usuario_id: '',
       access_token: '',
       rol_id: '',
+
+      arrHH: null,
+      arrNombre: null,
     },
     actions: {
       Login: (email, password, history) => {
@@ -131,7 +134,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .then((data) => {
             setStore({
-              horasPorActividad: data,
+              horasPorActividad: data
             });
           })
           .catch(() => {});
