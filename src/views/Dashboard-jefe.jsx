@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import { Pie, Bar } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 const DashboardJefe = () => {
   const { store, actions } = useContext(Context);
@@ -16,6 +16,7 @@ const DashboardJefe = () => {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
       {
+
         label: "HH",
         data: [12, 19, 3, 5, 2, 3],
         backgroundColor: [
@@ -55,10 +56,12 @@ const DashboardJefe = () => {
       },
       title: {
         display: true,
+
         text: "Horas por Proyectos",
       },
     },
   };
+
 
   // grafico de pie lateral derecho
   const data = {
@@ -93,6 +96,7 @@ const DashboardJefe = () => {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
       {
+
         label: "HH",
         data: [12, 19, 3, 5, 2, 3],
         backgroundColor: [
@@ -118,8 +122,6 @@ const DashboardJefe = () => {
 
   const options2 = {
     indexAxis: "y",
-    // Elements options apply to all of the options unless overridden in a dataset
-    // In this case, we are setting the border of each horizontal bar to be 2px wide
     elements: {
       bar: {
         borderWidth: 2,
@@ -132,6 +134,7 @@ const DashboardJefe = () => {
       },
       title: {
         display: true,
+
         text: "Horas por proyectos",
       },
     },
@@ -143,7 +146,7 @@ const colaboradores = {
   labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
   datasets: [
     {
-      label: "# of Votes",
+      label: "Horas",
       data: [12, 19, 3, 5, 2, 3],
       backgroundColor: [
         "rgba(255, 99, 132, 0.2)",
@@ -180,6 +183,7 @@ const options3 = {
 
   return (
     <>
+
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-5">
@@ -197,21 +201,22 @@ const options3 = {
  
                 </div>
               </div>
-              <Pie data={data} />
+              <Bar data={colaboradores} options={options3} />
             </div>
           </div>
-          <div className="row justify-content-md-center">
-            <div className="col-5">
+          <div className="row justify-content-md-center border boder-primary mb-5">
+            <div className="col">
               <div className="header">
+
                 <h1 className="title">Horizontal Bar Chart</h1>
               </div>
-              <Bar data={actividades} options={options} />
+              <Bar data={proyectos} options={options2} />
             </div>
-            <div className="col-7">
+            <div className="col">
               <div className="header">
                 <h1 className="title">Vertical Bar Chart</h1>
               </div>
-              <Bar data={colaboradores} options={options3} />
+              <Bar data={actividades} options={options} />
             </div>
           </div>
         </div>

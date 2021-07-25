@@ -8,43 +8,105 @@ import { Line } from "react-chartjs-2";
 
 const DashboardAdministrador = ()=> {
 
-const data = {
-  labels: ["1", "2", "3", "4", "5", "6"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
-      fill: false,
-      backgroundColor: "rgb(255, 99, 132)",
-      borderColor: "rgba(255, 99, 132, 0.2)",
-    },
-  ],
-};
-
-const options = {
-  scales: {
-    yAxes: [
-      {
-        ticks: {
-          beginAtZero: true,
-        },
-      },
-    ],
-  },
-};
 return (
   <>
-    <div className="header">
-      <h1 className="title">Line Chart</h1>
-      <div className="links">
-        <a
-          className="btn btn-gh"
-        >
-          Github Source
-        </a>
+    <div className="container mx-auto p-2 m-2">
+      <div className="row  caption-top mt-5 ">
+        <div className="col-4 fs-5 bg-primary text-light">
+          Dashboard Colaborador
+        </div>
+      </div>
+      <div className="row border boder-primary mb-5 p-3">
+        <div className="col-6">
+          <div
+            className="card-big-shadow p-3"
+            data-background="color"
+            data-color="orange"
+          >
+            <div className="card card-just-text">
+              <div className="author m-2">
+                <span>Usuarios</span>
+              </div>
+              <span className="category-social pull-right">
+                <h1 className="fas fa-handshake ml-5"></h1>
+              </span>
+              <div className="clearfix p-2">
+                <h1>2.900</h1>
+              </div>
+              <p className="card-description m-2">
+                "Se encuentran registrando horas en la aplicacion."
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="col-6">
+          <div
+            className="card-big-shadow p-3"
+            data-background="color"
+            data-color="orange"
+          >
+            <div className="card card-just-text">
+              <div className="author m-2">
+                <span>Proyectos</span>
+              </div>
+              <span className="category-social pull-right">
+                <h1 className="fas fa-project-diagram ml-5"></h1>
+              </span>
+              <div className="clearfix p-2">
+                <h1>1.020</h1>
+              </div>
+              <p className="card-description m-2">
+                "Se encuentran en ejecución."
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="col-6">
+          <div
+            className="card-big-shadow p-3"
+            data-background="color"
+            data-color="orange"
+          >
+            <div className="card card-just-text">
+              <div className="author m-2">
+                <span>Actividades</span>
+              </div>
+              <span className="category-social pull-right">
+                <h1 className="fas fa-chart-line ml-5"></h1>
+              </span>
+              <div className="clearfix p-2">
+                <h1>5.930</h1>
+              </div>
+              <p className="card-description m-2">
+                "Se encuentran en ejecución en los proyectos."
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="col-6">
+          <div
+            className="card-big-shadow p-3"
+            data-background="color"
+            data-color="orange"
+          >
+            <div className="card card-just-text">
+              <div className="author m-2">
+                <span>Horas </span>
+              </div>
+              <span className="category-social pull-right">
+                <h1 className="fas fa-stopwatch ml-5"></h1>
+              </span>
+              <div className="clearfix p-2">
+                <h1>107.930</h1>
+              </div>
+              <p className="card-description m-2">
+                "Horas registradas en la aplicación."
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <Line data={data} options={options} />
   </>
 );
 }

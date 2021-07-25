@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       error: null,
       localidades: null,
       horas: null,
+      horasPorActividad: [],
       hora:null,
       actividades_proyecto:null,
       usuario_id: '',
@@ -34,19 +35,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         fetch("/login", opts)
           .then((resp) => {
             if (resp.status === 200) {
-              return resp.json()
+              return resp.json();
             } else if (resp.status === 204) {
               Swal.fire({
-                icon: 'warning',
-                title: 'Su usuario se encuentra desactivado del sistema',
-                text: 'Contactese con su administrador del sistema',
-              })
+                icon: "warning",
+                title: "Su usuario se encuentra desactivado del sistema",
+                text: "Contactese con su administrador del sistema",
+              });
             } else {
-              Swal.fire(
-                'Error',
-                'Usuario o contraseña incorrecto',
-                'error'
-              )
+              Swal.fire("Error", "Usuario o contraseña incorrecto", "error");
             }
           })
           .then((data) => {
@@ -59,26 +56,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 
             switch (data.rol_id) {
               case 1:
-                  // código para redireccionar al administrador
-                  sessionStorage.setItem("token", data.access_token);
-                  
-                  history.push("/listado-proyectos");
+                // código para redireccionar al administrador
+                sessionStorage.setItem("token", data.access_token);
+
+                history.push("/listado-proyectos");
                 break;
               case 2:
+
                   // código para redireccionar al jefe
                   history.push("/listado-proyectos");
+
                 break;
               case 3:
-                  // código para redireccionar al Colaborador
-                  sessionStorage.setItem("token", data.access_token);
+                // código para redireccionar al Colaborador
+                sessionStorage.setItem("token", data.access_token);
 
-                  history.push("/listado-proyectos");
+                history.push("/listado-proyectos");
                 break;
               default:
                 Swal.fire({
-                  icon: 'error',
-                  text: 'Usuario sin rol asignado',
-                })
+                  icon: "error",
+                  text: "Usuario sin rol asignado",
+                });
                 break;
             }
 
@@ -90,7 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("Error Login", error);
           });
       },
-      
+
       handleChangeActividad: (e) => {
         const { actividad } = getStore();
         actividad[e.target.name] = e.target.value;
@@ -101,7 +100,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       handleChangeProyecto: (e) => {
         const { proyecto } = getStore();
-
         // //realiza set de la fecha para que lo reconozca el input type=date
         // if(e.target.name == "fecha_inicio" || e.target.name == "fecha_entrega"){
         //   // console.log(e.target.name +' : '+moment(e.target.value, "YYYY-MM-DD").format("DD-MM-YYYY"))
@@ -123,6 +121,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           usuario: usuario,
         });
       },
+
+     
+      getHorasPorActividad: (url) => {
+        fetch(url, {})
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              horasPorActividad: data,
+            });
+          })
+          .catch(() => {});
+      },
+
       getActividades: (url) => {
         fetch(url, {})
           .then((response) => {
@@ -158,6 +172,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             return response.json();
           })
           .then((data) => {
+
             // console.log(data)
             setStore({  proyecto: data })
           })
@@ -214,7 +229,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             return response.json();
           })
           .then((data) => {
-            
             getActions().getProyectos("/proyectos");
           })
           .catch((error) => {
@@ -230,13 +244,13 @@ const getState = ({ getStore, getActions, setStore }) => {
             return response.json();
           })
           .then((data) => {
-            
             getActions().getUsuarios("/usuarios");
           })
           .catch((error) => {
             console.log(error);
           });
       },
+
 
       /****** Horas ******/
       getHoraById: (url, id) => {
@@ -362,26 +376,25 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Content-Type": "application/json",
           },
         })
-        .then((resp) => {
-          if (resp.status === 200) {
-            return resp.json()
-          } else {
-            Swal.fire(
-              'Atención',
-              'Datos del formulario no arrojan resultados.',
-              'warning'
-            )
-          }
-        })
-        .then((data) => {
-          console.log(data)
-          setStore({
-            actividades: data,
-          });
-        })
-        .catch(() => {});
+          .then((resp) => {
+            if (resp.status === 200) {
+              return resp.json();
+            } else {
+              Swal.fire(
+                "Atención",
+                "Datos del formulario no arrojan resultados.",
+                "warning"
+              );
+            }
+          })
+          .then((data) => {
+            console.log(data);
+            setStore({
+              actividades: data,
+            });
+          })
+          .catch(() => {});
       },
-
 
       /****** Usuarios ******/
 
@@ -499,17 +512,17 @@ const getState = ({ getStore, getActions, setStore }) => {
         })
           .then((resp) => {
             if (resp.status === 200) {
-              return resp.json()
+              return resp.json();
             } else {
               Swal.fire(
-                'Atención',
-                'Datos del formulario no arrojan resultados.',
-                'warning'
-              )
+                "Atención",
+                "Datos del formulario no arrojan resultados.",
+                "warning"
+              );
             }
           })
           .then((data) => {
-            console.log(data)
+            console.log(data);
             setStore({
               proyectos: data,
             });
@@ -537,7 +550,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch(() => {});
       },
 
-
       /****** Localidades ******/
       getLocalidades: (url) => {
         fetch(url, {})
@@ -552,9 +564,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch(() => {});
       },
-
-
-
     },
   };
 };
