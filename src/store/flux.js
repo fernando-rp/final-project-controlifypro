@@ -122,7 +122,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
-     
+      
       getHorasPorActividad: (url) => {
         fetch(url, {})
           .then((response) => {
