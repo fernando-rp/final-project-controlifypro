@@ -128,7 +128,7 @@ const EdicionProyecto = () => {
                   type="date"
                   className="form-control"
                   name="fecha_inicio"
-                  value={!!proyecto && moment(proyecto.fecha_inicio, "DD-MM-YYYY").format("YYYY-MM-DD")}
+                  value={!!proyecto && proyecto.fecha_inicio}
                   onChange={actions.handleChangeProyecto}
                 />
               </div>
@@ -138,7 +138,7 @@ const EdicionProyecto = () => {
                   type="date"
                   className="form-control"
                   name="fecha_entrega"
-                  value={!!proyecto && moment(proyecto.fecha_entrega, "DD-MM-YYYY").format("YYYY-MM-DD")}
+                  value={!!proyecto && proyecto.fecha_entrega}
                   onChange={actions.handleChangeProyecto} 
                 />
 
@@ -170,7 +170,7 @@ const EdicionProyecto = () => {
                       id="inlineRadioActive"
                       value="1"
                       checked={!!proyecto && proyecto.estado == 1}
-                      onClick={actions.handleChangeProyecto}
+                      onChange={actions.handleChangeProyecto}
                     />
                     <label className="form-check-label pl-1 mr-4" htmlFor="inlineRadioActive">Activo</label>
                   </div>
@@ -182,7 +182,7 @@ const EdicionProyecto = () => {
                       id="inlineRadioInactive"
                       value="0"
                       checked={!!proyecto && proyecto.estado == 0}
-                      onClick={actions.handleChangeProyecto}
+                      onChange={actions.handleChangeProyecto}
                     />
                     <label className="form-check-label pl-1" htmlFor="inlineRadioInactive">Inactivo</label>
                   </div>
