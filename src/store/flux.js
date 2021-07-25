@@ -14,6 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       localidades: null,
       horas: null,
       horasPorActividad: null,
+
+      horasProyectos: null,
       hora:null,
       actividades_proyecto:null,
       usuario_id: '',
@@ -22,6 +24,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       arrHH: null,
       arrNombre: null,
+
+      nombres:[],
+
     },
     actions: {
       Login: (email, password, history) => {
@@ -125,6 +130,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
+
       
       getHorasPorActividad: (url) => {
         fetch(url, {})
@@ -139,6 +145,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch(() => {});
       },
+
 
       getActividades: (url) => {
         fetch(url, {})
@@ -346,6 +353,46 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch(() => {});
       },
+
+      /****** Gráficos ******/
+
+      getHorasPorActividad: (url) => {
+        fetch(url, {})
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              horasPorActividad: data,
+              
+            });
+          })
+          .catch(() => {});
+      },
+      getHorasProyectos: (url) => {
+        fetch(url, {})
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              horasProyectos: data,
+            });
+          })
+          .catch(() => {});
+      },
+
+      // nameProyecto: (proyectos)=>{
+      //   const { nombres } = getStore();
+      //   proyectos.map((proyecto)=>{
+      //       nombres.push(proyecto.nombre_proyecto)
+      //   })
+      //   setStore({
+      //     nombres: nombres,
+      //   });
+      // },
 
       
       /****** Actividad ******/
