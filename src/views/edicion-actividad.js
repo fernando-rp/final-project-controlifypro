@@ -3,10 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
-import Calendar from 'react-calendar';
 
-
-
+import moment from "moment";
 
 const EdicionActividad = ()=>{
     const {store, actions}= useContext(Context);
@@ -16,12 +14,11 @@ const EdicionActividad = ()=>{
     const history= useHistory();
 
     useEffect(()=>{
-
-        actions.getActividadById('/actividades',id)
-        
+      actions.getActividadById('/actividades',id)
+      actions.getProyectos("/proyectos")
     },[])
 
-    
+
     const confirmacion_saved = () => {
 
         Swal.fire({
@@ -33,152 +30,125 @@ const EdicionActividad = ()=>{
           })
     }
 
-    const projectName= (e)=>{
-
+    const projectName = (e) => {
         actions.handleChangeActividad(e)
-        
     }
 
-
     return(
-        <div className="container mt-4">
-            <div className="row">
-            <div className="col-4 fs-5 bg-primary text-light">Editar Actividad ({id})</div>
+      <div className="container mt-4">
+          <div className="row justify-content-center">
+            <div className="col-md-8 p-0 bg-dark text-white">
+              <div className="pl-2"><h3>Editar Actividad ({id})</h3></div>
             </div>
-            <form onSubmit={(e) => {
-                            e.preventDefault();
-                            actions.updateActividad("/actividades", id, history);
-                        
-                            
-                        }}> 
-            <div className="row border boder-primary">
-                <div className="col-12">
-                    <div className="row g-3 mt-3">
-                        <div className="col-md-8 mx-auto mb-4">
-                            <label for="name" className="form-label">Proyecto</label>
-                            <br/>
-                                <select class="form-select" aria-label="" name="proyecto_id" onChange={(e)=>{projectName(e)}}>
-                                <option selected>Seleccionar proyecto</option>
-                                    {!!proyectos &&
-                                        proyectos.map((proyecto) => {
-                                            return (
-                                                <option value={proyecto.id}>{proyecto.sigla}-{proyecto.nombre}</option>)
-                                        })
-                                    }
-                                </select>
-                           </div>
+          </div>
+          <form onSubmit={(e) => {            
+                          e.preventDefault();
+                          actions.updateActividad("/actividades", id, history);
+                      }}> 
 
-                        <div className="col-md-8 mx-auto mb-3">
-                            <label for="name" className="form-label">Porcentaje Avance</label>
-                            <input 
-                            type="text" 
-                            name="porcentaje_avance"
-                            className="form-control" 
-                            id="inputavance"
-                            value={!!actividad && actividad.porcentaje_avance}
-                            onChange={actions.handleChangeActividad}
-                             />
-                        </div>
+          <div className="row justify-content-center">
+            <div className="col-md-8 border border-dark">
 
-                        <div class="col-md-8 mx-auto mb-3">
-                            <label for="floatingTextarea">Descripción</label>
-                            <textarea 
-                            name="descripcion"
-                            class="form-control" 
-                            placeholder="" 
-                            id="floatingTextarea" 
-                            value={!!actividad && actividad.descripcion}
-                            onChange={actions.handleChangeActividad}
-                            
-                            >
+              <div className="row mt-4 justify-content-center">
+                <div className="col-md-5">
+                  <label htmlFor="proyecto_id" className="form-label">Proyecto</label>
+                  <select className="form-control" defaultValue={'DEFAULT'} name="proyecto_id" onChange={actions.handleChangeActividad} >
+                      <option value={!!actividad && actividad.proyecto_id} disabled>Seleccionar...</option>
+                    {!!proyectos &&
+                      proyectos.length>0 &&
+                      proyectos.map((proyectos,index)=>{
+                          return(
+                            <option key={index} value={proyectos.id}>{proyectos.nombre}</option>
+                          )
+                      })
+                    }
+                  </select>
+                </div>
+                <div className="col-md-5">
+                  <label htmlFor="fecha_inicio" className="form-label">Fecha inicio</label>
+                  <input 
+                    type="date" 
+                    className="form-control" 
+                    name="fecha_inicio"
+                    value={!!actividad && actividad.fecha_inicio}
+                    onChange={actions.handleChangeActividad} 
+                    />
+                </div>
+              </div>
 
-                            </textarea>
-                        </div>
-                        
+              <div className="row mt-3 justify-content-center">
+                <div className="col-md-10">
+                  <label htmlFor="desripcion">Descripción</label>
+                  <textarea 
+                    name="descripcion"
+                    className="form-control" 
+                    placeholder="" 
+                    id="desripcion" 
+                    autoComplete="off"
+                    value={!!actividad && actividad.descripcion}
+                    onChange={actions.handleChangeActividad}
+                    >
+                  </textarea>
+                </div>
+              </div>
 
-                        <div className="col-md-8 mx-auto mb-3">
-                           
-                            <label for="presupuesto" className="form-label">Fecha Inicio (dd-mm-aa)</label>
-                            <input type="text" 
-                            name="fecha_inicio"
-                            className="form-control col-2" 
-                            id="inputfechainicio" 
-                            value={!!actividad && actividad.fecha_inicio}
-                            onChange={actions.handleChangeActividad}
-                            />
+              <div className="row mt-3 justify-content-center">
+                <div className="col-md-3">
+                  <label htmlFor="presupuesto" className="form-label">Horas Destinadas</label>
+                  <input 
+                    type="number" 
+                    name="presupuesto"
+                    className="form-control" 
+                    id="presupuesto"
+                    autoComplete="off"
+                    value={!!actividad && actividad.presupuesto}
+                    onChange={actions.handleChangeActividad}
+                  />
+                </div>
+                <div className="col-md-7">
+                    <label htmlFor="estado" className="form-check-label mb-2" htmlFor="inlineFormCheck">Estado</label>
+                    <div className="form-check">
+                      <div className="form-check form-check-inline">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="estado"
+                          id="inlineRadioActive"
+                          value="1"
+                          checked={!!actividad && actividad.estado == 1}
+                          onChange={actions.handleChangeActividad}
+                        />
+                        <label className="form-check-label pl-1 mr-4" htmlFor="inlineRadioActive">Activo</label>
+                      </div>
+                      <div className="form-check form-check-inline">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="estado"
+                          id="inlineRadioInactive"
+                          value="0"
+                          checked={!!actividad && actividad.estado == 0}
+                          onChange={actions.handleChangeActividad}
+                        />
+                        <label className="form-check-label pl-1" htmlFor="inlineRadioInactive">Inactivo</label>
+                      </div>
 
-
-                            {/* <div className="col-md-6 bg-info">
-                            
-                             <Calendar
-                             
-                             name="fecha_inicio"
-                             onChange={onChange}
-                               value={value}
-                             />
-                           
-                           </div> */}
-                            
-
-                        </div>
-
-                        <div class="col-md-8 mx-auto mb-3">
-                            <label for="floatingTextarea">Observación</label>
-                            <textarea 
-                            name="observacion"
-                            class="form-control" 
-                            placeholder="" 
-                            id="floatingTextarea2" 
-                            value={!!actividad && actividad.observacion}
-                            onChange={actions.handleChangeActividad}
-                            ></textarea>
-                        </div>
-
-                        <div className="col-md-8 mx-auto mb-3">
-                            <label for="inputfechafin" className="form-label">Usuario</label>
-                            <input 
-                            name="usuario_id"
-                            type="text" 
-                            className="form-control" 
-                            id="inputusuario" 
-                            value={!!actividad && actividad.usuario_id}
-                            onChange={actions.handleChangeActividad}/>
-                        </div>
-
-                        <div className="col-md-8 mx-auto mb-3">
-                        <label className="form-check-label mb-2" for="inlineFormCheck">Estado</label>
-                            <div className="form-check">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="estado" id="inlineRadioActive" value="1" onClick={(e)=> actions.handleChangeActividad(e)} />
-                                    <label class="form-check-label" for="inlineRadioActive">Activo</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="estado" id="inlineRadioInactive" value="0" onClick={(e)=>actions.handleChangeActividad(e)} />
-                                    <label class="form-check-label" for="inlineRadioInactive">Inactivo</label>
-                                </div>      
-                            </div>
-                        </div>
                     </div>
-                </div> 
-            </div>  
+                  </div>
+              </div>
 
-            <div className="col-10 d-flex justify-content-end mb-4">
-                    <div className="row g-3 mt-3">
-                        <div className="col-md-2 mx-auto">
-                            <button type="submit" className="btn btn-success" onClick={()=>{confirmacion_saved()}}>Guardar</button>
-                        </div>
-                        <div className="col-md-2 mx-auto">
-                             <Link className="btn btn-danger" to="/listado-actividades">Cancelar</Link>
-                        </div>
-                    </div>
-            </div>      
+              <div className="row my-4 justify-content-center">
+                <button type="submit" className="btn btn-success mx-2" onClick={()=>{confirmacion_saved()}}>Guardar</button>
+                <Link className="btn btn-outline-danger mx-2" to="/listado-actividades">Cancelar</Link>
+              </div>
 
-            </form>
-              
+            </div>
+          </div>
+        </form>     
 
-        </div>
-        
-    )
+      </div>
+  )
+
 }
 
 export default EdicionActividad ;

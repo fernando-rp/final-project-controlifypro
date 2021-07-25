@@ -100,20 +100,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       handleChangeProyecto: (e) => {
         const { proyecto } = getStore();
-
-        //realiza set de la fecha para que lo reconozca el input type=date
-        if (
-          e.target.name == "fecha_inicio" ||
-          e.target.name == "fecha_entrega"
-        ) {
-          // console.log(e.target.name +' : '+moment(e.target.value, "YYYY-MM-DD").format("DD-MM-YYYY"))
-          proyecto[e.target.name] = moment(e.target.value, "YYYY-MM-DD").format(
-            "DD-MM-YYYY"
-          );
-        } else {
-          proyecto[e.target.name] = e.target.value;
-        }
-
+        // //realiza set de la fecha para que lo reconozca el input type=date
+        // if(e.target.name == "fecha_inicio" || e.target.name == "fecha_entrega"){
+        //   // console.log(e.target.name +' : '+moment(e.target.value, "YYYY-MM-DD").format("DD-MM-YYYY"))
+        //   proyecto[e.target.name] = moment(e.target.value, "YYYY-MM-DD").format("DD-MM-YYYY");
+        // } else {
+        //   proyecto[e.target.name] = e.target.value;
+        // }
+        console.log(e.target.value)
+        proyecto[e.target.name] = e.target.value;
         setStore({
           proyecto: proyecto,
         });
@@ -177,8 +172,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             return response.json();
           })
           .then((data) => {
-            console.log(data);
-            setStore({ proyecto: data });
+
+            // console.log(data)
+            setStore({  proyecto: data })
           })
           .catch(() => {});
       },
@@ -189,6 +185,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             return response.json();
           })
           .then((data) => {
+            // console.log(data)
             setStore({
               actividad: data,
             });
@@ -269,6 +266,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch(() => {});
       },
+      
       handleChangeHora: (e) => {
         const { hora } = getStore();
         hora[e.target.name] = e.target.value;

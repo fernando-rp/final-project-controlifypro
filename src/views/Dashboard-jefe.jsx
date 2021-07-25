@@ -1,16 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { useHistory } from "react-router";
 import { Context } from "../store/appContext";
 import { Bar } from "react-chartjs-2";
 
 const DashboardJefe = () => {
+  const { store, actions } = useContext(Context);
+
+  useEffect(() => {
+
+    actions.getHoras('/horas')
+  
+}, [])
+
   // grafico horizontal superior de proyectos
   const proyectos = {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
       {
-        label: "%",
+
+        label: "HH",
         data: [12, 19, 3, 5, 2, 3],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
@@ -49,9 +56,39 @@ const DashboardJefe = () => {
       },
       title: {
         display: true,
-        text: "Actividad Vs Porcentaje",
+
+        text: "Horas por Proyectos",
       },
     },
+  };
+
+
+  // grafico de pie lateral derecho
+  const data = {
+    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    datasets: [
+      {
+        label: "HH",
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
   };
 
   // grafico horizontal inferior de actividades
@@ -59,7 +96,8 @@ const DashboardJefe = () => {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
       {
-        label: "%",
+
+        label: "HH",
         data: [12, 19, 3, 5, 2, 3],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
@@ -96,7 +134,8 @@ const DashboardJefe = () => {
       },
       title: {
         display: true,
-        text: "Proyecto Vs Porcentaje",
+
+        text: "Horas por proyectos",
       },
     },
   };
@@ -144,18 +183,23 @@ const options3 = {
 
   return (
     <>
-      <>
-        <div className="container mx-auto">
-          <div className="row  caption-top mt-5 ">
-            <div className="col-4 fs-5 bg-primary text-light">
-              Dashboard Colaborador
-            </div>
-          </div>
-          <div className="row justify-content-md-center border boder-primary mb-5">
-            <div className="col">
+
+        <div className="container">
+          <div className="row justify-content-md-center">
+            <div className="col-5">
               <div className="header">
-                <h3 className="title">Horas de los Colaboradores</h3>
-                <div className="links"></div>
+                <h3 className="title">Proyectos</h3>
+                <div className="links">
+                </div>
+              </div>
+              <Bar data={proyectos} options={options2} />
+            </div>
+            <div className="col-4">
+              <div className="header">
+                <h3 className="title">Pie Chart</h3>
+                <div className="links">
+ 
+                </div>
               </div>
               <Bar data={colaboradores} options={options3} />
             </div>
@@ -163,21 +207,20 @@ const options3 = {
           <div className="row justify-content-md-center border boder-primary mb-5">
             <div className="col">
               <div className="header">
-                <h3 className="title">% Ejecucion de Proyectos</h3>
-                <div className="links"></div>
+
+                <h1 className="title">Horizontal Bar Chart</h1>
               </div>
               <Bar data={proyectos} options={options2} />
             </div>
             <div className="col">
               <div className="header">
-                <h3 className="title">% Ejecucion de Actividades</h3>
-                <div className="links"></div>
+                <h1 className="title">Vertical Bar Chart</h1>
               </div>
               <Bar data={actividades} options={options} />
             </div>
           </div>
         </div>
-      </>
+   
     </>
   );
 };

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Swal from 'sweetalert2'
 
+import moment from "moment";
+
 const ListadoProyectos = () => {
 
   const {store, actions} = useContext(Context);
@@ -160,8 +162,8 @@ const ListadoProyectos = () => {
                         <td className="text-center">{proyecto.sigla}</td>
                         <td className="">{proyecto.nombre}</td>
                         <td className="">{proyecto.descripcion}</td>
-                        <td className="text-center">{proyecto.fecha_inicio}</td>
-                        <td className="text-center">{proyecto.fecha_entrega}</td>
+                        <td className="text-center">{moment(proyecto.fecha_inicio, "YYYY-MM-DD").format("DD-MM-YYYY")}</td>
+                        <td className="text-center">{moment(proyecto.fecha_entrega, "YYYY-MM-DD").format("DD-MM-YYYY")}</td>
                         <td className="text-center">{proyecto.porcentaje_avance} %</td>
                         <td className="text-center">{proyecto.presupuesto}</td>
                         <td className="text-center align-items-center">

@@ -28,18 +28,6 @@ const ListaHoras = () => {
         actions.getProyectos('/proyectos')
         actions.getActividades('/actividades')
         actions.getUsuarios('/usuarios')
-
-        // setData({...data,
-        //     proyecto_idError:true,
-        //     actividad_idError:true,
-        //     descripcionError:true,
-        //     hhError:true,
-        //     hh_extraError:true,
-        //     colaboradorError:true,
-        //     usuario_idError:true,
-        //     validate: false,
-        //   })
-
     }, [])
 
  

@@ -122,7 +122,8 @@ const App = () => {
         </Switch>
         {/* <Footer /> */}
       </BrowserRouter>
-    )
+    );
+
 }
 
 export default injectContext(App);
