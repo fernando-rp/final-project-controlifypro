@@ -4,11 +4,17 @@ import { Pie, Bar } from "react-chartjs-2";
 
 const DashboardJefe = () => {
   const { store, actions } = useContext(Context);
-  const {horasProyectos, horasPorActividad}=store;
+  const { horasPorActividad }= store;
+  const {horasProyectos}=store;
+
+
+  const [data, setData]=useState({})
 
   useEffect(() => {
+    actions.getHoras('/horas')
+    actions.getHorasPorActividad('/HorasPorActividad')
 
-    actions.getHorasPorActividad("/HorasPorActividad")
+
     actions.getHorasProyectos("/HorasPorProyecto")
     
 }, [])
@@ -49,7 +55,7 @@ const DashboardJefe = () => {
   };
 
   // grafico de pie lateral derecho
-  const data = {
+  const proyectos1 = {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
       {
@@ -148,12 +154,32 @@ const DashboardJefe = () => {
 
 // grafico vertical inferior de horas de colaboradores
 
+const values = (e) => {
+  e.preventDefault();
+
+  
+  let arrHH = !!horasPorActividad && horasPorActividad.map((con) => con.hh)
+  let arrNombre = !!horasPorActividad && horasPorActividad.map((con) => con.descripcion)
+
+  setData({
+    ['labels']: arrHH,
+    ['midata']: arrNombre,
+  })
+
+  // console.log(arrNombre)
+}
+
+
+
 const colaboradores = {
-  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  
+  labels: data.midata,
   datasets: [
     {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 2, 3],
+
+      label: "Horas",
+      data: data.labels,
+
       backgroundColor: [
         "rgba(255, 99, 132, 0.2)",
         "rgba(54, 162, 235, 0.2)",
@@ -189,6 +215,10 @@ const options3 = {
 
   return (
     <>
+
+      <button type="button" className="btn btn-outline-primary" onClick={(e) => values(e)}> sdasd </button>
+
+
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-5">
@@ -197,7 +227,14 @@ const options3 = {
                 <div className="links">
                 </div>
               </div>
-              <Bar data={proyectos} options={hhutilizadas} />
+
+               <Bar data={proyectos1} options={options2} /> 
+
+              
+
+
+
+ 
             </div>
 
             <div className="col-5">
@@ -207,6 +244,7 @@ const options3 = {
                 </div>
               </div>
               <Bar data={proyectos} options={hhvendidas} />
+
             </div>
 
 
