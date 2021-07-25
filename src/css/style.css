@@ -10,3 +10,8 @@ footer {
     display: flex;
     align-items: center;
 }
+
+.errorAHH{
+    font-size: 12px !important;
+    color: orange !important;
+}

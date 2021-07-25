@@ -4,10 +4,9 @@ import { useHistory } from "react-router";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
 
-const RegistroActividad = ()=>{
+const RegistroProyecto = ()=>{
   const {store, actions}= useContext(Context);
   const history= useHistory();
-
 
   const [data,setData]=useState(null)
   const {usuarios, localidades} = store;
@@ -39,7 +38,7 @@ const RegistroActividad = ()=>{
 
           <div className="row justify-content-center">
             <div className="col-md-8 p-0 bg-dark text-white">
-              <div className="pl-2"><h3>Agregar proyecto</h3></div>
+              <div className="pl-2"><h3>Agregar Proyecto</h3></div>
             </div>
           </div>
 
@@ -147,7 +146,7 @@ const RegistroActividad = ()=>{
                     />
                   </div>
 
-                      <div class="col-md-7 mt-3">
+                      <div className="col-md-7 mt-3">
 
                       </div>
                 </div>
@@ -164,4 +163,4 @@ const RegistroActividad = ()=>{
     )
 }
 
-export default RegistroActividad ;
+export default RegistroProyecto;

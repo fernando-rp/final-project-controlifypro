@@ -3,11 +3,20 @@ import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
+// import { Select, Textbox, Textarea } from 'react-inputs-validation';
+// import "react-inputs-validation/lib/react-inputs-validation.min.css";
+// import React from 'react';
+import { useForm } from "react-hook-form";
+import "../css/style.css"
+
+
+
 
 
 const ListaHoras = () => {
     const { store, actions } = useContext(Context);
     const { actividades, proyectos, horas, actividades_proyecto,usuarios } = store;
+    const {register, handleSubmit, formState:{errors}}= useForm();
     // const { id } = useParams();
     // const history = useHistory();
     const [data, setData] = useState(null)
@@ -20,19 +29,20 @@ const ListaHoras = () => {
         actions.getActividades('/actividades')
         actions.getUsuarios('/usuarios')
 
+        // setData({...data,
+        //     proyecto_idError:true,
+        //     actividad_idError:true,
+        //     descripcionError:true,
+        //     hhError:true,
+        //     hh_extraError:true,
+        //     colaboradorError:true,
+        //     usuario_idError:true,
+        //     validate: false,
+        //   })
+
     }, [])
 
-    
-
-    const formatDate = (date)=>{ 
-        
-        // onChange({
-        //     value: date.target.value
-        // })
-        //  console.log(typeof date)
-    }
-
-
+ 
     const actividadesProyecto=(e)=>{
         actions.getActividadesProyectos(`/actividades/${e.target.value}/proyectos`)
         setData({
@@ -40,7 +50,6 @@ const ListaHoras = () => {
             [e.target.name]: e.target.value,
         })
     }
-
 
     const confirmacion_saved = () => {
 
@@ -71,8 +80,8 @@ const ListaHoras = () => {
             confirmButtonText: '¡Sí, borrar!'
           }).then((result) => {
             if (result.isConfirmed) {
-  
-              Swal.fire(
+            actions.deleteHora(a_id)
+            Swal.fire(
                 'Eliminado',
                 'Tus horas han sido eliminadas',
                 'success'
@@ -81,27 +90,31 @@ const ListaHoras = () => {
           })
     }
 
-
     return (
         <>
         <div className="container mt-4">
             <div className="row">
                 <div className="col-4 fs-5 bg-primary text-light">Agregar Horas</div>
             </div>
-            <form onSubmit={(e) => {
-                e.preventDefault();
-                actions.addHoras("/horas",data);
+            <form onSubmit={handleSubmit((e) => {
 
-
-            }}>
+                actions.addHoras("/horas",data)
+                confirmacion_saved();
+                console.log(e)
+                
+            })}>
                 <div className="row border boder-primary mb-4">
                     <div className="col-12">
                         <div className="row g-3 mt-3">
                             <div className="col-md-6 mb-3">
 
-                                <label for="floatingTextarea">Proyecto</label> <br />
-                                <select className="form-select" aria-label="" name="proyecto_id" onChange={(e)=>{actividadesProyecto(e)}}>
-                                    <option selected>Seleccionar proyecto</option>
+                                <label for="proyecto_id">Proyecto</label> <br />
+                                <select className="form-select" aria-label="" name="proyecto_id"
+                                {...register("proyecto_id", {required:true})}
+                                onChange={(e)=>{
+                                    actividadesProyecto(e)
+                                    }}>
+                                    <option disable selected value="">Seleccionar proyecto</option>
                                     {!!proyectos &&
                                         proyectos.map((proyecto) => {
                                             return (
@@ -109,12 +122,18 @@ const ListaHoras = () => {
                                         })
                                     }
                                 </select>
+                                {errors.proyecto_id && <p className="errorAHH">Este campo es requerido</p>}
                             </div>
 
                             <div className="col-md-6 mb-3">
                                 <label for="actividad_id">Actividad</label> <br />
-                                <select class="form-select" aria-label="" name="actividad_id" onChange={handleChangeHH}>
-                                    <option selected>Seleccionar actividad</option>
+                                <select className="form-select" aria-label="" name="actividad_id" 
+                                {...register("actividad_id", {required:true})}
+                                onChange={(e)=>{
+                                    handleChangeHH(e)
+                                }}
+                                >
+                                     <option disable selected value="">Seleccionar actividad</option>
                                     {!!actividades_proyecto &&
                                         actividades_proyecto.map((actividad) => {
                                             return (
@@ -122,56 +141,60 @@ const ListaHoras = () => {
                                         })
                                     }
                                 </select>
+                                {errors.actividad_id && <p className="errorAHH">Este campo es requerido</p>}
                             </div>
 
-                            <div className="col-md-6 mb-3 ">
+                            <div className="col-md-6 ">
                                 <label for="fecha" className="form-label">Fecha</label>
-                                <input 
+                                <input
+                                {...register("fecha", {required:true})}
                                 type="date" 
-                                className="form-control mb-3 col-8"
+                                className="form-control col-8"
                                 name="fecha"
                                 onChange ={handleChangeHH}   
                                 />
+                                {errors.fecha && <p className="errorAHH">Este campo es requerido</p>}
+
                             </div>
 
                             <div className="col-md-6 mb-3">
-                                <label for="floatingTextarea" >Descripción</label>
-                                <textarea
-                                    rows="4"
-                                    name="descripcion"
-                                    className="form-control mb-3 col-8"
-                                    placeholder=""
-                                    id="floatingTextarea"
-                                    onChange={handleChangeHH}
-                                >
-                                </textarea>
+                                
+                                <label for="descripcion">Descripción</label>
+                                    <textarea
+                                        
+                                        {...register("descripcion", {required:true})}
+                                        rows="4"
+                                        name="descripcion"
+                                        class="form-control col-8"
+                                        placeholder=""
+                                        onChange={handleChangeHH}
+                                    ></textarea>
+                                    {errors.descripcion && <p className="errorAHH">Este campo es requerido</p>}
 
-                                <div className="row">
+
+
+                                <div className="row mt-3">
                                     <div className="col-4">
-                                        <label for="floatingTextarea">Horas</label>
-                                        <input
-                                            name="hh"
-                                            type="number"
-                                            className="form-control mb-3 col-12"
-                                            id="inputhh"
-                                            onChange={handleChangeHH}
-                                        />
+                                        <label for="hh">Horas</label>
+                                        <input {...register("hh", {required:true})} type="number" className="form-control col-12" name="hh" onChange={handleChangeHH}/>
+                                        {errors.hh && <p className="errorAHH">Este campo es requerido</p>}
                                     </div>
+
                                     <div className="col-4">
-                                        <label for="floatingTextarea">Horas Extras</label>
-                                        <input
-                                            name="hh_extra"
-                                            type="number"
-                                            className="form-control mb-3 col-12"
-                                            id="inputhhe"
-                                            onChange={handleChangeHH}
-                                        />
+                                        <label for="hh_extra">Horas Extras</label>
+                                        <input {...register("hh_extra", {required:true})} type="number" name="hh_extra" className="form-control col-12" onChange={handleChangeHH}/>
+                                        {errors.hh_extra && <p className="errorAHH">Este campo es requerido</p>}
                                     </div>
                                 </div>
-                                <label for="usuario" className="form-label">Colaborador</label><br/>
-                                <select class="form-select" aria-label="" name="usuario_id" onChange={(e)=>{handleChangeHH(e)}}  >
-                                    <option selected>Seleccionar colaborador</option>
-                                    
+                                
+                                <label for="usuario_id" className="form-label mt-4">Colaborador</label><br/>
+                                <select class="form-select" aria-label="" name="usuario_id" 
+                                {...register("usuario_id", {required:true})}
+                                onChange={(e)=>{
+                                    handleChangeHH(e)
+                                }}>
+                                <option disable selected value="">Seleccionar colaborador</option>
+                                
                                     {!!usuarios &&
                                         usuarios.map((usuario) => {
                                             return (
@@ -179,28 +202,17 @@ const ListaHoras = () => {
                                         })
                                     }
                                 </select>
-                            </div>
+                                {errors.usuario_id && <p className="errorAHH">Este campo es requerido</p>}
+                                
 
-                            {/* <div className="col-md-12 mx-auto">
-                        <label className="form-check-label mb-3" for="inlineFormCheck">Estado</label>
-                            <div className="form-check">
-                                <div class="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="estado" id="inlineRadioActive" value="1" onClick={(e)=> actions.handleChangeActividad(e)} />
-                                    <label className="form-check-label p-0" for="inlineRadioActive">Activo</label>
-                                </div>
-                                <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="estado" id="inlineRadioInactive" value="0" onClick={(e)=>actions.handleChangeActividad(e)} />
-                                    <label className="form-check-label p-0" for="inlineRadioInactive">Inactivo</label>
-                                </div>      
                             </div>
-                        </div> */}
                         </div>
                     </div>
 
                     <div className="col-11 d-flex justify-content-end mb-4">
                         <div className="row g-3 mt-3">
                             <div className="col-md-2 mx-auto">
-                                <button type="submit" className="btn btn-success mb-2" onClick={() => { confirmacion_saved() }}>Agregar</button>
+                                <button type="submit" className="btn btn-success mb-2">Agregar</button>
                             </div>
                             <div className="col-md-2 mx-auto">
                                 <button className="btn btn-info" type="reset">Limpiar</button>
@@ -258,7 +270,7 @@ const ListaHoras = () => {
                                                 <td className="text-center">{horas.hh_extra}</td>
                                                 <td className="text-center">
                                                     {/* <button className="edit-icon border-0 bg-transparent text-primary mx-1"> <i className="fas fa-database"></i> </button> */}
-                                                    <Link className="edit-icon border-0 bg-transparent text-success mx-1" to={`/registro-edicion-proyecto/${horas.id}`}><i className="far fa-edit "></i></Link>
+                                                    <Link className="edit-icon border-0 bg-transparent text-success mx-1" to={`/lista-horas/${horas.id}`}><i className="far fa-edit "></i></Link>
                                                     <button className="trash-icon border-0 bg-transparent text-danger" onClick={() => { confirmacion(horas.id) }} ><i className="far fa-trash-alt "></i></button>
                                                 </td>
                                             </tr>
