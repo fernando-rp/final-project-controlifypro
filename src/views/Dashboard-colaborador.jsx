@@ -18,10 +18,15 @@ const DashboardColaborador = () => {
     actions.getHorasPorActividad("/HorasPorActividad");
   }, []);  
 
-  const color= () => {
-    const n = mat: 
+  const color = () => {
+    const n = Math.floor(Math.random(205,255) * 10) + 1;
+    const n1 = Math.floor(Math.random(55, 205) * 10) + 1;
+    const n2 = Math.floor(Math.random(105, 155) * 10) + 1;
+    const n3 = Math.floor(Math.random(155, 205) * 10) + 1;
+    const n4 = Math.floor(Math.random(205, 255) * 10) + 1;
+    const n5 = Math.floor(Math.random(0, 55) * 10) + 1;
       return (
-        "rgba("+n+")"
+        console.log("rgba("+n+","+n1+","+n2+","+n3+","+n4+","+n5+")")
       )
   }
 
@@ -36,10 +41,10 @@ const proyectos = {
   ],
   datasets: [
     {
-      label: { horasPorActividad.label },
+      label: "Horas Cargadas a Proyecto",
       data: [12, 19, 3, 5, 2, 3],
       backgroundColor: [
-        {color},
+        { color },
         "rgba(54, 162, 235, 0.2)",
         "rgba(255, 206, 86, 0.2)",
         "rgba(75, 192, 192, 0.2)",
