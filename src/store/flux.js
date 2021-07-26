@@ -14,6 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       localidades: null,
       horas: null,
       horasPorActividad: null,
+      horasporProyecto:null,
+      horasporColaborador:null,
 
       horasProyectos: null,
       hora:null,
@@ -115,7 +117,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         // } else {
         //   proyecto[e.target.name] = e.target.value;
         // }
-        console.log(e.target.value)
         proyecto[e.target.name] = e.target.value;
         setStore({
           proyecto: proyecto,
@@ -370,6 +371,32 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch(() => {});
       },
+      getHorasSProyecto: (url, id) => {
+        fetch(`${url}/${id}`, {})
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              horasporProyecto: data,
+            });
+          })
+          .catch(() => {});
+      },
+      getHorasPorActProyColaborador: (url, id1, id2) => {
+        fetch(`${url}/${id1}/${id2}`, {})
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              horasporColaborador: data,
+            });
+          })
+          .catch(() => {});
+      },
       getHorasProyectos: (url) => {
         fetch(url, {})
           .then((response) => {
@@ -383,17 +410,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch(() => {});
       },
-
-      // nameProyecto: (proyectos)=>{
-      //   const { nombres } = getStore();
-      //   proyectos.map((proyecto)=>{
-      //       nombres.push(proyecto.nombre_proyecto)
-      //   })
-      //   setStore({
-      //     nombres: nombres,
-      //   });
-      // },
-
       
       /****** Actividad ******/
 

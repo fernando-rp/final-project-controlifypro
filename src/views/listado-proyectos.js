@@ -170,7 +170,7 @@ const ListadoProyectos = () => {
                           <span className={proyecto.estado===1?"tag badge badge-success":"tag badge badge-danger"}>{proyecto.estado===1?"Activo":"Inactivo"}</span>
                         </td>
                         <td className="text-center">
-                            <button className="edit-icon border-0 bg-transparent text-primary mx-1"> <i className="fas fa-database"></i></button>
+                            {/* <button className="edit-icon border-0 bg-transparent text-primary mx-1"> <i className="fas fa-database"></i></button> */}
                             <Link className="edit-icon border-0 bg-transparent text-success mx-1" to={`/registro-edicion-proyecto/${proyecto.id}`}><i className="far fa-edit "></i></Link>
                             <button className="trash-icon border-0 bg-transparent text-danger" onClick={()=>{confirmacion(proyecto.id)}} ><i className="far fa-trash-alt "></i></button>
                         </td>
