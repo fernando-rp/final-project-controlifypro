@@ -64,7 +64,7 @@ const ListadoActividades = ()=>{
         <div className="pl-2"><h3>Buscar Actividades</h3></div>
       </div>
 
-      <div className="col border boder-dark">
+      <div className="col border border-dark">
         <form onSubmit={(e) => {            
                         e.preventDefault();
                         buscar_actividades();
