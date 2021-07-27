@@ -13,12 +13,24 @@ const getState = ({ getStore, getActions, setStore }) => {
       error: null,
       localidades: null,
       horas: null,
-      horasPorActividad: [],
-      hora: null,
-      actividades_proyecto: null,
-      usuario_id: "",
-      access_token: "",
-      rol_id: "",
+
+
+      horasPorActividad: null,
+      horasporProyecto:null,
+      horasporColaborador:null,
+
+      horasProyectos: null,
+      hora:null,
+      actividades_proyecto:null,
+      usuario_id: '',
+      access_token: '',
+      rol_id: '',
+
+      arrHH: null,
+      arrNombre: null,
+
+      nombres:[],
+
     },
     actions: {
       Login: (email, password, history) => {
@@ -105,7 +117,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         // } else {
         //   proyecto[e.target.name] = e.target.value;
         // }
-        console.log(e.target.value);
+
         proyecto[e.target.name] = e.target.value;
         setStore({
           proyecto: proyecto,
@@ -128,11 +140,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .then((data) => {
             setStore({
-              horasPorActividad: data,
+              horasPorActividad: data
             });
           })
           .catch(() => {});
       },
+
 
       getActividades: (url) => {
         fetch(url, {})
@@ -336,6 +349,64 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch(() => {});
       },
+
+
+      /****** Gráficos ******/
+
+      getHorasPorActividad: (url) => {
+        fetch(url, {})
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              horasPorActividad: data,
+              
+            });
+          })
+          .catch(() => {});
+      },
+      getHorasSProyecto: (url, id) => {
+        fetch(`${url}/${id}`, {})
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              horasporProyecto: data,
+            });
+          })
+          .catch(() => {});
+      },
+      getHorasPorActProyColaborador: (url, id1, id2) => {
+        fetch(`${url}/${id1}/${id2}`, {})
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              horasporColaborador: data,
+            });
+          })
+          .catch(() => {});
+      },
+      getHorasProyectos: (url) => {
+        fetch(url, {})
+          .then((response) => {
+            if (!response.ok) setStore({ error: response.error });
+            return response.json();
+          })
+          .then((data) => {
+            setStore({
+              horasProyectos: data,
+            });
+          })
+          .catch(() => {});
+      },
+      
 
       /****** Actividad ******/
 

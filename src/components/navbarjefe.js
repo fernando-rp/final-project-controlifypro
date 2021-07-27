@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import logo from '../img/controlifypro.png'
+
+
 const Navbarjefe = () => {
 	return (
 		<nav className="navbar navbar-expand-lg bg-danger">
@@ -41,7 +44,7 @@ const Navbarjefe = () => {
                         <img src="./assets/img/faces/erik-lucatero-2.jpg" alt="Circle Image" class="img-circle img-responsive img-no-padding">
                       </div>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
+                    
                       <div class="dropdown-header">Dropdown header</div>
                       <a class="dropdown-item" href="javascript:;">Action</a>
                       <a class="dropdown-item" href="javascript:;">Another action</a>
@@ -58,10 +61,16 @@ const Navbarjefe = () => {
 
 			
 			<div className="container">
-				<Link to="/">
+        <img src={logo} className="d-block"  height="25" alt="..."/>
+
+				{/* <Link to="/">
 					<span className="navbar-brand mb-2 fs-3">Controlify Pro</span>
-				</Link>
+				</Link> */}
+
 					<div className="ml-auto"> 
+        <Link to="/Dashboard-jefe">
+					<span className="navbar-brand mb- fs-5">Inicio</span>
+				</Link>
 				<Link to="/listado-proyectos">
 					<span className="navbar-brand mb- fs-5">Proyectos</span>
 				</Link>
@@ -74,6 +83,9 @@ const Navbarjefe = () => {
 				<Link to= "/lista-horas">				
 					<span className="navbar-brand mb-2 fs-5">Horas</span>
 				</Link>  
+        <Link to= "/">				
+					<span className="navbar-brand mb-2 fs-5">Cerrar Sesión</span>
+				</Link> 
                 </div> 
 			</div>
 		</nav>
