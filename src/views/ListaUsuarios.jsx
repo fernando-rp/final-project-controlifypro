@@ -3,17 +3,15 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
 
-import moment from "moment";
 
 const ListaUsuarios = () => {
   const { store, actions } = useContext(Context);
-  const { usuarios, localidades } = store;
+  const { usuarios,  } = store;
 
   const [datos, setDatos] = useState({});
 
   useEffect(() => {
     actions.getUsuarios("/usuarios");
-    actions.getLocalidades("/localidades");
   }, []);
 
   const buscar_usuarios = () => {
@@ -67,7 +65,7 @@ const ListaUsuarios = () => {
           <div className="row m-2 mt-3">
             <div className="col-md-4">
               <label htmlFor="sigla" className="form-label">
-                Código
+                Primer Nombre
               </label>
               <input
                 type="text"
@@ -77,9 +75,10 @@ const ListaUsuarios = () => {
                 onChange={handleInputChange}
               />
             </div>
+
             <div className="col-md-4">
               <label htmlFor="nombre" className="form-label">
-                Nombre
+                Segundo Nombre
               </label>
               <input
                 type="text"
@@ -89,56 +88,49 @@ const ListaUsuarios = () => {
                 onChange={handleInputChange}
               />
             </div>
+
             <div className="col-md-4">
-              <label htmlFor="localidad_id" className="form-label">
-                Localidad
+              <label htmlFor="nombre" className="form-label">
+                Email
               </label>
-              <select
+              <input
+                name="email"
+                type="Email"
                 className="form-control"
-                defaultValue={"DEFAULT"}
-                name="localidad_id"
+                id="inputcorreo"
+                placeholder="name@example.com"
                 onChange={handleInputChange}
-              >
-                <option value="DEFAULT" disabled>
-                  Seleccionar...
-                </option>
-                {!!localidades &&
-                  localidades.length > 0 &&
-                  localidades.map((localidad, index) => {
-                    return (
-                      <option key={index} value={localidad.id}>
-                        {localidad.nombre}
-                      </option>
-                    );
-                  })}
-              </select>
+              />
             </div>
           </div>
 
           <div className="row m-2">
             <div className="col-md-4">
-              <label htmlFor="fecha_inicio" className="form-label">
-                Fecha inicio
+              <label htmlFor="nombre" className="form-label">
+                Apellido Paterno
               </label>
               <input
-                type="date"
+                type="text"
                 className="form-control"
-                name="fecha_inicio"
+                name="nombre"
+                autoComplete="off"
                 onChange={handleInputChange}
               />
-              {/* <input type="text" className="form-control" id="inputfechainicio" /> */}
             </div>
+
             <div className="col-md-4">
-              <label htmlFor="fecha_entrega" className="form-label">
-                Fecha fin
+              <label htmlFor="nombre" className="form-label">
+                Apellido Materno
               </label>
               <input
-                type="date"
+                type="text"
                 className="form-control"
-                name="fecha_entrega"
+                name="nombre"
+                autoComplete="off"
                 onChange={handleInputChange}
               />
             </div>
+
             <div className="col-md-4 mb-4">
               <label htmlFor="estado" className="form-label">
                 Estado
@@ -209,7 +201,7 @@ const ListaUsuarios = () => {
                 Apellido Materno
               </th>
               <th className="text-center" scope="col">
-                Correo
+                Email
               </th>
               <th className="text-center" scope="col">
                 Acciones
