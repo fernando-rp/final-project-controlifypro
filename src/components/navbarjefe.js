@@ -67,26 +67,26 @@ const Navbarjefe = () => {
 					<span className="navbar-brand mb-2 fs-3">Controlify Pro</span>
 				</Link> */}
 
-					<div className="ml-auto"> 
-        <Link to="/Dashboard-jefe">
-					<span className="navbar-brand mb- fs-5">Inicio</span>
-				</Link>
-				<Link to="/listado-proyectos">
-					<span className="navbar-brand mb- fs-5">Proyectos</span>
-				</Link>
-				<Link to= "/listado-actividades">				
-					<span className="navbar-brand mb-2 fs-5">Actividades</span>
-				</Link>         
-				<Link to= "/lista-usuarios">				
-					<span className="navbar-brand mb-2 fs-5">Usuarios</span>
-				</Link>     
-				<Link to= "/lista-horas">				
-					<span className="navbar-brand mb-2 fs-5">Horas</span>
-				</Link>  
-        <Link to= "/">				
-					<span className="navbar-brand mb-2 fs-5">Cerrar Sesión</span>
-				</Link> 
-                </div> 
+        <div className="ml-auto">
+          <Link to="/Dashboard-jefe">
+            <span className="navbar-brand mb- fs-5">Inicio</span>
+          </Link>
+          <Link to="/listado-proyectos">
+            <span className="navbar-brand mb- fs-5">Proyectos</span>
+          </Link>
+          <Link to="/listado-actividades">
+            <span className="navbar-brand mb-2 fs-5">Actividades</span>
+          </Link>
+          <Link to="/lista-usuarios">
+            <span className="navbar-brand mb-2 fs-5">Colaboradores</span>
+          </Link>
+          <Link to="/lista-horas">
+            <span className="navbar-brand mb-2 fs-5">Horas</span>
+          </Link>
+          <Link to="/">
+            <span className="navbar-brand mb-2 fs-5">Cerrar Sesión</span>
+          </Link>
+        </div>
 			</div>
 		</nav>
 
