@@ -53,21 +53,21 @@ export function Login() {
                         e.preventDefault();
                         actions.Login(email, password, history);
                       }}>
-                      <label>Email</label>
+                      <label>Correo</label>
                       <input
                         type="email"
                         className="form-control no-border"
                         id="inputname"
-                        placeholder="name@example.com"
+                        placeholder="nombre@ejemplo.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
-                      <label>Password</label>
+                      <label>Contraseña</label>
                       <input
                         type="password"
                         className="form-control no-border"
                         id="inputPassword"
-                        placeholder="Password"
+                        placeholder="Contraseña"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                       />

@@ -70,18 +70,18 @@ const getState = ({ getStore, getActions, setStore }) => {
                 // código para redireccionar al administrador
                 sessionStorage.setItem("token", data.access_token);
 
-                history.push("/listado-proyectos");
+                history.push("/Dashboard-jefe");
                 break;
               case 2:
                 // código para redireccionar al jefe
-                history.push("/listado-proyectos");
+                history.push("/Dashboard-jefe");
 
                 break;
               case 3:
                 // código para redireccionar al Colaborador
                 sessionStorage.setItem("token", data.access_token);
 
-                history.push("/listado-proyectos");
+                history.push("/lista-horas");
                 break;
               default:
                 Swal.fire({

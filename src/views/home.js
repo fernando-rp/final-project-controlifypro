@@ -23,7 +23,7 @@ const Home = () => {
             <Mododeusar/>
             <History />
             <Porqueusar/>
-            <Tecnologias />
+            {/* <Tecnologias /> */}
             <Equipo/> 
             <Footer/>
         </>  

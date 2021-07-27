@@ -10,12 +10,10 @@ const Equipo = () => {
            
            
            
-           <div className="container mb-4">
+           <div className="container mt-4">
+        
                 <div>
-                    <h1 className="text-center">.....</h1>
-                </div>
-                <div>
-                    <h1 className="text-center">Nuestro Equipo</h1>
+                    <h1 className="text-center mb-4 p-4">Nuestro Equipo</h1>
                 </div>
                 
                 <div className="row row-cols-1 row-cols-md-4 g-4">
