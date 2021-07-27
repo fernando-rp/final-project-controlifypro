@@ -12,9 +12,6 @@ export function Login() {
   const { actions } = useContext(Context);
   const history = useHistory();
 
-
-
-
   const confirmacion = (a_id) => {
     Swal.fire({
         title: '¿Estás seguro?',

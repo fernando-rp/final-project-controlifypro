@@ -214,7 +214,8 @@ const ListaUsuarios = () => {
               usuarios.map((usuario, index) => {
                 return (
                   <tr key={index}>
-                    <td className="text-center"> {usuario.primer_nombre}</td>
+
+                    <td className="text-center">{usuario.primer_nombre}</td>
                     <td className="text-center">{usuario.segundo_nombre}</td>
                     <td className="text-center">{usuario.apellido_paterno}</td>
                     <td className="text-center">{usuario.apellido_materno}</td>
