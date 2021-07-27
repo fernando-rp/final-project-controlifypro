@@ -13,6 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       error: null,
       localidades: null,
       horas: null,
+
+
       horasPorActividad: null,
       horasporProyecto:null,
       horasporColaborador:null,
@@ -57,12 +59,11 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           })
           .then((data) => {
-
-            setStore({ 
+            setStore({
               usuario_id: data.usuario_id,
               access_token: data.access_token,
-              rol_id: data.rol_id
-            })
+              rol_id: data.rol_id,
+            });
 
             switch (data.rol_id) {
               case 1:
@@ -72,9 +73,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                 history.push("/listado-proyectos");
                 break;
               case 2:
-
-                  // código para redireccionar al jefe
-                  history.push("/listado-proyectos");
+                // código para redireccionar al jefe
+                history.push("/listado-proyectos");
 
                 break;
               case 3:
@@ -117,6 +117,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         // } else {
         //   proyecto[e.target.name] = e.target.value;
         // }
+
         proyecto[e.target.name] = e.target.value;
         setStore({
           proyecto: proyecto,
@@ -131,8 +132,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
-
-      
       getHorasPorActividad: (url) => {
         fetch(url, {})
           .then((response) => {
@@ -183,9 +182,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             return response.json();
           })
           .then((data) => {
-
             // console.log(data)
-            setStore({  proyecto: data })
+            setStore({ proyecto: data });
           })
           .catch(() => {});
       },
@@ -262,7 +260,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
       },
 
-
       /****** Horas ******/
       getHoraById: (url, id) => {
         fetch(`${url}/${id}`, {})
@@ -277,7 +274,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch(() => {});
       },
-      
+
       handleChangeHora: (e) => {
         const { hora } = getStore();
         hora[e.target.name] = e.target.value;
@@ -315,7 +312,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({
               horas: data,
             });
-
           })
           .catch(() => {});
       },
@@ -328,7 +324,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             return response.json();
           })
           .then((data) => {
-            
             getActions().getHoras("/horas");
           })
           .catch((error) => {
@@ -354,6 +349,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch(() => {});
       },
+
 
       /****** Gráficos ******/
 
@@ -411,6 +407,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch(() => {});
       },
       
+
       /****** Actividad ******/
 
       updateActividad: (url, id, history) => {
@@ -561,6 +558,34 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => {
             setStore({
               usuario: data,
+            });
+          })
+          .catch(() => {});
+      },
+
+      srcUsuarios: (url, datos) => {
+        fetch(`${url}`, {
+          method: "POST",
+          body: JSON.stringify(datos),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((resp) => {
+            if (resp.status === 200) {
+              return resp.json();
+            } else {
+              Swal.fire(
+                "Atención",
+                "Datos del formulario no arrojan resultados.",
+                "warning"
+              );
+            }
+          })
+          .then((data) => {
+            console.log(data);
+            setStore({
+              usuarios: data,
             });
           })
           .catch(() => {});
