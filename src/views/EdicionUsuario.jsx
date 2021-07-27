@@ -26,9 +26,11 @@ export function EdicionUsuario(props) {
   return (
     <>
       <div className="container mt-4 ">
-        <div className="row  caption-top m-0 ">
-          <div className="col-4 fs-5 bg-primary text-light">
-            Editar Colaborador ({id})
+        <div className="row justify-content-center">
+          <div className="col-md-8 p-0 bg-dark text-white">
+            <div className="pl-2">
+              <h3> Editar Colaborador ({id})</h3>
+            </div>
           </div>
         </div>
 
@@ -38,25 +40,9 @@ export function EdicionUsuario(props) {
             actions.updateUsuario("/usuarios", id, history);
           }}
         >
-          <div className="row border boder-primary">
-            <div className="col-12">
+          <div className="row justify-content-center">
+            <div className="col-md-8 border border-dark">
               <div className="row g-3 mt-3">
-
-                <div className="col-md-8 mx-auto">
-                  <label for="name" className="form-label">
-                    Rut
-                  </label>
-                  <input
-                    name="rut"
-                    type="text"
-                    className="form-control"
-                    id="inputrut"
-                    placeholder="Ingrese RUN Chileno"
-                    value={!!usuario && usuario.rut}
-                    onChange={actions.handleChangeUsuario}
-                  />
-                </div>
-
                 <div className="col-md-8 mx-auto">
                   <label for="name" className="form-label">
                     Primer Nombre
@@ -160,9 +146,12 @@ export function EdicionUsuario(props) {
                         name="estado"
                         id="inlineRadioActive"
                         value="1"
-                        onClick={(e)=>actions.handleChangeUsuario(e)}
+                        onClick={(e) => actions.handleChangeUsuario(e)}
                       />
-                      <label className="form-check-label" for="inlineRadioActive">
+                      <label
+                        className="form-check-label"
+                        for="inlineRadioActive"
+                      >
                         Activo
                       </label>
                     </div>
@@ -173,44 +162,39 @@ export function EdicionUsuario(props) {
                         name="inlineRadioOptions"
                         id="inlineRadioInactive"
                         value="0"
-                        onClick={(e)=>actions.handleChangeUsuario(e)}
-                        
+                        onClick={(e) => actions.handleChangeUsuario(e)}
                       />
-                      <label className="form-check-label" for="inlineRadioInactive">
+                      <label
+                        className="form-check-label"
+                        for="inlineRadioInactive"
+                      >
                         Inactivo
                       </label>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div className="col-10 d-flex justify-content-end mb-4">
-          <div className="row g-3 mt-3">
-            <div className="col-md-2 mx-auto">
-              <button
-                type="submit"
-                className="btn btn-success"
-                onClick={() => confirmacion2()}
-              >
-                Guardar
-              </button>
-            </div>
-            <div className="col-md-2 mx-auto">
-              <Link
-                type="submit"
-                className="btn btn-danger"
-                to="/lista-usuarios"
-              >
-                Cancelar
-              </Link>
-            </div>
+              <div className="col-10 d-flex justify-content-end mb-4">
+                <div className="row my-4 justify-content-center">
+                  <button
+                    type="submit"
+                    className="btn btn-success mx-2"
+                    onClick={() => confirmacion2()}
+                  >
+                    Guardar
+                  </button>
+                  <Link
+                    type="submit"
+                    className="btn btn-outline-danger mx-2"
+                    to="/lista-usuarios"
+                  >
+                    Cancelar
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </form>
-
-
       </div>
     </>
   );

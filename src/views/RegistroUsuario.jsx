@@ -31,28 +31,21 @@ export function RegistroUsuario(props) {
 
   return (
     <div className="container mt-4 ">
-      <div className="row">
-        <div className="col-4 fs-5 bg-primary text-light">Registrar Colaborador</div>
+      <div className="row justify-content-center">
+        <div className="col-md-8 p-0 bg-dark text-white">
+          <div className="pl-2">
+            <h3>Registrar Colaborador</h3>
+          </div>
+        </div>
       </div>
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        actions.addUsuario("/usuarios", data, history);
-      }}>
-        <div className="row border boder-primary">
-
-            <div className="col-md-8 mx-auto">
-              <label for="name" className="form-label mt-4">
-                RUT
-              </label>
-              <input
-                name="rut"
-                type="text"
-                className="form-control"
-                id="inputrut"
-                onChange={handleChangeUsuario}
-              />
-            </div>
-
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          actions.addUsuario("/usuarios", data, history);
+        }}
+      >
+        <div className="row justify-content-center">
+          <div className="col-md-8 border border-dark">
             <div className="col-md-8 mx-auto">
               <label for="name" className="form-label mt-4">
                 Primer Nombre
@@ -120,7 +113,7 @@ export function RegistroUsuario(props) {
             </div>
 
             <div className="col-md-8 mx-auto">
-              <label for="inputPassword2" class="form-label">
+              <label for="inputPassword2" className="form-label">
                 Password
               </label>
               <div className="col-sm-12">
@@ -136,7 +129,10 @@ export function RegistroUsuario(props) {
             </div>
 
             <div className="col-md-8 mx-auto">
-              <label className="form-check-label mb-2" for="inlineFormCheck"> Estado </label>
+              <label className="form-check-label mb-2" for="inlineFormCheck">
+                {" "}
+                Estado{" "}
+              </label>
               <div className="form-check">
                 <div className="form-check form-check-inline">
                   <input
@@ -145,9 +141,11 @@ export function RegistroUsuario(props) {
                     name="estado"
                     id="inlineRadioActive"
                     value="1"
-                    onClick={(e) =>handleChangeUsuario(e)}
+                    onClick={(e) => handleChangeUsuario(e)}
                   />
-                  <label className="form-check-label" for="inlineRadioActive">Activo </label>
+                  <label className="form-check-label" for="inlineRadioActive">
+                    Activo{" "}
+                  </label>
                 </div>
                 <div className="form-check form-check-inline">
                   <input
@@ -156,41 +154,34 @@ export function RegistroUsuario(props) {
                     name="inlineRadioOptions"
                     id="inlineRadioInactive"
                     value="0"
-                    onClick={(e) =>handleChangeUsuario(e)}
-
+                    onClick={(e) => handleChangeUsuario(e)}
                   />
-                  <label className="form-check-label" for="inlineRadioInactive"> Inactivo</label>
+                  <label className="form-check-label" for="inlineRadioInactive">
+                    {" "}
+                    Inactivo
+                  </label>
                 </div>
 
-                <div className="col-10 d-flex justify-content-end mb-4">
-                  <div className="row g-3 mt-3">
-                    <div className="col-md-2 mx-auto">
-                      <button
-                        type="submit"
-                        className="btn btn-success"
-                        onClick={() => confirmacion2()}
-                      >
-                        Agregar
-                      </button>
-                    </div>
-                    <div className="col-md-2 mx-auto">
-                      <Link
-                        type="submit"
-                        className="btn btn-danger"
-                        to="/lista-usuarios"
-                      >
-                        Cancelar
-                      </Link>
-                    </div>
-                  </div>
+                <div className="row my-4 justify-content-center">
+                  <button
+                    type="submit"
+                    className="btn btn-success mx-2"
+                    onClick={() => confirmacion2()}
+                  >
+                    Agregar
+                  </button>
+                  <Link
+                    className="btn btn-outline-danger mx-2"
+                    to="/lista-usuarios"
+                  >
+                    Cancelar
+                  </Link>
+                </div>
               </div>
-
             </div>
           </div>
-
         </div>
-
       </form>
     </div>
-  )
+  );
 }
