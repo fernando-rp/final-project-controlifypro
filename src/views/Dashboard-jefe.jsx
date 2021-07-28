@@ -286,6 +286,7 @@ const colaboradoreshh = {
                       }
                     </select>
                 </div>
+                <button type="button" className="btn btn-outline-white bg-success mx-auto mt-4" onClick={handldeProyecto}> Actualizar </button>
 
               </div>
                <Bar data={colaboradores} options={hhutilizadasActividades} /> 

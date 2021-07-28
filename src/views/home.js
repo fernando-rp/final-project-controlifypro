@@ -24,7 +24,7 @@ const Home = () => {
             <History />
             <Porqueusar/>
             {/* <Tecnologias /> */}
-            <Equipo/> 
+            {/* <Equipo/>  */}
             <Footer/>
         </>  
         

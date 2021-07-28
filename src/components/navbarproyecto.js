@@ -26,7 +26,7 @@ const Navbarproyecto = () => {
 					<span className="navbar-brand mb-0 fs-2">Trabajadores</span>
 				</Link>
                 <Link to="/Login">
-					<span className="navbar-brand mb-0 fs-2">actividades</span>
+					<span className="navbar-brand mb-0 fs-2">Actividades</span>
 				</Link>
 								              
 				</div> 

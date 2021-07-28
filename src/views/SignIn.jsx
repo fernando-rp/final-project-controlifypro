@@ -34,7 +34,7 @@ export function SignIn() {
                 id="floatingPassword"
                 placeholder="Password"
               />
-              <label for="floatingPassword">Contraeña</label>
+              <label for="floatingPassword">Password</label>
             </div>
 
             <div className="checkbox mb-3">

@@ -98,7 +98,7 @@ const ListaHoras = () => {
                   onChange={(e)=>{
                       actividadesProyecto(e)
                       }}>
-                      <option value="DEFAULT" disabled>Seleccionar proyecto</option>
+                      <option value="" >Seleccionar proyecto</option>
                       {!!proyectos &&
                           proyectos.map((proyecto, index) => {
                               return (
@@ -120,7 +120,7 @@ const ListaHoras = () => {
                         handleChangeHH(e)
                   }}
                   >
-                      <option value="DEFAULT" disabled>Seleccionar actividad</option>
+                      <option value="" >Seleccionar actividad</option>
                       {!!actividades_proyecto &&
                           actividades_proyecto.map((actividad, index) => {
                               return (
@@ -183,7 +183,7 @@ const ListaHoras = () => {
                             onChange={(e)=>{
                                 handleChangeHH(e)
                             }}>
-                            <option value="DEFAULT" disabled>Seleccionar colaborador</option>
+                            <option value="" >Seleccionar colaborador</option>
                             
                                 {!!usuarios &&
                                     usuarios.map((usuario, index) => {
