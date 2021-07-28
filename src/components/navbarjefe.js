@@ -84,7 +84,7 @@ const Navbarjefe = () => {
             <span className="navbar-brand mb-2 fs-5">Horas</span>
           </Link>
           <Link to="/">
-            <span className="navbar-brand mb-2 fs-5">Cerrar Sesión</span>
+            <span className="navbar-brand mb-2 fs-3"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</span>
           </Link>
         </div>
 			</div>
